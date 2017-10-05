@@ -9,7 +9,7 @@ r(c).
 r(d).
 s(e).
 
-% Ex. 4
+% Ex. 4 - Fatorial e Fibonacci
 factorial(0, 1).
 /*
 factorial(N, Value) :-
@@ -45,3 +45,29 @@ sum(N, Acc, V) :-
         N1 is N-1,
         Acc1 is Acc + N,
         sum(N1, Acc1, V).
+
+% Modulo function
+mod(_, 1, 0).
+mod(N, N, 0).
+mod(N, Div, R) :-
+        Tmp is N // Div,
+        R is N - (Div * Tmp).
+
+hasFactor(N, F) :-
+        mod(N, F, 0).
+hasFactor(N, F) :-
+        F * F < N,
+        F2 is F + 2,
+        hasFactor(N,F2).
+
+% Ex. 5 - Numeros Primos
+isPrime(2).
+isPrime(3).
+isPrime(P) :-
+        integer(P),
+        P > 3,
+        \+mod(P, 2, 0),
+        \+hasFactor(P,3).
+
+
+
