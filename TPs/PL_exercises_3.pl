@@ -111,3 +111,14 @@ conta_elem(X, [_|L], N) :-
         conta_elem(X, L, N).
 
 
+%10. a)
+ordenada([Lista]).
+
+ordenada([H1, H2]) :- H1 =< H2.
+
+ordenada([H1, H2|Lista]) :-
+           H1 =< H2,
+           Lista = [H3|T],
+           ordenada([H2, H3 | T]).
+
+ordenada(H1, H2 ,[]) :- H2 >= H1.
