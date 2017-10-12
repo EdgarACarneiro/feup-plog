@@ -1,25 +1,3 @@
-translate(0, T) :- T = ' '.
-translate(1, T) :- T = 'O'. 
-
-initialBoard([[1,0,0,0],
-              [0,1,0,0],
-              [0,0,1,0],
-              [0,0,0,1]]).
-
-printMatrix([]).
-printMatrix([Line|M]) :-
-        write('|'),
-        printLine(Line),
-        write('|'), nl,
-        printMatrix(M).
-
-printLine([]).
-printLine([Head|Tail]) :-
-        translate(Head, T),
-        write(T),
-        write(' '),
-        printLine(Tail).
-
 % Ex. LIST 3
 appendList([], L, L).
 appendList([X|L1], L2, [X|L3]) :-
