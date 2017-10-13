@@ -17,30 +17,106 @@ createBoardLine([FirstEle | OtherEle], N) :-
 %Board Printing - Character Translation
 translate(0, Symbol) :- Symbol = ' '.
 translate(1, Symbol) :- Symbol = 'O'. %Dark Pieces
-translate(2, Symbol) :- Symbol = 'X'. %White Pieces
+translate(2, Symbol) :- Symbol = '#'. %White Pieces
 transalte(3, Symbol) :- Symbol = 'R'. %Red Workers
 
 %Board Printing - arguments: Board and Board size
-printBoard([], N):-
-        printRowDivider(N).
+printFabrik(Board, N):-
+        nl, 
+        write('  '), printHorizontalLabel(N, N),
+        printBoard(Board, N, 1).
 
-printBoard([Line|Board], N) :-
-        printRowDivider(N), nl,
-        write('|'),
-        printLine(Line), nl,
-        printBoard(Board, N).
+printBoard([], N, _):-
+        printRowDivider(N), nl.
 
-printLine([]).
-printLine([Head|Tail]) :-
+printBoard([Line | Board], N, CurrentL) :-
+        printRowDivider(N),
+        printDesignRow(N),
+        printVerticalLabel(CurrentL),
+        put_code(9474),
+        printLine(Line),
+        printDesignRow(N),
+        NewL is (CurrentL+1),
+        printBoard(Board, N, NewL).
+
+printLine([]) :- nl.
+printLine([Head | Tail]) :-
         translate(Head, Symbol),
-        write(' '),
+        write('   '),
         write(Symbol),
-        write(' |'),
+        write('   '), put_code(9474),
         printLine(Tail).
 
-printRowDivider(0).
-printRowDivider(N) :-
-        write(' '),
-        put_code(9472), put_code(9472), put_code(9472),
+%                                              AESTHETICS
+% Code: 9532 - ┼
+% Code: 9472 - ─
+% Code: 9474 - │
+
+printRowDivider(N):-
+        write('  '),
+        put_code(9532),
+        printRowDividerRec(N).
+
+printRowDividerRec(0) :- nl.
+printRowDividerRec(N) :-
+        put_code(9472), put_code(9472), put_code(9472), put_code(9472),
+        put_code(9472), put_code(9472), put_code(9472), put_code(9532),
         N1 is (N-1),
-        printRowDivider(N1).
+        printRowDividerRec(N1).
+
+printDesignRow(N):-
+        write('  '),
+        put_code(9474),
+        printDesignRowRec(N).
+
+printDesignRowRec(0) :- nl.
+printDesignRowRec(N) :-
+        write('       '), put_code(9474),
+        N1 is (N-1),
+        printDesignRowRec(N1).
+
+%Dictionary for Labels
+getLabel(0, L):- L = 'A'.
+getLabel(1, L):- L = 'B'.
+getLabel(2, L):- L = 'C'.
+getLabel(3, L):- L = 'D'.
+getLabel(4, L):- L = 'E'.
+getLabel(5, L):- L = 'F'.
+getLabel(6, L):- L = 'G'.
+getLabel(7, L):- L = 'H'.
+getLabel(8, L):- L = 'I'.
+getLabel(9, L):- L = 'J'.
+getLabel(10, L):- L = 'K'.
+getLabel(11, L):- L = 'L'.
+
+printHorizontalLabel(0, _):- nl.
+printHorizontalLabel(N, Total):-
+        Pos is (Total-N),
+        getLabel(Pos, L),
+        write('    '), write(L), write('   '),
+        N1 is (N-1),
+        printHorizontalLabel(N1, Total).        
+
+printVerticalLabel(CurrentL):-
+        CurrentL < 10,
+        write(CurrentL),
+        write(' ').
+
+printVerticalLabel(CurrentL):-
+        write(CurrentL).
+        
+
+%Access the element in the [Row,Col] position of the given board
+accessElement(0, [Elem | _], Element):-
+        Element = Elem.
+
+accessElement(Col, [_ | Board], Element) :-
+        Col1 is (Col-1),
+        accessElement(Col1, Board, Element).
+
+accessElement(0, Col, [Line | _], Element):-
+        accessElement(Col, Line, Element).
+
+accessElement(Row, Col, [_ | Board], Element):-
+        Row1 is (Row-1),
+        accessElement(Row1, Col, Board, Element).
