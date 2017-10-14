@@ -42,7 +42,7 @@
 \title{\Huge\textbf{FABRIK}\linebreak\linebreak\linebreak
 \Large\textbf{Relatório Intercalar}\linebreak\linebreak
 \linebreak\linebreak
-\includegraphics[scale=0.1]{feup-logo.png}\linebreak\linebreak
+\includegraphics[scale=0.1]{images/feup-logo.png}\linebreak\linebreak
 \linebreak\linebreak
 \Large{Mestrado Integrado em Engenharia Informática e Computação} \linebreak\linebreak
 \Large{Programação em Lógica}\linebreak
@@ -119,7 +119,7 @@ O jogo - \textit{Fabrik} - foi recentemente desenvolvido por Dieter Stein, em Ag
 
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[height=3cm,width=3cm]{fabrik_empty_board.png}
+\includegraphics[height=3cm,width=3cm]{images/fabrik_empty_board.png}
 \caption{Tabuleiro vazio de 11 x 11 espaços}
 \label{Figura 1}
 \end{center}
@@ -131,7 +131,7 @@ O jogo funciona por turnos sendo que em cada um turno um jogador pode, se assim 
 
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[height=3cm,width=3cm]{fabrik_intersection.png}
+\includegraphics[height=3cm,width=3cm]{images/fabrik_intersection.png}
 \caption{Pontos de interseção entre os dois trabalhadores}
 \label{Figura 2}
 \end{center}
@@ -142,7 +142,7 @@ Ganha o jogo o jogador que consiga criar uma linha de pelo menos 5 pedras da sua
 
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[height=3cm,width=3cm]{fabrik_full_board.png}
+\includegraphics[height=3cm,width=3cm]{images/fabrik_full_board.png}
 \caption{Final de uma partida de Fabrik, com vitórias das pretas}
 \label{Figura 3}
 \end{center}
@@ -183,14 +183,14 @@ Representação do estado inicial:
 \centering
 \begin{minipage}{.35\textwidth}
 	\centering
-	\includegraphics[width=\textwidth]{self_empty_board.png}
+	\includegraphics[width=\textwidth]{images/self_empty_board.png}
 	\caption{Representação do estado inicial na consola}
 	\label{Figura 4}
 \end{minipage}
 \quad \quad
 \begin{minipage}{.35\textwidth}
 	\centering
-	\includegraphics[width=\textwidth]{fabrik_empty_board.png}
+	\includegraphics[width=\textwidth]{images/fabrik_empty_board.png}
 	\caption{Tabuleiro original Vazio}
 	\label{Figura 5}
 \end{minipage}
@@ -218,7 +218,7 @@ Representação de um possível estado intermédio:\newline
 
 \begin{figure}[h!]
 \begin{center}
-	\includegraphics[height=6cm, width=6cm]{self_semi_board.png}
+	\includegraphics[height=6cm, width=6cm]{images/self_semi_board.png}
 	\caption{Representação na consola, de um possível estado intermédio}
 	\label{Figura 6}
 \end{center}
@@ -247,14 +247,14 @@ Representação de um possível estado final:\newline
 \centering
 \begin{minipage}{.35\textwidth}
 	\centering
-	\includegraphics[width=\textwidth]{self_full_board.png}
+	\includegraphics[width=\textwidth]{images/self_full_board.png}
 	\caption{Representação do estado final na consola}
 	\label{Figura 7}
 \end{minipage}
 \quad \quad
 \begin{minipage}{.35\textwidth}
 	\centering
-	\includegraphics[width=\textwidth]{fabrik_full_board.png}
+	\includegraphics[width=\textwidth]{images/fabrik_full_board.png}
 	\caption{Representção do mesmo estado final, no tabuleiro original}
 	\label{Figura 8}
 \end{minipage}
@@ -356,6 +356,16 @@ printVerticalLabel(CurrentL):-
 printVerticalLabel(CurrentL):-
         write(CurrentL).
 \end{lstlisting}
+
+Representação de um tabuleiro, usndo o código mencionado:\newline
+
+\begin{figure}[h!]
+\begin{center}
+	\includegraphics[height=4cm, width=4cm]{images/self_semi_board.png}
+	\caption{Representação na consola, de um possível estado intermédio}
+	\label{Figura 6}
+\end{center}
+\end{figure}
 
 \newpage
 
