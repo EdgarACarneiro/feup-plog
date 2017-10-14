@@ -103,7 +103,7 @@ Edgar Carneiro - 201503778 \\
 \newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{O Jogo\textit{Fabrik}}
+\section{O Jogo \textit{Fabrik}}
 
 \subsection{História}
 O jogo - \textit{Fabrik} - foi recentemente desenvolvido por Dieter Stein, em Agosto de 2017, como parte de um estudo para o desenvolvimento de um novo jogo, Urbino.
@@ -124,8 +124,9 @@ O jogo - \textit{Fabrik} - foi recentemente desenvolvido por Dieter Stein, em Ag
 \end{figure}
 
 \subsection{Regras}
-As pretas (jogador que joga com peças de cor preta) começam por colocar um dos trabalhadores num espaço à sua escolha. De seguida, as brancas (jogador que joga com peças de cor branca) coloca o outro trabalhador num espaço qualquer. As pretas decidem quem começa por jogar.
-O jogo funciona por turnos sendo que em cada um turno um jogador pode, se assim optar, mexer um dos trabalhadores para um espaço vazio. De seguida, o jogador deve jogar uma das suas  peças e coloca-la num ponto de interseção entre as “linhas de visão dos dois trabalhadores”. As linhas de visão dos trabalhadores são as linhas na diagonal, horizontal e vertical sobre as quais os trabalhadores se encontram posicionados.
+As pretas (jogador que joga com peças de cor preta) começam por colocar um dos trabalhadores num espaço à sua escolha. De seguida, as brancas (jogador que joga com peças de cor branca) colocam o outro trabalhador num espaço livre. De seguida, as pretas decidem quem começa por jogar.
+
+O jogo procede por turnos, sendo que em cada turno um jogador pode, se assim optar, mover um dos trabalhadores para um espaço vazio. De seguida, o jogador deve jogar colocar uma das suas peças num ponto de interseção entre as “linhas de visão dos dois trabalhadores”. As linhas de visão dos trabalhadores são as linhas na diagonal, horizontal e vertical sobre as quais os trabalhadores se encontram posicionados.
 
 \begin{figure}[h!]
 \begin{center}
@@ -136,6 +137,7 @@ O jogo funciona por turnos sendo que em cada um turno um jogador pode, se assim 
 \end{figure}
 
 No caso especial em que os dois trabalhadores se encontram sobre uma mesma linha ortogonal ou diagonal, apenas os espaços entre eles são considerados pontos de interseção (se estiverem vazios), ao invés da totalidade dessa linha.
+
 Ganha o jogo o jogador que consiga criar uma linha de pelo menos 5 pedras da sua cor, ortogonalmente ou diagonalmente. Um jogador ganha também o jogo se o seu adversário não conseguir posicionar nenhum dos trabalhadores de forma a poder colocar uma pedra sua no tabuleiro.
 
 \begin{figure}[h!]
@@ -376,7 +378,7 @@ Representação de um tabuleiro, usando o código mencionado:\newline
 Os predicados que consideramos serem necessários definir para os movimentos associados ao jogo são:
 
 \begin{itemize}
-	\item \textit{putPiece(Row, Col, Board, PieceType)}\newline
+	\item \textit{setPiece(PieceType, Row, Col, Board)}\newline
 	Colocação de uma peça, branca ou preta, no tabuleiro, na posição [Row, Col].
 	
 	\item \textit{moveWorker(Row, Col, DestRow, DestCol, Board)}\newline
