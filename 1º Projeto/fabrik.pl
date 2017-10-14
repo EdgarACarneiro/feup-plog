@@ -10,15 +10,15 @@ createBoard([FirstRow | OtherRows], N, Lines) :-
         
 createBoardLine(_, 0).
 createBoardLine([FirstEle | OtherEle], N) :-
-        FirstEle = 0,
+        FirstEle = empty,
         N1 is (N-1),
         createBoardLine(OtherEle, N1).
         
 %Board Printing - Character Translation
-translate(0, Symbol) :- Symbol = ' '.
-translate(1, Symbol) :- Symbol = 'O'. %Dark Pieces
-translate(2, Symbol) :- Symbol = '#'. %White Pieces
-transalte(3, Symbol) :- Symbol = 'R'. %Red Workers
+translate(empty, Symbol) :- Symbol = ' '.
+translate(black, Symbol) :- Symbol = 'O'. %Dark Pieces
+translate(white, Symbol) :- Symbol = 'X'. %White Pieces
+translate(worker, Symbol) :- Symbol = 'W'. %Red Workers
 
 %Board Printing - arguments: Board and Board size
 printFabrik(Board, N):-
@@ -48,9 +48,9 @@ printLine([Head | Tail]) :-
         printLine(Tail).
 
 %                                              AESTHETICS
-% Code: 9532 - ┼
-% Code: 9472 - ─
-% Code: 9474 - │
+% Code: 9532 - â¼
+% Code: 9472 - â
+% Code: 9474 - â
 
 printRowDivider(N):-
         write('  '),

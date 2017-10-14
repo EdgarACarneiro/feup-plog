@@ -8,6 +8,31 @@
 \usepackage{graphicx}
 \usepackage{verbatim}
 \usepackage{fancyhdr}
+\usepackage{listings}
+
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Prolog,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
 
 \begin{document}
 
@@ -132,15 +157,205 @@ Ganha o jogo o jogador que consiga criar uma linha de pelo menos 5 pedras da sua
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Representação do Estado do Jogo}
 
-Descrever a forma de representação do estado do tabuleiro (tipicamente uma lista de listas), com exemplificação em Prolog de posições iniciais do jogo, posições intermédias e finais, acompanhadas de imagens ilustrativas.
+A representação dos estados de jogo é feita com recurso a uma lista de listas, de forma a simular o uso de uma Matriz. Seguem de seguida, a representaçao de diferentes estados de jogo:\newline
 
-\newpage
+
+
+Representação do estado inicial:
+
+\begin{small}
+\begin{lstlisting}
+[[empty, empty, empty, empty,  empty, empty,  empty, empty, empty, empty, empty],
+ [empty, empty, empty, empty,  empty, empty,  empty, empty, empty, empty, empty],
+ [empty, empty, empty, empty,  empty, empty,  empty, empty, empty, empty, empty],
+ [empty, empty, empty, empty,  empty, empty,  empty, empty, empty, empty, empty],
+ [empty, empty, empty, empty,  empty, empty,  empty, empty, empty, empty, empty],
+ [empty, empty, empty, empty,  empty, empty,  empty, empty, empty, empty, empty],
+ [empty, empty, empty, empty,  empty, empty,  empty, empty, empty, empty, empty],
+ [empty, empty, empty, empty,  empty, empty,  empty, empty, empty, empty, empty],
+ [empty, empty, empty, empty,  empty, empty,  empty, empty, empty, empty, empty],
+ [empty, empty, empty, empty,  empty, empty,  empty, empty, empty, empty, empty],
+ [empty, empty, empty, empty,  empty, empty,  empty, empty, empty, empty, empty]]
+\end{lstlisting}
+\end{small}
+
+\begin{figure}[h!]
+\centering
+\begin{minipage}{.35\textwidth}
+	\centering
+	\includegraphics[width=\textwidth]{self_empty_board.png}
+	\caption{Representação do estado inicial na consola}
+	\label{Figura 4}
+\end{minipage}
+\quad \quad
+\begin{minipage}{.35\textwidth}
+	\centering
+	\includegraphics[width=\textwidth]{fabrik_empty_board.png}
+	\caption{Tabuleiro original Vazio}
+	\label{Figura 5}
+\end{minipage}
+\end{figure}
+
+\clearpage
+
+Representação de um possível estado intermédio:\newline
+
+\begin{small}
+\begin{lstlisting}
+[[empty, empty, empty, empty,  empty, empty,  empty, empty, empty, empty, empty],
+ [empty, empty, empty, empty,  empty, white, worker, empty, empty, empty, empty],
+ [empty, empty, empty, empty,  empty, empty,  white, black, white, empty, empty],
+ [empty, white, white, empty,  empty, empty,  empty, white, white, empty, empty],
+ [white, empty, empty, empty,  black, black,  empty, black, empty, empty, empty],
+ [empty, empty, black, white,  empty, empty,  empty, empty, white, empty, empty],
+ [empty, black, empty, empty,  empty, black,  black, black, empty, empty, empty],
+ [empty, empty, empty, empty,  empty, empty,  black, empty, white, empty, empty],
+ [empty, empty, empty, empty,  empty, black,  empty, empty, empty, empty, empty],
+ [empty, empty, empty, empty, worker, empty,  empty, empty, empty, empty, empty],
+ [empty, empty, empty, empty,  empty, empty,  empty, empty, empty, empty, empty]]
+\end{lstlisting}
+\end{small}
+
+\begin{figure}[h!]
+\begin{center}
+	\includegraphics[height=6cm, width=6cm]{self_semi_board.png}
+	\caption{Representação na consola, de um possível estado intermédio}
+	\label{Figura 6}
+\end{center}
+\end{figure}
+
+\clearpage
+Representação de um possível estado final:\newline
+
+\begin{small}
+\begin{lstlisting}
+[[empty, empty, empty, empty,  white, empty, empty, empty, empty, empty, empty],
+ [empty, white, empty, white,  empty, white, white, empty, empty, white, empty],
+ [empty, white, empty, white,  empty, empty, white, black, white, empty, empty],
+ [black, white, white, empty,  empty, empty, empty, white, white, empty, empty],
+ [white, empty, black, empty,  black, black, black, black, empty, empty, empty],
+ [empty, black, black, white,  white, black, empty, black, white, empty, empty],
+ [white, black, empty, black,  empty, black, black, black, empty, empty, empty],
+ [empty, empty, empty, empty, worker, black, black, empty, white, empty, empty],
+ [white, black, empty, empty,  black, black, empty, empty, empty, worker, empty],
+ [empty, empty, empty, empty,  empty, empty, empty, empty, empty, empty, empty],
+ [empty, empty, black, empty,  empty, empty, empty, white, empty, empty, empty]]
+\end{lstlisting}
+\end{small}
+
+\begin{figure}[h!]
+\centering
+\begin{minipage}{.35\textwidth}
+	\centering
+	\includegraphics[width=\textwidth]{self_full_board.png}
+	\caption{Representação do estado final na consola}
+	\label{Figura 7}
+\end{minipage}
+\quad \quad
+\begin{minipage}{.35\textwidth}
+	\centering
+	\includegraphics[width=\textwidth]{fabrik_full_board.png}
+	\caption{Representção do mesmo estado final, no tabuleiro original}
+	\label{Figura 8}
+\end{minipage}
+\end{figure}
+
+\clearpage
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Visualização do Tabuleiro}
 
-Descrever a forma de visualização do tabuleiro em modo de texto e o(s) predicado(s) Prolog construídos para o efeito.
-Deve ser incluída pelo menos uma imagem correspondente ao output produzido pelo predicado de visualização.
+Para a representação do tabuleiro em modo de texto, foi criado o seguinte código em prolog:
+\begin{lstlisting}
+%Board Printing - Character Translation
+translate(empty, Symbol) :- Symbol = ' '.
+translate(black, Symbol) :- Symbol = 'O'. %Dark Pieces
+translate(white, Symbol) :- Symbol = 'X'. %White Pieces
+translate(worker, Symbol) :- Symbol = 'W'. %Red Workers
+
+%Board Printing - arguments: Board and Board size
+printFabrik(Board, N):-
+        nl, 
+        write('  '), printHorizontalLabel(N, N),
+        printBoard(Board, N, 1).
+
+printBoard([], N, _):-
+        printRowDivider(N), nl.
+
+printBoard([Line | Board], N, CurrentL) :-
+        printRowDivider(N),
+        printDesignRow(N),
+        printVerticalLabel(CurrentL),
+        put_code(9474),
+        printLine(Line),
+        printDesignRow(N),
+        NewL is (CurrentL+1),
+        printBoard(Board, N, NewL).
+
+printLine([]) :- nl.
+printLine([Head | Tail]) :-
+        translate(Head, Symbol),
+        write('   '),
+        write(Symbol),
+        write('   '), put_code(9474),
+        printLine(Tail).
+
+%              AESTHETICS
+
+printRowDivider(N):-
+        write('  '),
+        put_code(9532),
+        printRowDividerRec(N).
+
+printRowDividerRec(0) :- nl.
+printRowDividerRec(N) :-
+        put_code(9472), put_code(9472), put_code(9472), put_code(9472),
+        put_code(9472), put_code(9472), put_code(9472), put_code(9532),
+        N1 is (N-1),
+        printRowDividerRec(N1).
+
+printDesignRow(N):-
+        write('  '),
+        put_code(9474),
+        printDesignRowRec(N).
+
+printDesignRowRec(0) :- nl.
+printDesignRowRec(N) :-
+        write('       '), put_code(9474),
+        N1 is (N-1),
+        printDesignRowRec(N1).
+
+%Dictionary for Labels
+getLabel(0, L):- L = 'A'.
+getLabel(1, L):- L = 'B'.
+getLabel(2, L):- L = 'C'.
+getLabel(3, L):- L = 'D'.
+getLabel(4, L):- L = 'E'.
+getLabel(5, L):- L = 'F'.
+getLabel(6, L):- L = 'G'.
+getLabel(7, L):- L = 'H'.
+getLabel(8, L):- L = 'I'.
+getLabel(9, L):- L = 'J'.
+getLabel(10, L):- L = 'K'.
+getLabel(11, L):- L = 'L'.
+
+printHorizontalLabel(0, _):- nl.
+printHorizontalLabel(N, Total):-
+        Pos is (Total-N),
+        getLabel(Pos, L),
+        write('    '), write(L), write('   '),
+        N1 is (N-1),
+        printHorizontalLabel(N1, Total).        
+
+printVerticalLabel(CurrentL):-
+        CurrentL < 10,
+        write(CurrentL),
+        write(' ').
+
+printVerticalLabel(CurrentL):-
+        write(CurrentL).
+\end{lstlisting}
 
 \newpage
 
@@ -149,6 +364,13 @@ Deve ser incluída pelo menos uma imagem correspondente ao output produzido pelo
 
 Elencar os movimentos (tipos de jogadas) possíveis e definir os cabeçalhos dos predicados que serão utilizados (ainda não precisam de estar implementados).
 
+Colocação de uma peça no tabuleiro:
+	putPiece(Row, Column, Board, pieceType)
+
+Movimentação de um worker:
+	moveWorker(Row, Col, DestRow, DestCol, Board)
+	
+Só estes? xD
 
 
 \end{document}
