@@ -271,14 +271,14 @@ Representação de um possível \textbf{estado final}:\newline
 \subsection{Visualização do Tabuleiro}
 
 Para a representação do tabuleiro em modo de texto, foi criado o seguinte código em prolog:
-\begin{lstlisting}
-%Board Printing - Character Translation
+\begin{lstlisting}[language=prolog]
+% Board Printing - Character Translation
 translate(none, Symbol) :- Symbol = ' '.
-translate(black, Symbol) :- Symbol = 'O'. %Dark Pieces
-translate(white, Symbol) :- Symbol = 'X'. %White Pieces
-translate(worker, Symbol) :- Symbol = 'W'. %Red Workers
+translate(black, Symbol) :- Symbol = 'O'.	% Dark Pieces
+translate(white, Symbol) :- Symbol = 'X'.	% White Pieces
+translate(worker, Symbol) :- Symbol = 'W'.% Red Workers
 
-%Board Printing - arguments: Board and Board size
+% Board Printing - arguments: Board and Board size
 printFabrik(Board, N):-
         nl, 
         write('  '), printHorizontalLabel(N, N),
@@ -330,7 +330,7 @@ printDesignRowRec(N) :-
         N1 is (N-1),
         printDesignRowRec(N1).
 
-%Dictionary for Labels
+% Dictionary for Labels
 getLabel(0, L):- L = 'A'.
 getLabel(1, L):- L = 'B'.
 getLabel(2, L):- L = 'C'.
@@ -361,7 +361,7 @@ printVerticalLabel(CurrentL):-
         write(CurrentL).
 \end{lstlisting}
 
-Representação de um tabuleiro, usndo o código mencionado:\newline
+Representação de um tabuleiro, usando o código mencionado:\newline
 
 \begin{figure}[h!]
 \begin{center}
