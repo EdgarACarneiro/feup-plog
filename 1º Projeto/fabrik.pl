@@ -10,12 +10,12 @@ createBoard([FirstRow | OtherRows], N, Lines) :-
         
 createBoardLine(_, 0).
 createBoardLine([FirstEle | OtherEle], N) :-
-        FirstEle = empty,
+        FirstEle = none,
         N1 is (N-1),
         createBoardLine(OtherEle, N1).
         
 %Board Printing - Character Translation
-translate(empty, Symbol) :- Symbol = ' '.
+translate(none, Symbol) :- Symbol = ' '.
 translate(black, Symbol) :- Symbol = 'O'. %Dark Pieces
 translate(white, Symbol) :- Symbol = 'X'. %White Pieces
 translate(worker, Symbol) :- Symbol = 'W'. %Red Workers

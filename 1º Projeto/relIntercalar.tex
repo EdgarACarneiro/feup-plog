@@ -126,7 +126,7 @@ O jogo - \textit{Fabrik} - foi recentemente desenvolvido por Dieter Stein, em Ag
 \end{figure}
 
 \subsection{Regras}
-As pretas (jogador que joga com peças de cor preta) começam por colocar um dos trabalhadores num espaço á sua escolha. De seguida, as brancas (jogador que joga com peças de cor branca) coloca o outro trabalhador num espaço qualquer. As pretas decidem quem começa por jogar.
+As pretas (jogador que joga com peças de cor preta) começam por colocar um dos trabalhadores num espaço à sua escolha. De seguida, as brancas (jogador que joga com peças de cor branca) coloca o outro trabalhador num espaço qualquer. As pretas decidem quem começa por jogar.
 O jogo funciona por turnos sendo que em cada um turno um jogador pode, se assim optar, mexer um dos trabalhadores para um espaço vazio. De seguida, o jogador deve jogar uma das suas  peças e coloca-la num ponto de interseção entre as “linhas de visão dos dois trabalhadores”. As linhas de visão dos trabalhadores são as linhas na diagonal, horizontal e vertical sobre as quais os trabalhadores se encontram posicionados.
 
 \begin{figure}[h!]
@@ -148,8 +148,12 @@ Ganha o jogo o jogador que consiga criar uma linha de pelo menos 5 pedras da sua
 \end{center}
 \end{figure}
 
+\vfill
+\textbf{Referências:}\newline
+https://spielstein.com/games/fabrik\newline
+https://spielstein.com/games/fabrik/rules
 
-\textbf{Devem ser incluidas as fontes de informação (e.g. URLs em rodapé).}
+
 
 \newpage
 
@@ -161,21 +165,21 @@ A representação dos estados de jogo é feita com recurso a uma lista de listas
 
 
 
-Representação do estado inicial:
+Representação do \textbf{estado inicial}:
 
 \begin{small}
 \begin{lstlisting}
-[[empty, empty, empty, empty,  empty, empty,  empty, empty, empty, empty, empty],
- [empty, empty, empty, empty,  empty, empty,  empty, empty, empty, empty, empty],
- [empty, empty, empty, empty,  empty, empty,  empty, empty, empty, empty, empty],
- [empty, empty, empty, empty,  empty, empty,  empty, empty, empty, empty, empty],
- [empty, empty, empty, empty,  empty, empty,  empty, empty, empty, empty, empty],
- [empty, empty, empty, empty,  empty, empty,  empty, empty, empty, empty, empty],
- [empty, empty, empty, empty,  empty, empty,  empty, empty, empty, empty, empty],
- [empty, empty, empty, empty,  empty, empty,  empty, empty, empty, empty, empty],
- [empty, empty, empty, empty,  empty, empty,  empty, empty, empty, empty, empty],
- [empty, empty, empty, empty,  empty, empty,  empty, empty, empty, empty, empty],
- [empty, empty, empty, empty,  empty, empty,  empty, empty, empty, empty, empty]]
+[[none, none, none, none,  none, none,  none, none, none, none, none],
+ [none, none, none, none,  none, none,  none, none, none, none, none],
+ [none, none, none, none,  none, none,  none, none, none, none, none],
+ [none, none, none, none,  none, none,  none, none, none, none, none],
+ [none, none, none, none,  none, none,  none, none, none, none, none],
+ [none, none, none, none,  none, none,  none, none, none, none, none],
+ [none, none, none, none,  none, none,  none, none, none, none, none],
+ [none, none, none, none,  none, none,  none, none, none, none, none],
+ [none, none, none, none,  none, none,  none, none, none, none, none],
+ [none, none, none, none,  none, none,  none, none, none, none, none],
+ [none, none, none, none,  none, none,  none, none, none, none, none]]
 \end{lstlisting}
 \end{small}
 
@@ -198,21 +202,21 @@ Representação do estado inicial:
 
 \clearpage
 
-Representação de um possível estado intermédio:\newline
+Representação de um possível \textbf{estado intermédio}:\newline
 
 \begin{small}
 \begin{lstlisting}
-[[empty, empty, empty, empty,  empty, empty,  empty, empty, empty, empty, empty],
- [empty, empty, empty, empty,  empty, white, worker, empty, empty, empty, empty],
- [empty, empty, empty, empty,  empty, empty,  white, black, white, empty, empty],
- [empty, white, white, empty,  empty, empty,  empty, white, white, empty, empty],
- [white, empty, empty, empty,  black, black,  empty, black, empty, empty, empty],
- [empty, empty, black, white,  empty, empty,  empty, empty, white, empty, empty],
- [empty, black, empty, empty,  empty, black,  black, black, empty, empty, empty],
- [empty, empty, empty, empty,  empty, empty,  black, empty, white, empty, empty],
- [empty, empty, empty, empty,  empty, black,  empty, empty, empty, empty, empty],
- [empty, empty, empty, empty, worker, empty,  empty, empty, empty, empty, empty],
- [empty, empty, empty, empty,  empty, empty,  empty, empty, empty, empty, empty]]
+[[ none, none, none, none, none, none, none, none, none, none, none],
+ [ none, none, none, none, none, white, worker, none, none, none, none],
+ [ none, none, none, none, none, none, white, black, white, none, none],
+ [ none, white, white, none, none, none, none, white, white, none, none],
+ [white, none, none, none, black, black, none, black, none, none, none],
+ [ none, none, black, white, none, none, none, none, white, none, none],
+ [ none, black, none, none, none, black, black, black, none, none, none],
+ [ none, none, none, none, none, none, black, none, white, none, none],
+ [ none, none, none, none, none, black, none, none, none, none, none],
+ [ none, none, none, none, worker, none, none, none, none, none, none],
+ [ none, none, none, none, none, none, none, none, none, none, none]]
 \end{lstlisting}
 \end{small}
 
@@ -225,21 +229,21 @@ Representação de um possível estado intermédio:\newline
 \end{figure}
 
 \clearpage
-Representação de um possível estado final:\newline
+Representação de um possível \textbf{estado final}:\newline
 
 \begin{small}
 \begin{lstlisting}
-[[empty, empty, empty, empty,  white, empty, empty, empty, empty, empty, empty],
- [empty, white, empty, white,  empty, white, white, empty, empty, white, empty],
- [empty, white, empty, white,  empty, empty, white, black, white, empty, empty],
- [black, white, white, empty,  empty, empty, empty, white, white, empty, empty],
- [white, empty, black, empty,  black, black, black, black, empty, empty, empty],
- [empty, black, black, white,  white, black, empty, black, white, empty, empty],
- [white, black, empty, black,  empty, black, black, black, empty, empty, empty],
- [empty, empty, empty, empty, worker, black, black, empty, white, empty, empty],
- [white, black, empty, empty,  black, black, empty, empty, empty, worker, empty],
- [empty, empty, empty, empty,  empty, empty, empty, empty, empty, empty, empty],
- [empty, empty, black, empty,  empty, empty, empty, white, empty, empty, empty]]
+[[ none, none, none, none, white, none, none, none, none, none, none],
+ [ none, white, none, white, none, white, white, none, none,white, none],
+ [ none, white, none, white, none, none,white, black, white, none, none],
+ [black, white, white, none, none, none, none, white, white, none, none],
+ [white, none, black, none,black, black, black, black, none, none, none],
+ [none, black, black, white,white, black, none, black,white, none, none],
+ [white, black, none,black, none, black, black, black, none, none, none],
+ [ none, none, none, none, worker, black, black, none,white, none, none],
+ [white, black, none, none,black, black, none, none, none, worker, none],
+ [ none, none, none, none, none, none, none, none, none, none, none],
+ [ none, none, black, none, none, none, none, white, none, none, none]]
 \end{lstlisting}
 \end{small}
 
@@ -269,7 +273,7 @@ Representação de um possível estado final:\newline
 Para a representação do tabuleiro em modo de texto, foi criado o seguinte código em prolog:
 \begin{lstlisting}
 %Board Printing - Character Translation
-translate(empty, Symbol) :- Symbol = ' '.
+translate(none, Symbol) :- Symbol = ' '.
 translate(black, Symbol) :- Symbol = 'O'. %Dark Pieces
 translate(white, Symbol) :- Symbol = 'X'. %White Pieces
 translate(worker, Symbol) :- Symbol = 'W'. %Red Workers
@@ -362,8 +366,8 @@ Representação de um tabuleiro, usndo o código mencionado:\newline
 \begin{figure}[h!]
 \begin{center}
 	\includegraphics[height=4cm, width=4cm]{images/self_semi_board.png}
-	\caption{Representação na consola, de um possível estado intermédio}
-	\label{Figura 6}
+	\caption{Representação de um tabuleiro na consola}
+	\label{Figura 9}
 \end{center}
 \end{figure}
 
@@ -371,16 +375,15 @@ Representação de um tabuleiro, usndo o código mencionado:\newline
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Movimentos}
+Os predicados que consideramos serem necessários definir para os movimentos associados ao jogo são:
 
-Elencar os movimentos (tipos de jogadas) possíveis e definir os cabeçalhos dos predicados que serão utilizados (ainda não precisam de estar implementados).
-
-Colocação de uma peça no tabuleiro:
-	putPiece(Row, Column, Board, pieceType)
-
-Movimentação de um worker:
-	moveWorker(Row, Col, DestRow, DestCol, Board)
+\begin{itemize}
+	\item \textit{putPiece(Row, Col, Board, PieceType)}\newline
+	Colocação de uma peça, branca ou preta, no tabuleiro, na posição [Row, Col].
 	
-Só estes? xD
-
+	\item \textit{moveWorker(Row, Col, DestRow, DestCol, Board)}\newline
+	Movimentação da peça '\textit{trabalhador}' na posição [Row, Col] para a posição [DestRow, DestCol]
+\end{itemize}
+	
 
 \end{document}
