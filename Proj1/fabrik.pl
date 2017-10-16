@@ -7,7 +7,7 @@ initGame(N) :-
         printFabrik(B, N).
 
 
-%Generate a board predicate with N x N empty spaces
+% Generate a board predicate with N x N empty spaces
 createBoard(Board, N) :-
         createBoard(Board, N , 0).
 
@@ -23,13 +23,14 @@ createBoardLine([FirstEle | OtherEle], N) :-
         N1 is (N-1),
         createBoardLine(OtherEle, N1).
         
-%Board Printing - Board Elements Translation to Print Code
+% Board Printing - Board Elements Translation to Print Code
 translate(none, Code) :- Code = 32.
 translate(black, Code) :- Code = 79. %Dark Pieces
 translate(white, Code) :- Code = 88. %White Pieces
 translate(worker, Code) :- Code = 9608. %Red Workers
 
-%Board Printing - arguments: Board and Board size
+
+% Board Printing - arguments: Board and Board size
 printFabrik(Board, N):-
         nl, 
         write('  '), printHorizontalLabel(N, N),
