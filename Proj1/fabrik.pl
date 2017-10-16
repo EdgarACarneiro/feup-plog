@@ -1,4 +1,12 @@
-%Generate a board predicate with N x N empty spaces
+% Utils
+boardSize(9).
+boardSize(11).
+initGame(N) :-
+        boardSize(N),
+        createBoard(B, N),
+        printFabrik(B, N).
+
+% Generate a board predicate with N x N empty spaces
 createBoard(Board, N) :-
         createBoard(Board, N , 0).
 
@@ -14,13 +22,13 @@ createBoardLine([FirstEle | OtherEle], N) :-
         N1 is (N-1),
         createBoardLine(OtherEle, N1).
         
-%Board Printing - Character Translation
+% Board Printing - Character Translation
 translate(none, Symbol) :- Symbol = ' '.
 translate(black, Symbol) :- Symbol = 'O'. %Dark Pieces
 translate(white, Symbol) :- Symbol = 'X'. %White Pieces
 translate(worker, Symbol) :- Symbol = 'W'. %Red Workers
 
-%Board Printing - arguments: Board and Board size
+% Board Printing - arguments: Board and Board size
 printFabrik(Board, N):-
         nl, 
         write('  '), printHorizontalLabel(N, N),
