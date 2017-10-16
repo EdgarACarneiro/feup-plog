@@ -6,6 +6,7 @@ initGame(N) :-
         createBoard(B, N),
         printFabrik(B, N).
 
+
 % Generate a board predicate with N x N empty spaces
 createBoard(Board, N) :-
         createBoard(Board, N , 0).
@@ -22,11 +23,12 @@ createBoardLine([FirstEle | OtherEle], N) :-
         N1 is (N-1),
         createBoardLine(OtherEle, N1).
         
-% Board Printing - Character Translation
-translate(none, Symbol) :- Symbol = ' '.
-translate(black, Symbol) :- Symbol = 'O'. %Dark Pieces
-translate(white, Symbol) :- Symbol = 'X'. %White Pieces
-translate(worker, Symbol) :- Symbol = 'W'. %Red Workers
+% Board Printing - Board Elements Translation to Print Code
+translate(none, Code) :- Code = 32.
+translate(black, Code) :- Code = 79. %Dark Pieces
+translate(white, Code) :- Code = 88. %White Pieces
+translate(worker, Code) :- Code = 9608. %Red Workers
+
 
 % Board Printing - arguments: Board and Board size
 printFabrik(Board, N):-
@@ -49,16 +51,13 @@ printBoard([Line | Board], N, CurrentL) :-
 
 printLine([]) :- nl.
 printLine([Head | Tail]) :-
-        translate(Head, Symbol),
+        translate(Head, Code),
         write('   '),
-        write(Symbol),
+        put_code(Code),
         write('   '), put_code(9474),
         printLine(Tail).
 
-%                                              AESTHETICS
-% Code: 9532 - â¼
-% Code: 9472 - â
-% Code: 9474 - â
+%                                              AESTHETICS�
 
 printRowDivider(N):-
         write('  '),
