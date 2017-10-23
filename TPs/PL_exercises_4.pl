@@ -15,14 +15,14 @@ ligado(k,n).
 ligado(l,o).
 ligado(i,f).
 
-/* %% Problema: Ciclos
+/* %% DFS - Problema: Ciclos
 path(Start, End, [Start, End]).
 path(Start, End, [Start | Resto]) :-
         ligado(Start, Next),
         path(Next, End, Resto).
 */
 
-% Solution: construir caminho start-to-end em vez de end-to-start
+% DFS - Solution: construir caminho com tail recursion
 path(Start, End, Path) :-
         path(Start, End, [Start], Path).
 path(End, End, Path, Path).
@@ -34,3 +34,5 @@ path(Start, End, Temp, Path) :-
 
 
 % setof(Len-Path, (path(Start, End, Path), length(Path, Len)), L).
+
+

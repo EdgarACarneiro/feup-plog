@@ -38,7 +38,7 @@ delete_all(X, L1, L2) :-
         delete_one(X, L1, R),
         delete_all(X, R, L2).
 
-delete_all(X, L, L).
+delete_all(_, L, L). % doesn't feel right
 
 delete_all_list(LX, L1, L2) :-
         LX = [H|T],
@@ -90,7 +90,7 @@ conta_elem(X, [_|L], N) :-
 
 
 %10. a)
-ordenada([Lista]).
+% ordenada([Lista]). % wat
 
 ordenada([H1, H2]) :- H1 =< H2.
 
