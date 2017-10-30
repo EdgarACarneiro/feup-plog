@@ -31,7 +31,38 @@ getElement(Row, Col, [_ | RemainderRows], Element):-
         getElement(Row1, Col, RemainderRows, Element).
 
 
-% Set piece on board -- not yet validating move
-%% ...
-%% ...
+% Sets the piece of the given type in the given position, in the given Board
+setPiece(PieceType, Row, Col, Board, NewBoard):-
+        RealRow is (Row-1),
+        RealCol is (Col-1),
+        %First remove the old piece
+        nth0(RealRow, Board, RemovedLine, TempBoard),
+        nth0(RealCol, RemovedLine, _, TempLine),
+        %Inserting the new piece
+        nth0(RealCol, NewLine, PieceType, TempLine),
+        nth0(RealRow, NewBoard, NewLine, TempBoard).
 
+
+% Gets the Intersections between the two workers, into an array of positions
+getPossiblePositions(Board, Positions):-
+        findWorker(Board, 0, 0, WorkerRow, WorkerCol).
+
+%Finds the next Worker starting from the given Row and Column.
+findWorker(Board, Row, Col, WorkerRow, WorkerCol):-
+        getElement(Row, Col, Board, Element),
+        Element == worker, !, % This cut useless?
+        WorkerRow = Row,
+        WorkerCol = Col.
+
+%Trying the next Column
+findWorker(Board, Row, Col, WorkerRow, WorkerCol):-
+        NewCol is (Col+1),
+        length(Board, Size),
+        NewCol < Size,
+        findWorker(Board, Row, NewCol, WorkerRow, WorkerCol).
+
+%Starting in a new line
+findWorker(Board, Row, _, WorkerRow, WorkerCol):-
+        NewCol is 0,
+        NewRow is (Row+1),
+        findWorker(Board, NewRow, NewCol, WorkerRow, WorkerCol).
