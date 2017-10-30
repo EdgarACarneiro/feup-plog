@@ -1,5 +1,6 @@
 :- include('board.pl').
 :- include('utils.pl').
+:- include('menus.pl').
 
 % Utils
 boardSize(9).

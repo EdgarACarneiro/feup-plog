@@ -16,4 +16,4 @@ clearConsole(N) :-
 
 getEnter:-
 	write('Press enter to continue.'), nl,
-	get_char(_), !.
+	get_char(_).
