@@ -2,6 +2,7 @@
 :- include('display.pl').
 :- include('utils.pl').
 :- include('menus.pl').
+:- use_module(library(lists)).
 
 % Utils
 boardSize(9).
