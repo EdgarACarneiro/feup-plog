@@ -3,9 +3,6 @@
 :- include('utils.pl').
 :- include('menus.pl').
 
-% Utils
-boardSize(9).
-boardSize(11).
 
 initGame:-
     boardSize(N),
@@ -13,4 +10,4 @@ initGame:-
 initGame(N) :-
     boardSize(N),
     createBoard(B, N),
-    printFabrik(B, N).
+    printBoard(B, N).

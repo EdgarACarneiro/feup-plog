@@ -6,7 +6,7 @@ translate(worker, Code) :- Code = 9820. %Red Workers
 
 
 % Board Printing - arguments: Board and Board size
-printFabrik(Board, N):-
+printBoard(Board, N):-
         nl, 
         write('  '), printHorizontalLabel(N, N),
         printBoard(Board, N, 1).

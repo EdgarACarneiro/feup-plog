@@ -1,3 +1,4 @@
+:- include('utils.pl').
 :- use_module(library(lists)).
 
 
@@ -34,7 +35,7 @@ getElement(Row, Col, [_ | RemainderRows], Element):-
         getElement(Row1, Col, RemainderRows, Element).
 
 
-%% Validation Predicates
+% % Validation Predicates
 % Worker can be played if [Row,Col]=none
 isValidPlay(worker, Row, Col, Board) :-
         getElement(Row, Col, Board, El),
@@ -48,9 +49,11 @@ isValidPlay(black, Row, Col, Board) :-
 
 % PLACEHOLDER - probably receive [Row1,Col1],[Row2,Col2] positions of workers 
 isIntersection(_Row, _Col, _Board).
+% TODO
 
-% Set piece on board -- not yet validating move
-% Sets the piece of the given type in the given position, in the given Board
+
+% Set piece on board
+% Sets the piece of the given type on the given position, on the given Board
 setPiece(Piece, Row, Col, Board, NewBoard) :-
         isValidPlay(Piece, Row, Col, Board),
         nth0(Row, Board, RowLine, TmpBoard),
@@ -60,26 +63,57 @@ setPiece(Piece, Row, Col, Board, NewBoard) :-
 
 
 % Gets the Intersections between the two workers, into an array of positions
-getPossiblePositions(Board, _Positions):-
+getPossiblePositions(Board, _Positions):- % % TODO - also, assess if this should exist
         findWorker(Board, 0, 0, _WorkerRow, _WorkerCol).
 
-%Finds the next Worker starting from the given Row and Column.
+% Finds the next Worker starting from the given Row and Column.
 findWorker(Board, Row, Col, WorkerRow, WorkerCol):-
         getElement(Row, Col, Board, Element),
-        Element == worker, !, % This cut useless?
+        Element == worker, !, % TODO Assess cut usefulness.
         WorkerRow = Row,
         WorkerCol = Col.
 
 
-%Trying the next Column
+% Trying the next Column
 findWorker(Board, Row, Col, WorkerRow, WorkerCol):-
         NewCol is (Col+1),
         length(Board, Size),
         NewCol < Size,
         findWorker(Board, Row, NewCol, WorkerRow, WorkerCol).
 
-%Starting in a new line
+% Starting in a new line
 findWorker(Board, Row, _, WorkerRow, WorkerCol):-
         NewCol is 0,
         NewRow is (Row+1),
         findWorker(Board, NewRow, NewCol, WorkerRow, WorkerCol).
+
+% Test End of Game
+boardIsNotEmpty(Board) :-
+        nth0(_, Board, TmpRow),
+        nth0(_, TmpRow, none).
+
+% Side has won ?
+gameIsWon(PieceSide, Board) :-
+        checkHorizontalWin(PieceSide, Board).
+        %checkVerticalWin(PieceSide, Board); % TODO
+        %checkDiagonalWin(PieceSide, Board). % TODO
+
+% Check Horizontal Win for side 'Side'
+checkHorizontalWin(Side, [FirstRow | _RestOfBoard]) :-
+        checkHorizontalWinRow(Side, FirstRow, 0).
+checkHorizontalWin(Side, [FirstRow | RestOfBoard]) :-
+        \+ checkHorizontalWinRow(Side, FirstRow, 0),
+        checkHorizontalWin(Side, RestOfBoard).
+checkHorizontalWinRow(_, _, Count) :-
+        winningStreakN(Count), !.
+checkHorizontalWinRow(Side, [FirstEl | RestOfRow], Count) :-
+        Side = FirstEl,
+        NewCount is Count + 1,
+        checkHorizontalWinRow(Side, RestOfRow, NewCount).
+checkHorizontalWinRow(Side, [FirstEl | RestOfRow], Count) :-
+        Side \= FirstEl,
+        checkHorizontalWinRow(Side, RestOfRow, Count).
+             
+        
+        
+

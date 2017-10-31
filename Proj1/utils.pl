@@ -1,3 +1,9 @@
+%% CONSTANTS
+boardSize(9).
+boardSize(11).
+
+winningStreakN(4).
+
 % TODO: Change this to handle strings and not only 1 char
 getInput(Input):-
 	get_code(KbInput),
