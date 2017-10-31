@@ -31,7 +31,39 @@ getElement(Row, Col, [_ | RemainderRows], Element):-
         getElement(Row1, Col, RemainderRows, Element).
 
 
+%% Validation Predicates
+% Worker can be played if [Row,Col]=none
+isValidPlay(worker, Row, Col, Board) :-
+        getElement(Row, Col, Board, El),
+        El = none.
+
+% White/Black pieces can be played if [Row,Col] is in intersection of Workers' lines of sight
+isValidPlay(white, Row, Col, Board) :-
+        isIntersection(Row, Col, Board).
+isValidPlay(black, Row, Col, Board) :-
+        isIntersection(Row, Col, Board).
+
+% PLACEHOLDER - probably receive [Row1,Col1],[Row2,Col2] positions of workers 
+isIntersection(_Row, _Col, _Board).
+
 % Set piece on board -- not yet validating move
-%% ...
-%% ...
+% Sets the piece of the given type in the given position, in the given Board
+/*
+setPiece(PieceType, Row, Col, Board, NewBoard) :-
+        RealRow is (Row-1), % TODO zero indexed ?
+        RealCol is (Col-1),
+        %First remove the old piece
+        nth0(RealRow, Board, BoardWOLine, TempBoard),
+        nth0(RealCol, BoardWOLine, _, TempLine),
+        %Inserting the new piece
+        nth0(RealCol, NewLine, PieceType, TempLine),
+        nth0(RealRow, NewBoard, NewLine, TempBoard).
+*/
+setPiece(Piece, Row, Col, Board, NewBoard) :-
+        isValidPlay(Piece, Row, Col, Board),
+        !. % TODO
+        
+        
+
+
 
