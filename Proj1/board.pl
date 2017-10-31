@@ -24,7 +24,7 @@ getElementAux(Col, [_ | RemainderOfLine], Element) :-
         getElementAux(Col1, RemainderOfLine, Element).
 
 getElement(0, Col, [Line | _], Element):-
-        getElementAux(Col, Line, Element).
+        !, getElementAux(Col, Line, Element).
 
 getElement(Row, Col, [_ | RemainderRows], Element):-
         Row1 is (Row-1),
@@ -34,7 +34,7 @@ getElement(Row, Col, [_ | RemainderRows], Element):-
 % Sets the piece of the given type in the given position, in the given Board
 setPiece(PieceType, Row, Col, Board, NewBoard):-
         RealRow is (Row-1),
-        RealCol is (Col-1),
+        RealCol is (Col-1), !,
         %First remove the old piece
         nth0(RealRow, Board, RemovedLine, TempBoard),
         nth0(RealCol, RemovedLine, _, TempLine),
@@ -53,6 +53,7 @@ findWorker(Board, Row, Col, WorkerRow, WorkerCol):-
         Element == worker, !, % This cut useless?
         WorkerRow = Row,
         WorkerCol = Col.
+
 
 %Trying the next Column
 findWorker(Board, Row, Col, WorkerRow, WorkerCol):-
