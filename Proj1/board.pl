@@ -1,3 +1,6 @@
+:- use_module(library(lists)).
+
+
 % Generate a board predicate with N x N empty spaces
 createBoard(Board, N) :-
         createBoard(Board, N , 0).
@@ -48,25 +51,17 @@ isIntersection(_Row, _Col, _Board).
 
 % Set piece on board -- not yet validating move
 % Sets the piece of the given type in the given position, in the given Board
-/*
-setPiece(PieceType, Row, Col, Board, NewBoard) :-
-        RealRow is (Row-1), % TODO zero indexed ?
-        RealCol is (Col-1),
-        %First remove the old piece
-        nth0(RealRow, Board, BoardWOLine, TempBoard),
-        nth0(RealCol, BoardWOLine, _, TempLine),
-        %Inserting the new piece
-        nth0(RealCol, NewLine, PieceType, TempLine),
-        nth0(RealRow, NewBoard, NewLine, TempBoard).
-*/
 setPiece(Piece, Row, Col, Board, NewBoard) :-
         isValidPlay(Piece, Row, Col, Board),
-        !. % TODO
+        nth0(Row, Board, RowLine, TmpBoard),
+        nth0(Col, RowLine, _, TmpRowLine),
+        nth0(Col, NewRowLine, Piece, TmpRowLine),
+        nth0(Row, NewBoard, NewRowLine, TmpBoard).
 
 
 % Gets the Intersections between the two workers, into an array of positions
-getPossiblePositions(Board, Positions):-
-        findWorker(Board, 0, 0, WorkerRow, WorkerCol).
+getPossiblePositions(Board, _Positions):-
+        findWorker(Board, 0, 0, _WorkerRow, _WorkerCol).
 
 %Finds the next Worker starting from the given Row and Column.
 findWorker(Board, Row, Col, WorkerRow, WorkerCol):-
