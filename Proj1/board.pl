@@ -31,7 +31,6 @@ getElement(Row, Col, [_ | RemainderRows], Element):-
         getElement(Row1, Col, RemainderRows, Element).
 
 
-<<<<<<< HEAD
 %% Validation Predicates
 % Worker can be played if [Row,Col]=none
 isValidPlay(worker, Row, Col, Board) :-
@@ -63,22 +62,6 @@ setPiece(PieceType, Row, Col, Board, NewBoard) :-
 setPiece(Piece, Row, Col, Board, NewBoard) :-
         isValidPlay(Piece, Row, Col, Board),
         !. % TODO
-        
-        
-
-
-=======
-% Sets the piece of the given type in the given position, in the given Board
-setPiece(PieceType, Row, Col, Board, NewBoard):-
-        RealRow is (Row-1),
-        RealCol is (Col-1), !,
-        %First remove the old piece
-        nth0(RealRow, Board, RemovedLine, TempBoard),
-        nth0(RealCol, RemovedLine, _, TempLine),
-        %Inserting the new piece
-        nth0(RealCol, NewLine, PieceType, TempLine),
-        nth0(RealRow, NewBoard, NewLine, TempBoard).
->>>>>>> dbe53fab344b637934d40cb3a437e05d32c4e37d
 
 
 % Gets the Intersections between the two workers, into an array of positions
