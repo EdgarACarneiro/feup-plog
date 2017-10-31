@@ -3,14 +3,26 @@
 
 testBoardSize(9).
 
-board([
-      [none, none, none, none, none, none, none, none, none],
+board1([
+      [none, none, none, none, none, none, none, worker, none],
       [white, white, white, none, none, none, none, none, none],
       [none, none, none, none, none, none, none, none, none],
       [none, none, white, white, white, white, none, none, none],
       [none, none, none, none, none, none, none, none, none],
       [none, none, none, none, none, none, none, none, none],
+      [none, none, none, worker, none, none, none, none, none],
+      [none, none, none, none, none, none, none, none, none],
+      [none, none, none, none, none, none, none, none, none]
+]).
+
+board2([
+      [black, black, black, black, none, none, none, none, none],
+      [none, black, black, none, none, none, none, none, none],
+      [none, none, none, none, none, none, none, none, none],
+      [none, none, black, black, white, black, none, none, none],
       [none, none, none, none, none, none, none, none, none],
       [none, none, none, none, none, none, none, none, none],
+      [none, none, none, none, none, none, none, none, none],
+      [none, none, none, none, none, worker, none, none, none],
       [none, none, none, none, none, none, none, none, none]
 ]).
