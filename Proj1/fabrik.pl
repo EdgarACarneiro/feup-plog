@@ -2,6 +2,7 @@
 :- include('display.pl').
 :- include('utils.pl').
 :- include('menus.pl').
+:- include('test.pl').
 
 
 initGame:-

@@ -26,3 +26,15 @@ board2([
       [none, none, none, none, none, worker, none, none, none],
       [none, none, none, none, none, none, none, none, none]
 ]).
+
+board3([
+      [black, black, black, white, none, none, none, none, none],
+      [none, black, black, none, none, none, none, none, none],
+      [none, none, none, none, none, none, none, none, none],
+      [none, none, black, black, white, black, none, none, none],
+      [none, none, none, none, none, none, none, none, none],
+      [none, none, none, none, none, none, none, none, none],
+      [none, none, none, none, none, none, none, none, none],
+      [none, none, none, none, none, worker, none, none, none],
+      [none, none, none, none, none, none, none, none, none]
+]).

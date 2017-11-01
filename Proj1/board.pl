@@ -100,20 +100,23 @@ gameIsWon(PieceSide, Board) :-
 
 % Check Horizontal Win for side 'Side'
 checkHorizontalWin(Side, [FirstRow | _RestOfBoard]) :-
-        checkHorizontalWinRow(Side, FirstRow, 0).
+        checkRowWin(Side, FirstRow, 0).
 checkHorizontalWin(Side, [FirstRow | RestOfBoard]) :-
-        \+ checkHorizontalWinRow(Side, FirstRow, 0),
+        \+ checkRowWin(Side, FirstRow, 0),
         checkHorizontalWin(Side, RestOfBoard).
-checkHorizontalWinRow(_, _, Count) :-
+checkRowWin(_, _, Count) :-
         winningStreakN(Count), !.
-checkHorizontalWinRow(Side, [FirstEl | RestOfRow], Count) :-
+checkRowWin(Side, [FirstEl | RestOfRow], Count) :-
         Side = FirstEl,
         NewCount is Count + 1,
-        checkHorizontalWinRow(Side, RestOfRow, NewCount).
-checkHorizontalWinRow(Side, [FirstEl | RestOfRow], Count) :-
+        checkRowWin(Side, RestOfRow, NewCount).
+checkRowWin(Side, [FirstEl | RestOfRow], Count) :-
         Side \= FirstEl,
-        checkHorizontalWinRow(Side, RestOfRow, Count).
-             
-        
-        
+        checkRowWin(Side, RestOfRow, Count).
+
+% Check Vertical Win for side 'Side'
+
+
+% Check Diagonal Win for side 'Side'
+
 
