@@ -66,7 +66,6 @@ setPiece(Piece, Row, Col, Board, NewBoard) :-
 getPossiblePositions(Board, _Positions):- % % TODO - also, assess if this should exist
         findWorker(Board, 0, 0, _WorkerRow, _WorkerCol).
 
-
 findBothWorkers(Board, Positions):-
         findWorker(Board, 0, 0, WorkerRow1, WorkerCol1),
         nextPos(Board, WorkerRow1, WorkerCol1, NextRow, NextCol),
@@ -110,10 +109,10 @@ checkRowWin(Side, [FirstEl | RestOfRow], Count) :-
         checkRowWin(Side, RestOfRow, NewCount).
 checkRowWin(Side, [FirstEl | RestOfRow], Count) :-
         Side \= FirstEl,
-        checkRowWin(Side, RestOfRow, Count).
+        checkRowWin(Side, RestOfRow, 0).
 
 % Check Vertical Win for side 'Side'
-
+%checkVerticalWin(Side, Board)
 
 % Check Diagonal Win for side 'Side'
 
