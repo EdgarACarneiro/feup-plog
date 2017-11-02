@@ -123,12 +123,12 @@ checkDiagonalWin(Side, [FirstRow | RestOfBoard]) :-
 checkDiagonalWin(Side, Board, Col, RowLen) :-
         Col < RowLen,
         checkDiagonalLine(Side, Board, Col, 0, RowLen), !. % well placed cut ?
+checkDiagonalWin(Side, [_FirstRow | RestOfBoard], RowLen, RowLen) :-
+        checkDiagonalWin(Side, RestOfBoard, 0, RowLen).
 checkDiagonalWin(Side, Board, Col, RowLen) :-
         NewCol is Col + 1,
+        NewCol < RowLen,
         checkDiagonalWin(Side, Board, NewCol, RowLen).
-checkDiagonalWin(Side, [_FirstRow | RestOfBoard], Col, RowLen) :-
-        Col >= RowLen,
-        checkDiagonalWin(Side, RestOfBoard, 0, RowLen).
 
 checkDiagonalLine(_, _, _, Count, _) :-
         winningStreakN(Count), !.
