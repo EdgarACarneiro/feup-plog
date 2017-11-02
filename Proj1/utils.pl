@@ -4,11 +4,21 @@ boardSize(11).
 
 winningStreakN(4).
 
+%Next Position for the a given board
+nextPos(Board, CurrRow, CurrCol, NextRow, NextCol):-
+	NextCol is (CurrCol+1),
+    	length(Board, Size),
+   	NextCol < Size, !,
+    	NextRow = CurrRow.
+nextPos(Board, CurrRow, CurrCol, NextRow, NextCol):-
+    	NextCol is 0,
+    	NextRow is (CurrRow+1).
+
 % TODO: Change this to handle strings and not only 1 char
 getInput(Input):-
 	get_code(KbInput),
 	Input is KbInput - 48,	%Because of ASCII table
-	get_char(_).			%for the Enter
+	get_char(_).		%for the Enter
 
 % Site used: https://stackoverflow.com/questions/16441062/how-to-clear-screen-in-sicstus-prolog -> doesnt work
 clearConsole:-

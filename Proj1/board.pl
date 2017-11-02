@@ -69,16 +69,8 @@ getPossiblePositions(Board, _Positions):- % % TODO - also, assess if this should
 
 findBothWorkers(Board, Positions):-
         findWorker(Board, 0, 0, WorkerRow1, WorkerCol1),
-        NewCol is (WorkerCol1+1),
-        length(Board, Size),
-        NewCol < Size,
-        findWorker(Board, WorkerRow1, NewCol, WorkerRow2, WorkerCol2),
-        Positions = [[WorkerRow1, WorkerCol1], [WorkerRow2, WorkerCol2]].
-
-findBothWorkers(Board, Positions):-
-        findWorker(Board, 0, 0, WorkerRow1, WorkerCol1),
-        NewRow is (WorkerRow1+1),
-        findWorker(Board, NewRow, 0, WorkerRow2, WorkerCol2),
+        nextPos(Board, WorkerRow1, WorkerCol1, NextRow, NextCol),
+        findWorker(Board, NextRow, NextCol, WorkerRow2, WorkerCol2),
         Positions = [[WorkerRow1, WorkerCol1], [WorkerRow2, WorkerCol2]].
 
 % Finds the next Worker starting from the given Row and Column.
@@ -88,18 +80,10 @@ findWorker(Board, Row, Col, WorkerRow, WorkerCol):-
         WorkerRow = Row,
         WorkerCol = Col.
 
-% Trying the next Column
+% Updates the Current Position and retries
 findWorker(Board, Row, Col, WorkerRow, WorkerCol):-
-        NewCol is (Col+1),
-        length(Board, Size),
-        NewCol < Size,
-        findWorker(Board, Row, NewCol, WorkerRow, WorkerCol).
-
-% Starting in a new line
-findWorker(Board, Row, _, WorkerRow, WorkerCol):-
-        NewCol is 0,
-        NewRow is (Row+1),
-        findWorker(Board, NewRow, NewCol, WorkerRow, WorkerCol).
+        nextPos(Board, Row, Col, NextRow, NextCol),
+        findWorker(Board, NextRow, NextCol, WorkerRow, WorkerCol).
 
 % Test End of Game
 boardIsNotEmpty(Board) :-
