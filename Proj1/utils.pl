@@ -2,7 +2,7 @@
 boardSize(9).
 boardSize(11).
 
-winningStreakN(4).
+winningStreakN(5).
 
 %Next Position for the a given board
 nextPos(Board, CurrRow, CurrCol, NextRow, NextCol):-

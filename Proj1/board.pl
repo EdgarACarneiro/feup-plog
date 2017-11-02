@@ -102,8 +102,8 @@ checkHorizontalWin(Side, [FirstRow | _RestOfBoard]) :-
 checkHorizontalWin(Side, [FirstRow | RestOfBoard]) :-
         \+ checkRowWin(Side, FirstRow, 0),      %Is this line really needed? Isn't it repeating exactly line 100?
         checkHorizontalWin(Side, RestOfBoard).
-checkRowWin(_, _, Count) :-
-        winningStreakN(Count), !.
+checkRowWin(_, _, N) :-
+        winningStreakN(N), !.
 checkRowWin(Side, [FirstEl | RestOfRow], Count) :-
         Side = FirstEl,
         NewCount is Count + 1,
