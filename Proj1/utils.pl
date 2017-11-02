@@ -6,13 +6,13 @@ winningStreakN(4).
 
 %Next Position for the a given board
 nextPos(Board, CurrRow, CurrCol, NextRow, NextCol):-
-	NextCol is (CurrCol+1),
+	NextCol is (CurrCol + 1),
     	length(Board, Size),
    	NextCol < Size, !,
     	NextRow = CurrRow.
-nextPos(Board, CurrRow, CurrCol, NextRow, NextCol):-
+nextPos(_Board, CurrRow, _CurrCol, NextRow, NextCol):-
     	NextCol is 0,
-    	NextRow is (CurrRow+1).
+    	NextRow is (CurrRow + 1).
 
 % TODO: Change this to handle strings and not only 1 char
 getInput(Input):-

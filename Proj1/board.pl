@@ -1,5 +1,6 @@
 :- include('utils.pl').
 :- use_module(library(lists)).
+:- use_module(library(clpfd)).
 
 
 % Generate a board predicate with N x N empty spaces
@@ -8,7 +9,7 @@ createBoard(Board, N) :-
 
 createBoard(_, N, N).
 createBoard([FirstRow | OtherRows], N, Lines) :-
-        Lines1 is (Lines+1),
+        Lines1 is (Lines + 1),
         createBoardLine(FirstRow, N),
         createBoard(OtherRows, N, Lines1).
         
@@ -99,7 +100,7 @@ gameIsWon(PieceSide, Board) :-
 checkHorizontalWin(Side, [FirstRow | _RestOfBoard]) :-
         checkRowWin(Side, FirstRow, 0).
 checkHorizontalWin(Side, [FirstRow | RestOfBoard]) :-
-        \+ checkRowWin(Side, FirstRow, 0),
+        \+ checkRowWin(Side, FirstRow, 0),      %Is this line really needed? Isn't it repeating exactly line 100?
         checkHorizontalWin(Side, RestOfBoard).
 checkRowWin(_, _, Count) :-
         winningStreakN(Count), !.
@@ -107,13 +108,13 @@ checkRowWin(Side, [FirstEl | RestOfRow], Count) :-
         Side = FirstEl,
         NewCount is Count + 1,
         checkRowWin(Side, RestOfRow, NewCount).
-checkRowWin(Side, [FirstEl | RestOfRow], Count) :-
+checkRowWin(Side, [FirstEl | RestOfRow], _Count) :-
         Side \= FirstEl,
         checkRowWin(Side, RestOfRow, 0).
 
 % Check Vertical Win for side 'Side'
-%checkVerticalWin(Side, Board)
+checkVerticalWin(Side, Board):-
+        transpose(Board, TransposedBoard),
+        checkHorizontalWin(Side, TransposedBoard).
 
 % Check Diagonal Win for side 'Side'
-
-

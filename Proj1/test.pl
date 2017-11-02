@@ -8,9 +8,9 @@ board1([
       [white, white, white, none, none, none, none, none, none],
       [none, none, none, none, none, none, none, none, none],
       [none, none, white, white, white, white, none, none, none],
-      [none, none, none, none, none, none, none, none, none],
-      [none, none, none, none, none, none, none, none, none],
-      [none, none, none, worker, none, none, none, none, none],
+      [none, none, white, none, none, none, none, none, none],
+      [none, none, black, none, none, none, none, none, none],
+      [none, none, white, worker, none, none, none, none, none],
       [none, none, none, none, none, none, none, none, none],
       [none, none, none, none, none, none, none, none, none]
 ]).
@@ -20,10 +20,10 @@ board2([
       [none, black, black, none, none, none, none, none, none],
       [none, none, none, none, none, none, none, none, none],
       [none, none, black, black, white, black, none, none, none],
+      [none, none, black, none, none, none, none, none, none],
       [none, none, none, none, none, none, none, none, none],
-      [none, none, none, none, none, none, none, none, none],
-      [none, none, none, none, none, none, none, none, none],
-      [none, none, none, none, none, worker, none, none, none],
+      [none, none, black, none, none, none, none, none, none],
+      [none, none, black, none, none, worker, none, none, none],
       [none, none, none, none, none, none, none, none, none]
 ]).
 
@@ -32,9 +32,9 @@ board3([
       [none, black, black, none, none, none, none, none, none],
       [none, none, none, none, none, none, none, none, none],
       [none, none, black, black, white, black, black, none, none],
-      [none, none, none, none, none, none, none, none, none],
-      [none, none, none, none, none, none, none, none, none],
-      [none, none, none, none, none, none, none, none, none],
+      [none, none, none, none, white, none, none, none, none],
+      [none, none, none, none, white, none, none, none, none],
+      [none, none, none, none, white, none, none, none, none],
       [none, none, none, none, none, worker, none, none, none],
       [none, none, none, none, none, none, none, none, none]
 ]).

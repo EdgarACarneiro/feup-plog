@@ -21,7 +21,7 @@ printBoard([Line | Board], N, CurrentL) :-
         put_code(9474),
         printLine(Line),
         printDesignRow(N),
-        NewL is (CurrentL+1),
+        NewL is (CurrentL + 1),
         printBoard(Board, N, NewL).
 
 printLine([]) :- nl.
