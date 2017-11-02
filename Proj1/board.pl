@@ -66,13 +66,27 @@ setPiece(Piece, Row, Col, Board, NewBoard) :-
 getPossiblePositions(Board, _Positions):- % % TODO - also, assess if this should exist
         findWorker(Board, 0, 0, _WorkerRow, _WorkerCol).
 
+
+findBothWorkers(Board, Positions):-
+        findWorker(Board, 0, 0, WorkerRow1, WorkerCol1),
+        NewCol is (WorkerCol1+1),
+        length(Board, Size),
+        NewCol < Size,
+        findWorker(Board, WorkerRow1, NewCol, WorkerRow2, WorkerCol2),
+        Positions = [[WorkerRow1, WorkerCol1], [WorkerRow2, WorkerCol2]].
+
+findBothWorkers(Board, Positions):-
+        findWorker(Board, 0, 0, WorkerRow1, WorkerCol1),
+        NewRow is (WorkerRow1+1),
+        findWorker(Board, NewRow, 0, WorkerRow2, WorkerCol2),
+        Positions = [[WorkerRow1, WorkerCol1], [WorkerRow2, WorkerCol2]].
+
 % Finds the next Worker starting from the given Row and Column.
 findWorker(Board, Row, Col, WorkerRow, WorkerCol):-
         getElement(Row, Col, Board, Element),
         Element == worker, !, % TODO Assess cut usefulness.
         WorkerRow = Row,
         WorkerCol = Col.
-
 
 % Trying the next Column
 findWorker(Board, Row, Col, WorkerRow, WorkerCol):-

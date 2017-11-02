@@ -2,7 +2,7 @@
 translate(none, Code) :- Code = 32.
 translate(black, Code) :- Code = 79. %Dark Pieces
 translate(white, Code) :- Code = 88. %White Pieces
-translate(worker, Code) :- Code = 9820. %Red Workers
+translate(worker, Code) :- Code = 9820. %Red Workers TODO
 
 
 % Board Printing - arguments: Board and Board size
