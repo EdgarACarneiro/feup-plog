@@ -67,6 +67,7 @@ setPiece(Piece, Row, Col, Board, NewBoard) :-
 getPossiblePositions(Board, _Positions) :- % % TODO - also, assess if this should exist
         findWorker(Board, 0, 0, _WorkerRow, _WorkerCol).
 
+% TODO Assess if could be more easily done with nth0
 findBothWorkers(Board, Positions) :-
         findWorker(Board, 0, 0, WorkerRow1, WorkerCol1),
         nextPos(Board, WorkerRow1, WorkerCol1, NextRow, NextCol),
@@ -74,11 +75,8 @@ findBothWorkers(Board, Positions) :-
         Positions = [[WorkerRow1, WorkerCol1], [WorkerRow2, WorkerCol2]].
 
 % Finds the next Worker starting from the given Row and Column.
-findWorker(Board, Row, Col, WorkerRow, WorkerCol) :-
-        getElement(Row, Col, Board, Element),
-        Element == worker, !, % TODO Assess cut usefulness.
-        WorkerRow = Row,
-        WorkerCol = Col.
+findWorker(Board, Row, Col, Row, Col) :-
+        getElement(Row, Col, Board, worker).
 
 % Updates the Current Position and retries
 findWorker(Board, Row, Col, WorkerRow, WorkerCol) :-
@@ -104,8 +102,7 @@ checkHorizontalWin(Side, [FirstRow | RestOfBoard]) :-
         checkHorizontalWin(Side, RestOfBoard).
 checkRowWin(_, _, N) :-
         winningStreakN(N), !.
-checkRowWin(Side, [FirstEl | RestOfRow], Count) :-
-        Side = FirstEl,
+checkRowWin(Side, [Side | RestOfRow], Count) :-
         NewCount is Count + 1,
         checkRowWin(Side, RestOfRow, NewCount).
 checkRowWin(Side, [FirstEl | RestOfRow], _Count) :-
@@ -118,7 +115,31 @@ checkVerticalWin(Side, Board) :-
         transpose(Board, TransposedBoard),
         checkHorizontalWin(Side, TransposedBoard).
 
+%% MY TAKE ON CHECK DIAGONAL WIN
+% Check Diagonal Win for side 'Side'
+checkDiagonalWin(Side, [FirstRow | RestOfBoard]) :-
+        length(FirstRow, RowLen),
+        checkDiagonalWin(Side, [FirstRow | RestOfBoard], 0, RowLen).
+checkDiagonalWin(Side, Board, Col, RowLen) :-
+        Col < RowLen,
+        checkDiagonalLine(Side, Board, Col, 0, RowLen), !. % well placed cut ?
+checkDiagonalWin(Side, Board, Col, RowLen) :-
+        NewCol is Col + 1,
+        checkDiagonalWin(Side, Board, NewCol, RowLen).
+checkDiagonalWin(Side, [_FirstRow | RestOfBoard], Col, RowLen) :-
+        Col >= RowLen,
+        checkDiagonalWin(Side, RestOfBoard, 0, RowLen).
 
+checkDiagonalLine(_, _, _, Count, _) :-
+        winningStreakN(Count), !.
+checkDiagonalLine(Side, [FirstRow | RestOfBoard], Col, Count, RowLen) :-
+        Col < RowLen,
+        nth0(Col, FirstRow, Side), % Unifies element at idx Col with Side
+        NewCol is Col + 1,
+        NewCount is Count + 1,
+        checkDiagonalLine(Side, RestOfBoard, NewCol, NewCount, RowLen).
+
+/*
 % Check Diagonal Win for side 'Side'
 checkDiagonalWin(Side, Board) :-
         length(Board, Size),
@@ -166,3 +187,4 @@ checkDiagonalElem(Side, Board, Row, Col, Count, NewCount) :-
         NewCount is (Count + 1).
 checkDiagonalElem(_Side, _Board, _Row, _Col, _Count, NewCount) :-
         NewCount is 0.
+*/
