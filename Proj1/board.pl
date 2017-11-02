@@ -16,7 +16,7 @@ createBoard([FirstRow | OtherRows], N, Lines) :-
 createBoardLine(_, 0).
 createBoardLine([FirstEle | OtherEle], N) :-
         FirstEle = none,
-        N1 is (N-1),
+        N1 is (N - 1),
         createBoardLine(OtherEle, N1).
 
 
@@ -25,7 +25,7 @@ getElementAux(0, [Elem | _], Element):-
         Element = Elem, !. % added a cut
 
 getElementAux(Col, [_ | RemainderOfLine], Element) :-
-        Col1 is (Col-1),
+        Col1 is (Col - 1),
         getElementAux(Col1, RemainderOfLine, Element).
 
 getElement(0, Col, [Line | _], Element):-
@@ -92,8 +92,8 @@ boardIsNotEmpty(Board) :-
 
 % Side has won ?
 gameIsWon(PieceSide, Board) :-
-        checkHorizontalWin(PieceSide, Board).
-        %checkVerticalWin(PieceSide, Board); % TODO
+        checkHorizontalWin(PieceSide, Board),
+        checkVerticalWin(PieceSide, Board).
         %checkDiagonalWin(PieceSide, Board). % TODO
 
 % Check Horizontal Win for side 'Side'
@@ -118,3 +118,46 @@ checkVerticalWin(Side, Board):-
         checkHorizontalWin(Side, TransposedBoard).
 
 % Check Diagonal Win for side 'Side'
+checkDiagonalWin(Side, Board):-
+        length(Board, Size),
+        checkDiffDiagonals(Side, Board, Size).
+
+checkDiffDiagonals(Side, Board, BoardSize):-
+        checkDiagonalWinAux(Side, Board, 0, BoardSize).
+checkDiffDiagonals(Side, Board, BoardSize):-
+        transpose(Board, TransposedBoard),
+        checkDiagonalWinAux(Side, TransposedBoard, 0, BoardSize).
+
+checkDiagonalWinAux(Side, Board, Col, BoardSize):-
+        NumPositions is (BoardSize - Col),
+        NumPositions >= 5,       %Number of pieces in a row to win
+        checkDiagLineWin(Side, Board, Col, NumPositions).
+
+checkDiagonalWinAux(Side, Board, Col, BoardSize):-
+        NewCol is (Col + 1),
+        NewCol < BoardSize,
+        checkDiagonalWinAux(Side, Board, NewCol, BoardSize).
+
+%Check if there are N in Diagonal Line on the given line and Col Diagonal Positions.
+%There are NumElements positions in that Diagonal
+checkDiagLineWin(Side, Board, Col, NumPositions):-
+        checkDiagLineWinAux(Side, Board, 0, Col, NumPositions, 0, _Count).
+
+checkDiagLineWinAux(Side, Board, Row, Col, _NumPos, CurrCount, UpdatedCount):-
+        checkDiagonalElem(Side, Board, Row, Col, CurrCount, UpdatedCount),
+        winningStreakN(UpdatedCount), !.
+checkDiagLineWinAux(Side, Board, Row, Col, NumPos, CurrCount, UpdatedCount):-
+        checkDiagonalElem(Side, Board, Row, Col, CurrCount, UpdatedCount),
+        NumPos > 0,
+        NewRow is (Row + 1),
+        NewCol is (Col + 1),
+        NewNumPos is (NumPos - 1), !,
+        checkDiagLineWinAux(Side, Board, NewRow, NewCol, NewNumPos, UpdatedCount, _NewCount).
+
+%Check the Element and update Count.
+checkDiagonalElem(Side, Board, Row, Col, Count, NewCount):-
+        getElement(Row, Col, Board, Element),
+        Element = Side, !, 
+        NewCount is (Count + 1).
+checkDiagonalElem(_Side, _Board, _Row, _Col, _Count, NewCount):-
+        NewCount is 0.
