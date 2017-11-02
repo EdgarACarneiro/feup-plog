@@ -93,8 +93,8 @@ boardIsNotEmpty(Board) :-
 % Side has won ?
 gameIsWon(PieceSide, Board) :-
         checkHorizontalWin(PieceSide, Board),
-        checkVerticalWin(PieceSide, Board).
-        %checkDiagonalWin(PieceSide, Board). % TODO
+        checkVerticalWin(PieceSide, Board),
+        checkDiagonalWin(PieceSide, Board).
 
 % Check Horizontal Win for side 'Side'
 checkHorizontalWin(Side, [FirstRow | _RestOfBoard]) :-
@@ -112,34 +112,38 @@ checkRowWin(Side, [FirstEl | RestOfRow], _Count) :-
         Side \= FirstEl,
         checkRowWin(Side, RestOfRow, 0).
 
+
 % Check Vertical Win for side 'Side'
 checkVerticalWin(Side, Board):-
         transpose(Board, TransposedBoard),
         checkHorizontalWin(Side, TransposedBoard).
+
 
 % Check Diagonal Win for side 'Side'
 checkDiagonalWin(Side, Board):-
         length(Board, Size),
         checkDiffDiagonals(Side, Board, Size).
 
+%Check diagonals from [0, 0] to [0, BoardSize]
 checkDiffDiagonals(Side, Board, BoardSize):-
         checkDiagonalWinAux(Side, Board, 0, BoardSize).
+%Check diagonals from [0, 0] to [BoardSize, 0]
 checkDiffDiagonals(Side, Board, BoardSize):-
         transpose(Board, TransposedBoard),
         checkDiagonalWinAux(Side, TransposedBoard, 0, BoardSize).
 
+%Checks the different diagonal lines of the given board starting at [0, 0] ending at [0, BoardSize].
 checkDiagonalWinAux(Side, Board, Col, BoardSize):-
         NumPositions is (BoardSize - Col),
-        NumPositions >= 5,       %Number of pieces in a row to win
+        NumPositions >= 5,       %Number of cells there must be to happen N in a row
         checkDiagLineWin(Side, Board, Col, NumPositions).
-
 checkDiagonalWinAux(Side, Board, Col, BoardSize):-
         NewCol is (Col + 1),
         NewCol < BoardSize,
         checkDiagonalWinAux(Side, Board, NewCol, BoardSize).
 
-%Check if there are N in Diagonal Line on the given line and Col Diagonal Positions.
-%There are NumElements positions in that Diagonal
+%Check If there are N in a row, in the given diagonal line.
+%Starts at Position [0, Col], and Line has NumPositions to evaluate.
 checkDiagLineWin(Side, Board, Col, NumPositions):-
         checkDiagLineWinAux(Side, Board, 0, Col, NumPositions, 0, _Count).
 
@@ -154,7 +158,7 @@ checkDiagLineWinAux(Side, Board, Row, Col, NumPos, CurrCount, UpdatedCount):-
         NewNumPos is (NumPos - 1), !,
         checkDiagLineWinAux(Side, Board, NewRow, NewCol, NewNumPos, UpdatedCount, _NewCount).
 
-%Check the Element and update Count.
+%Check the Element in the given position and update Count.
 checkDiagonalElem(Side, Board, Row, Col, Count, NewCount):-
         getElement(Row, Col, Board, Element),
         Element = Side, !, 
