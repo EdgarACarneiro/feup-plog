@@ -6,9 +6,15 @@
 
 
 initGame:-
-    boardSize(N),
-    initGame(N).
+	boardSize(N),
+	initGame(N).
 initGame(N) :-
-    boardSize(N),
-    createBoard(B, N),
-    printBoard(B, N).
+	boardSize(N),
+	createBoard(B, N),
+	printBoard(B, N).
+
+fabrik:-
+	mainMenuHandler.
+
+
+%gameLoop:-

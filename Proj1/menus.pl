@@ -4,14 +4,16 @@ mainMenu:-
 	printFabrikTitle,
 	write('\t 1. Play'), nl,
 	write('\t 2. Rules'), nl,
-	write('\t 3. Exit'), nl, nl.
+	write('\t 3. Exit'), nl, nl,
+	write('Choose an option:'), nl.
 
 playMenu:-
 	printFabrikTitle,
 	write('\t 1. MultiPlayer'), nl,
 	write('\t 2. SinglePlayer'), nl,
 	write('\t 3. AI VS AI'), nl,
-	write('\t 4. Back'), nl, nl.
+	write('\t 4. Back'), nl, nl,
+	write('Choose an option:'), nl.
 
 rules:-
 	printFabrikTitle,
@@ -33,7 +35,8 @@ rules:-
 	write('\tover empty spaces.'), nl,
 	write('\tNote: In the special case where the two workers are located on the same orthogonal'), nl,
 	write('\tor diagonal line, all empty spaces between them are considered intersection points'), nl, nl,
-	write('\t\t\t\t   Source: https://spielstein.com/games/fabrik/rules'), nl.
+	write('\t\t\t\t   Source: https://spielstein.com/games/fabrik/rules'), nl, nl,
+	getEnter.
  
 printFabrikTitle:-
 	clearConsole,
@@ -43,3 +46,21 @@ printFabrikTitle:-
 	write('   *   |   |  | |__) | \\  | |  \\   *'), nl,
 	write('   *                               *'), nl,
 	write('   *********************************'), nl, nl.
+
+mainMenuHandler:-
+	mainMenu,
+	getInput(Choice),
+	mainMenuChoice(Choice), !.
+
+mainMenuChoice(1):-
+	initGame,
+	mainMenuHandler.
+mainMenuChoice(2):-
+	rules,
+	mainMenuHandler.
+mainMenuChoice(3).
+mainMenuChoice(_):-
+	write('Invalid option chosen.'), nl,
+	getEnter,
+	mianMenuHandler.
+
