@@ -96,25 +96,52 @@ checkVerticalWin(Side, Board) :-
         transpose(Board, TransposedBoard),
         checkHorizontalWin(Side, TransposedBoard).
 
-% Check Diagonal Win for side 'Side'
-checkDiagonalWin(Side, [FirstRow | RestOfBoard]) :-
-        length(FirstRow, RowLen), !,
-        checkDiagonalWin(Side, [FirstRow | RestOfBoard], 0, RowLen).
-checkDiagonalWin(Side, [_FirstRow | RestOfBoard], RowLen, RowLen) :-
-        checkDiagonalWin(Side, RestOfBoard, 0, RowLen), !.
-checkDiagonalWin(Side, Board, Col, RowLen) :-
-        length(Board, Len), winningStreakN(N), Len >= N,
-        checkDiagonalLine(Side, Board, Col, 0, RowLen), !.
-checkDiagonalWin(Side, Board, Col, RowLen) :-
-        length(Board, Len), winningStreakN(N),
-        Len >= N, NewCol is Col + 1,
-        checkDiagonalWin(Side, Board, NewCol, RowLen).
 
-checkDiagonalLine(_, _, _, Count, _) :-
-        winningStreakN(Count), !.
-checkDiagonalLine(Side, [FirstRow | RestOfBoard], Col, Count, RowLen) :-
-        Col < RowLen,
-        nth0(Col, FirstRow, Side), % Unifies element at idx Col with Side
-        NewCol is Col + 1,
-        NewCount is Count + 1,
-        checkDiagonalLine(Side, RestOfBoard, NewCol, NewCount, RowLen).
+% Check Diagonal Win for side 'Side'
+checkDiagonalWin(Side, Board) :-
+        length(Board, Size),
+        checkDiffDiagonals(Side, Board, Size).
+
+%Check diagonals from [0, 0] to [0, BoardSize]
+checkDiffDiagonals(Side, Board, BoardSize) :-
+        checkDiagonalWinAux(Side, Board, 0, BoardSize).
+%Check diagonals from [0, 0] to [BoardSize, 0]
+checkDiffDiagonals(Side, Board, BoardSize) :-
+        transpose(Board, TransposedBoard),
+        checkDiagonalWinAux(Side, TransposedBoard, 0, BoardSize).
+
+%Checks the different diagonal lines of the given board starting at [0, 0] ending at [0, BoardSize].
+checkDiagonalWinAux(Side, Board, Col, BoardSize) :-
+        NumPositions is (BoardSize - Col),
+        winningStreakN(WinN),
+        NumPositions >= WinN,       %Number of cells there must be to happen N in a row
+        checkDiagLineWin(Side, Board, Col, NumPositions).
+checkDiagonalWinAux(Side, Board, Col, BoardSize) :-
+        NewCol is (Col + 1),
+        NewCol < BoardSize,
+        checkDiagonalWinAux(Side, Board, NewCol, BoardSize).
+
+%Check If there are N in a row, in the given diagonal line.
+%Starts at Position [0, Col], and Line has NumPositions to evaluate.
+checkDiagLineWin(Side, Board, Col, NumPositions) :-
+        checkDiagLineWinAux(Side, Board, 0, Col, NumPositions, 0, _Count).
+
+checkDiagLineWinAux(Side, Board, Row, Col, _NumPos, CurrCount, UpdatedCount) :-
+        checkDiagonalElem(Side, Board, Row, Col, CurrCount, UpdatedCount),
+        winningStreakN(UpdatedCount), !.
+checkDiagLineWinAux(Side, Board, Row, Col, NumPos, CurrCount, UpdatedCount) :-
+        checkDiagonalElem(Side, Board, Row, Col, CurrCount, UpdatedCount),
+        NumPos > 0,
+        NewRow is (Row + 1),
+        NewCol is (Col + 1),
+        NewNumPos is (NumPos - 1), !,
+        checkDiagLineWinAux(Side, Board, NewRow, NewCol, NewNumPos, UpdatedCount, _NewCount).
+
+%Check the Element in the given position and update Count.
+checkDiagonalElem(Side, Board, Row, Col, Count, NewCount) :-
+        getElement(Row, Col, Board, Element),
+        Element = Side, !, 
+        NewCount is (Count + 1).
+checkDiagonalElem(_Side, _Board, _Row, _Col, _Count, NewCount) :-
+        NewCount is 0.
+
