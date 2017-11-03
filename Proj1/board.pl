@@ -74,7 +74,7 @@ findWorker(Board, Row, Col, WorkerRow, WorkerCol) :-
         findWorker(Board, NextRow, NextCol, WorkerRow, WorkerCol).
 
 % Test End of Game
-boardIsNotEmpty(Board) :-
+boardIsNotFull(Board) :-
         nth0(_, Board, TmpRow),
         nth0(_, TmpRow, none).
 
