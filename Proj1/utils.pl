@@ -20,6 +20,10 @@ getInput(Input):-
 	Input is KbInput - 48,	%Because of ASCII table
 	get_char(_).		%for the Enter
 
+unknownInput:-
+	write('Invalid option chosen.'), nl,
+	getEnter.
+
 % Site used: https://stackoverflow.com/questions/16441062/how-to-clear-screen-in-sicstus-prolog -> doesnt work
 clearConsole:-
 	clearConsole(60).

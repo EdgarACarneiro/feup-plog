@@ -53,14 +53,33 @@ mainMenuHandler:-
 	mainMenuChoice(Choice), !.
 
 mainMenuChoice(1):-
-	initGame,
-	mainMenuHandler.
+	playMenuHandler.
 mainMenuChoice(2):-
 	rules,
 	mainMenuHandler.
 mainMenuChoice(3).
 mainMenuChoice(_):-
-	write('Invalid option chosen.'), nl,
-	getEnter,
-	mianMenuHandler.
+	unknownInput,
+	mainMenuHandler.
 
+playMenuHandler:-
+	playMenu,
+	getInput(Choice),
+	playMenuChoice(Choice), !.
+
+playMenuChoice(1):-
+	initGame,
+	mainMenuHandler.
+playMenuChoice(2):-
+	write('Feature not yet developed..'), nl,	%TODO
+	getEnter,
+	playMenuHandler.
+playMenuChoice(3):-
+	write('Feature not yet developed..'), nl,	%TODO
+	getEnter,
+	playMenuHandler.
+playMenuChoice(4):-
+	mainMenuHandler.
+playMenuChoice(_):-
+	unknownInput,
+	mainMenuHandler.

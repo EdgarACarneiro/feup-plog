@@ -2,12 +2,16 @@
 translate(none, Code) :- Code = 32.
 translate(black, Code) :- Code = 79. %Dark Pieces
 translate(white, Code) :- Code = 88. %White Pieces
-translate(worker, Code) :- Code = 9820. %Red Workers TODO
+translate(worker, Code) :- Code = 9608. %9820. %Red Workers TODO
 
+currentSideDisplay(Side):-
+        write('   *** '),
+        write(Side),
+        write(' turn! ***'), nl, nl.
 
 % Board Printing - arguments: Board and Board size
 printBoard(Board, N):-
-        nl, 
+        clearConsole, 
         write('  '), printHorizontalLabel(N, N),
         printBoard(Board, N, 1).
 

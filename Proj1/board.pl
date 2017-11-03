@@ -188,3 +188,14 @@ checkDiagonalElem(Side, Board, Row, Col, Count, NewCount) :-
 checkDiagonalElem(_Side, _Board, _Row, _Col, _Count, NewCount) :-
         NewCount is 0.
 */
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+pieceInput(PieceType, Side, Board, UpdatedBoard):- % TODO
+        currentSideDisplay(Side),
+        write('Choose '), write(PieceType), write('\'s row:'), nl,
+        getInput(InputRow),
+        write('Choose '), write(PieceType), write('\'s column:'), nl,
+        getInput(WorkerCol),
+        %getLabel(WorkerCol, ColSymbol),
+        setPiece(worker, WorkerRow, WorkerCol, Board, UpdatedBoard).
