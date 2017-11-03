@@ -49,7 +49,7 @@ printFabrikTitle:-
 
 mainMenuHandler:-
 	mainMenu,
-	getInput(Choice),
+	getInt(Choice),
 	mainMenuChoice(Choice), !.
 
 mainMenuChoice(1):-
@@ -64,7 +64,7 @@ mainMenuChoice(_):-
 
 playMenuHandler:-
 	playMenu,
-	getInput(Choice),
+	getInt(Choice),
 	playMenuChoice(Choice), !.
 
 playMenuChoice(1):-

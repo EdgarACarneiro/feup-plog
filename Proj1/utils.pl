@@ -14,12 +14,6 @@ nextPos(_Board, CurrRow, _CurrCol, NextRow, NextCol):-
     	NextCol is 0,
     	NextRow is (CurrRow + 1).
 
-% TODO: Change this to handle strings and not only 1 char
-getInput(Input):-
-	get_code(KbInput),
-	Input is KbInput - 48,	%Because of ASCII table
-	get_char(_).		%for the Enter
-
 unknownInput:-
 	write('Invalid option chosen.'), nl,
 	getEnter.
@@ -33,7 +27,3 @@ clearConsole(N) :-
 	nl, 
 	N1 is N-1, 
 	clearConsole(N1).
-
-getEnter:-
-	write('Press enter to continue.'), nl,
-	get_char(_).

@@ -21,19 +21,9 @@ createBoardLine([FirstEle | OtherEle], N) :-
 
 
 % Access the element in the [Row,Col] position of the given board
-getElementAux(0, [Elem | _], Element) :-
-        Element = Elem, !. % added a cut
-
-getElementAux(Col, [_ | RemainderOfLine], Element) :-
-        Col1 is (Col - 1),
-        getElementAux(Col1, RemainderOfLine, Element).
-
-getElement(0, Col, [Line | _], Element) :-
-        !, getElementAux(Col, Line, Element).
-
-getElement(Row, Col, [_ | RemainderRows], Element) :-
-        Row1 is (Row-1),
-        getElement(Row1, Col, RemainderRows, Element).
+getElement(Row, Col, Board, Element):-
+        nth0(Row, Board, RowLine, _),
+        nth0(Col, RowLine, Element, _), !.
 
 
 % % Validation Predicates
@@ -188,14 +178,3 @@ checkDiagonalElem(Side, Board, Row, Col, Count, NewCount) :-
 checkDiagonalElem(_Side, _Board, _Row, _Col, _Count, NewCount) :-
         NewCount is 0.
 */
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-pieceInput(PieceType, Side, Board, UpdatedBoard):- % TODO
-        currentSideDisplay(Side),
-        write('Choose '), write(PieceType), write('\'s row:'), nl,
-        getInput(InputRow),
-        write('Choose '), write(PieceType), write('\'s column:'), nl,
-        getInput(WorkerCol),
-        %getLabel(WorkerCol, ColSymbol),
-        setPiece(worker, WorkerRow, WorkerCol, Board, UpdatedBoard).

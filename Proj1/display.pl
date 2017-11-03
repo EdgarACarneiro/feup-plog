@@ -74,6 +74,9 @@ getLabel( 8, L):- L = 'I'.
 getLabel( 9, L):- L = 'J'.
 getLabel(10, L):- L = 'K'.
 getLabel(11, L):- L = 'L'.
+getLabel(_,_):-
+        write('Error: Unrecognized Label.'), nl,
+        fail.
 
 printHorizontalLabel(0, _):- nl.
 printHorizontalLabel(N, Total):-
