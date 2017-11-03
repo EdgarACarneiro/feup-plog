@@ -53,27 +53,18 @@ setPiece(Piece, Row, Col, Board, NewBoard) :-
         nth0(Row, NewBoard, NewRowLine, TmpBoard).
 
 
-% Gets the Intersections between the two workers, into an array of positions
-getPossiblePositions(Board, _Positions) :- % % TODO - also, assess if this should exist
-        findWorker(Board, 0, 0, _WorkerRow, _WorkerCol).
+% Finds both workers' positions
+findBothWorkers(Board, Row1, Col1, Row2, Col2) :-
+        findWorker(Board, Row1, Col1),
+        findWorker(Board, Row2, Col2),
+        (Row1 \= Row2; Col1 \= Col2), !. % Cut prevents Row/Col permutations over backtracking
 
-% TODO Assess if could be more easily done with nth0
-findBothWorkers(Board, Positions) :-
-        findWorker(Board, 0, 0, WorkerRow1, WorkerCol1),
-        nextPos(Board, WorkerRow1, WorkerCol1, NextRow, NextCol),
-        findWorker(Board, NextRow, NextCol, WorkerRow2, WorkerCol2),
-        Positions = [[WorkerRow1, WorkerCol1], [WorkerRow2, WorkerCol2]].
+% Finds a worker's position
+findWorker(Board, OutputRow, OutputCol) :-
+        nth0(OutputRow, Board, TmpRow),
+        nth0(OutputCol, TmpRow, worker).
 
-% Finds the next Worker starting from the given Row and Column.
-findWorker(Board, Row, Col, Row, Col) :-
-        getElement(Row, Col, Board, worker).
-
-% Updates the Current Position and retries
-findWorker(Board, Row, Col, WorkerRow, WorkerCol) :-
-        nextPos(Board, Row, Col, NextRow, NextCol),
-        findWorker(Board, NextRow, NextCol, WorkerRow, WorkerCol).
-
-% Test End of Game
+% Tests if board has any empty space
 boardIsNotFull(Board) :-
         nth0(_, Board, TmpRow),
         nth0(_, TmpRow, none).
@@ -88,7 +79,7 @@ gameIsWon(PieceSide, Board) :-
 checkHorizontalWin(Side, [FirstRow | _RestOfBoard]) :-
         checkRowWin(Side, FirstRow, 0).
 checkHorizontalWin(Side, [FirstRow | RestOfBoard]) :-
-        \+ checkRowWin(Side, FirstRow, 0),      %Is this line really needed? Isn't it repeating exactly line 100?
+        \+ checkRowWin(Side, FirstRow, 0),
         checkHorizontalWin(Side, RestOfBoard).
 checkRowWin(_, _, N) :-
         winningStreakN(N), !.
