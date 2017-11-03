@@ -50,3 +50,15 @@ board4([
       [none, none, none, worker, none, none, none, none, none],
       [none, none, none, none, white, none, none, none, none]
 ]).
+
+board5([
+      [none, none, none, none, black, none, none, none, none],
+      [none, none, none, none, none, black, none, none, none],
+      [none, none, black, none, none, none, black, none, none],
+      [none, none, worker, none, none, worker, none, black, none],
+      [white, none, none, none, none, none, none, none, black],
+      [none, white, none, none, none, white, none, none, none],
+      [none, none, white, none, none, none, black, none, none],
+      [none, none, black, none, none, none, none, none, none],
+      [none, none, none, none, white, white, white, none, none]
+]).
