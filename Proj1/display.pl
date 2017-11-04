@@ -95,8 +95,22 @@ printVerticalLabel(CurrentL):-
         write(CurrentL).
 
 
-wonMsg(Side):-  %TODO char art
-        write('\t*** '),
-        write(Side),
-        write(' won!! ***'), nl, nl,
-        write('\t  CONGRATULATIONS '), nl, nl.
+
+wonMsg(Side):-
+        wonArtMsg(Side).
+
+wonArtMsg(white):-
+        write('   *****************************************************'), nl,
+        write('   *                    ___   __                       *'), nl,
+        write('   *   \\    /  |__|  |   |   |_     \\    /  |   |\\ |   *'), nl,
+        write('   *    \\/\\/   |  |  |   |   |__     \\/\\/   |   | \\|   *'), nl,
+        write('   *                                                   *'), nl,
+        write('   *****************************************************'), nl, nl.
+
+wonArtMsg(black):-
+        write('   *****************************************************'), nl,
+        write('   *   __         __    __                             *'), nl,
+        write('   *  |__)  |    |__|  /    |__/     \\    /  |   |\\ |  *'), nl,
+        write('   *  |__)  |__  |  |  \\__  |  \\      \\/\\/   |   | \\|  *'), nl,
+        write('   *                                                   *'), nl,
+        write('   *****************************************************'), nl, nl.
