@@ -27,8 +27,11 @@ initGame:-
 	pieceInput(worker, white, B1, B2),
 	printBoard(B2, N),
 	getFirstPlayer(Side),
-	%gameLoop.
+	gameLoop(Side, B2, _).
+
+gameLoop(Side, Board, UpdatedBoard):-
 	getEnter.
-
-
-%gameLoop:-
+	/*workerUpdate(Side, Board, B1),
+	pieceInput()
+	changePlayer(Side, NewSide),
+	gameLoop(NewSide, _, _).*/

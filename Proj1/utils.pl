@@ -4,14 +4,15 @@ boardSize(11).
 
 winningStreakN(5).
 
-%Next Position for the a given board
-nextPos(Board, CurrRow, CurrCol, NextRow, NextCol):-
+changePlayer(black, white).
+changePlayer(white, black).
+
+%Next Position for the given board
+nextPos(Board, CurrRow, CurrCol, CurrRow, NextCol):-
 	NextCol is (CurrCol + 1),
     	length(Board, Size),
-   	NextCol < Size, !,
-    	NextRow = CurrRow.
-nextPos(_Board, CurrRow, _CurrCol, NextRow, NextCol):-
-    	NextCol is 0,
+   	NextCol < Size, !.
+nextPos(_Board, CurrRow, _CurrCol, NextRow, 0):-
     	NextRow is (CurrRow + 1).
 
 unknownInput:-

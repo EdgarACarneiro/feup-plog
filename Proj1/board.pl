@@ -2,7 +2,6 @@
 :- use_module(library(lists)).
 :- use_module(library(clpfd)).
 
-
 % Generate a board predicate with N x N empty spaces
 createBoard(Board, N) :-
         createBoard(Board, N , 0).
@@ -37,6 +36,9 @@ isValidPlay(white, Row, Col, Board) :-
         isIntersection(Row, Col, Board).
 isValidPlay(black, Row, Col, Board) :-
         isIntersection(Row, Col, Board).
+
+%No conditions if there is no piece
+isValidPlay(none, _, _, _, _).
 
 % PLACEHOLDER - probably receive [Row1,Col1],[Row2,Col2] positions of workers 
 isIntersection(_Row, _Col, _Board).
@@ -145,3 +147,8 @@ checkDiagonalElem(Side, Board, Row, Col, Count, NewCount) :-
 checkDiagonalElem(_Side, _Board, _Row, _Col, _Count, NewCount) :-
         NewCount is 0.
 
+
+moveWorker(Board, Row, Col, DestRow, DestCol, UpdatedBoard):-
+        getElement(Row, Col, Board, worker),
+        setPiece(none, Row, Col, Board, TempBoard),
+        setPiece(worker, DestRow, DestCol, TempBoard, UpdatedBoard).

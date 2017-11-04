@@ -15,12 +15,18 @@ getEnter:-
         write('Press enter to continue.'), nl,
         get_char(_).
 
+%Ask the User for a piece's row and column.
+getPosition(PieceType, Row, Col):-
+        getRow(PieceType, Row),
+        getCol(PieceType, Col).
+
 %Ask User for the Piece's row
 getRow(PieceType, Row):-
         write('Choose '),
         write(PieceType),
         write('\'s row:'), nl,
-        getInt(Row).
+        getInt(TempRow),
+        Row is  (TempRow - 1).
 
 %Ask User for the Piece's column
 getCol(PieceType, Col):-
@@ -33,13 +39,12 @@ getCol(PieceType, Col):-
 %User interface for placing a new piece on the board
 pieceInput(PieceType, Side, Board, UpdatedBoard):-
         currentSideDisplay(Side),
-        getRow(PieceType, Row),
-        InputRow is (Row - 1),
-        getCol(PieceType, InputCol),
-        setPiece(worker, InputRow, InputCol, Board, UpdatedBoard).
+        getPosition(PieceType, InputRow, InputCol),
+        setPiece(PieceType, InputRow, InputCol, Board, UpdatedBoard).
 pieceInput(PieceType, Side, Board, UpdatedBoard):-
-        write('That play is not valid. Try again:'), nl, nl,
+        write('That play is not valid. Try again.'), nl, nl,
         pieceInput(PieceType, Side, Board, UpdatedBoard).
+
 
 decidePlayerMsg:-
         write('Black Player, decide who goes first:'), nl,
@@ -58,3 +63,19 @@ getFirstPlayer(Side):-
 getFirstPlayerChoice(1, white).
 getFirstPlayerChoice(2, black).
 getFirstPlayerChoice(_, _):- fail.
+
+
+%Function used to update a worker position by moving it
+workerUpdate(Side, Board, UpdatedBoard):-
+        currentSideDisplay(Side),
+        write('Worker current position:'), nl,
+        getPosition(worker, CurrRow, CurrCol),
+        write('Worker new position:'), nl,
+        getPosition(worker, DestRow, DestCol),
+        moveWorker(Board, CurrRow, CurrCol, DestRow, DestCol, UpdatedBoard).
+workerUpdate(Side, Board, UpdatedBoard):-
+        write('That play is not valid. Try again.'), nl, 
+        write('Help:'), nl,
+        write('\t * To maintain the worker in the same place, keep the new position equal to the old one.'), nl,
+        write('\t * The Worker must be moved to an empty cell.'), nl, nl,
+        workerUpdate(Side, Board, UpdatedBoard).
