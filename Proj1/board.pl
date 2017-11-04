@@ -72,9 +72,11 @@ boardIsNotFull(Board) :-
         nth0(_, TmpRow, none).
 
 % Side has won ?
-gameIsWon(PieceSide, Board) :-
-        checkHorizontalWin(PieceSide, Board),
-        checkVerticalWin(PieceSide, Board),
+gameIsWon(PieceSide, Board):-
+        checkHorizontalWin(PieceSide, Board).
+gameIsWon(PieceSide, Board):-
+        checkVerticalWin(PieceSide, Board).
+gameIsWon(PieceSide, Board):-
         checkDiagonalWin(PieceSide, Board).
 
 % Check Horizontal Win for side 'Side'
