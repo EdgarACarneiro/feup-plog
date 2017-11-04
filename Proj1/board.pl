@@ -27,24 +27,79 @@ getElement(Row, Col, Board, Element):-
 
 % % Validation Predicates
 % Worker can be played if [Row,Col]=none
-isValidPlay(worker, Row, Col, Board) :-
-        getElement(Row, Col, Board, El),
-        El = none.
+isValidPlay(worker, Row, Col, Board) :- !,
+        getElement(Row, Col, Board, none).
+
+% No conditions if there is no piece
+isValidPlay(none, _, _, _) :- !.
 
 % White/Black pieces can be played if [Row,Col] is in intersection of Workers' lines of sight
-isValidPlay(white, Row, Col, Board) :-
-        isIntersection(Row, Col, Board).
-isValidPlay(black, Row, Col, Board) :-
-        isIntersection(Row, Col, Board).
+isValidPlay(_, Row, Col, Board) :-
+        getElement(Row, Col, Board, none),
+        isIntersection(Board, Row, Col).
 
-%No conditions if there is no piece
-isValidPlay(none, _, _, _).
+% Fetches the position of both workers and checks if [Row,Col] is in their lines of sight
+isIntersection(Board, Row, Col) :-
+        findBothWorkers(Board, Row1, Col1, Row2, Col2),
+        getIntersections(Board, Row1, Col1, Row2, Col2, Positions),
+        member([Row, Col], Positions).
 
 % PLACEHOLDER - probably receive [Row1,Col1],[Row2,Col2] positions of workers 
-isIntersection(_Row, _Col, _Board).
-% TODO
+getIntersections(Board, Row1, Col1, Row2, Col2, Positions) :-
+        lineOfSight(Board, Row1, Col1, Pos1),
+        lineOfSight(Board, Row2, Col2, Pos2),
+        intersection(Pos1, Pos2, Positions).
 
+isValidPosition(Board, Row, Col) :-
+        Col >= 0, boardSize(N), Col =< N,
+        getElement(Board, Row, Col, none).
 
+% Spreads outwards from the worker's position and stops on end of board or when a piece blocks the line of sight
+% Returns all positions of the worker's lines of sight
+lineOfSight(Board, Row, Col, Positions) :-
+        horizontalLineOfSight(Board, Row, Col, HorPos1, 1),
+        horizontalLineOfSight(Board, Row, Col, HorPos2, -1),
+        verticalLineOfSight(Board, Row, Col, VerPos1, 1),
+        verticalLineOfSight(Board, Row, Col, VerPos2, -1),
+        diagonalLineOfSight(Board, Row, Col, DiagPos1, 1, 1),
+        diagonalLineOfSight(Board, Row, Col, DiagPos2, 1, -1),
+        diagonalLineOfSight(Board, Row, Col, DiagPos3, -1, 1),
+        diagonalLineOfSight(Board, Row, Col, DiagPos4, -1, -1),
+        append(HorPos1, HorPos2, TmpPos1),
+        append(VerPos1, TmpPos1, TmpPos2),
+        append(VerPos2, TmpPos2, TmpPos3),
+        append(DiagPos1, TmpPos3, TmpPos4),
+        append(DiagPos2, TmpPos4, TmpPos5),
+        append(DiagPos3, TmpPos5, TmpPos6),
+        append(DiagPos4, TmpPos6, Positions).
+
+%% TODO passar validacoes e funcoes auxiliares para outro ficheiro goddamn it
+
+%% TODO
+%% TODO Eliminar horizontal e vertical lines of sight e por tudo diagonal com change 0 na Row/Col
+
+horizontalLineOfSight(Board, Row, Col, Positions, ColChange) :-
+        NewCol is Col + ColChange,
+        isValidPosition(Row, NewCol, Board), !,
+        horizontalLineOfSight(Board, Row, NewCol, OtherPositions, ColChange),
+        append([[Row, NewCol] | Positions], OtherPositions, Positions).
+horizontalLineOfSight(_Row, _Col, _Board, _Positions, _ColChange) :- !.
+
+verticalLineOfSight(Board, Row, Col, Positions, RowChange) :-
+        NewRow is Row + RowChange,
+        isValidPosition(NewRow, Col, Board), !,
+        verticalLineOfSight(Board, NewRow, Col, OtherPositions, RowChange),
+        append([[NewRow, Col] | Positions], OtherPositions, Positions).
+verticalLineOfSight(_Row, _Col, _Board, _Positions, _ColChange) :- !.          
+
+diagonalLineOfSight(Board, Row, Col, Positions, RowChange, ColChange) :-
+        NewRow is Row + RowChange, NewCol is Col + ColChange,
+        isValidPosition(NewRow, NewCol, Board), !,
+        diagonalLineOfSight(Board, NewRow, NewCol, OtherPositions, RowChange, ColChange),
+        append([NewRow, NewCol], OtherPositions, Positions).
+diagonalLineOfSight(_Row, _Col, _Board, _Positions, _RowChange, _ColChange) :- !.
+                                                               
+                                                                   
 % Set piece on board
 % Sets the piece of the given type on the given position, on the given Board
 setPiece(Piece, Row, Col, Board, NewBoard) :-
