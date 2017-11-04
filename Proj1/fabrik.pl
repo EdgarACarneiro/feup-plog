@@ -18,12 +18,16 @@ initGame(N) :-
 fabrik:-
 	mainMenuHandler.
 
-initGame:-	%TODO
+initGame:-
 	boardSize(N),
-	createBoard(B, N),
-	printBoard(B, N),
-	pieceInput(worker, black, B, NB),
-	printBoard(NB, N),
+	createBoard(B0, N),
+	printBoard(B0, N),
+	pieceInput(worker, black, B0, B1),
+	printBoard(B1, N),
+	pieceInput(worker, white, B1, B2),
+	printBoard(B2, N),
+	getFirstPlayer(Side),
+	%gameLoop.
 	getEnter.
 
 

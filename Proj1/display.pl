@@ -1,8 +1,8 @@
 % Dictionary for Board Elements
-translate(none, Code) :- Code = 32.
-translate(black, Code) :- Code = 79. %Dark Pieces
-translate(white, Code) :- Code = 88. %White Pieces
-translate(worker, Code) :- Code = 9608. %9820. %Red Workers TODO
+translate(none, 32).
+translate(black, 79). %Dark Pieces
+translate(white, 88). %White Pieces
+translate(worker, 9608). %9820. %Red Workers TODO
 
 currentSideDisplay(Side):-
         write('   *** '),
@@ -62,18 +62,18 @@ printDesignRowRec(N) :-
         printDesignRowRec(N1).
 
 %Dictionary for Labels
-getLabel( 0, L):- L = 'A'.
-getLabel( 1, L):- L = 'B'.
-getLabel( 2, L):- L = 'C'.
-getLabel( 3, L):- L = 'D'.
-getLabel( 4, L):- L = 'E'.
-getLabel( 5, L):- L = 'F'.
-getLabel( 6, L):- L = 'G'.
-getLabel( 7, L):- L = 'H'.
-getLabel( 8, L):- L = 'I'.
-getLabel( 9, L):- L = 'J'.
-getLabel(10, L):- L = 'K'.
-getLabel(11, L):- L = 'L'.
+getLabel( 0, 'A').
+getLabel( 1, 'B').
+getLabel( 2, 'C').
+getLabel( 3, 'D').
+getLabel( 4, 'E').
+getLabel( 5, 'F').
+getLabel( 6, 'G').
+getLabel( 7, 'H').
+getLabel( 8, 'I').
+getLabel( 9, 'J').
+getLabel(10, 'K').
+getLabel(11, 'L').
 getLabel(_,_):-
         write('Error: Unrecognized Label.'), nl,
         fail.

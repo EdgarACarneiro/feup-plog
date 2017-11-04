@@ -40,3 +40,21 @@ pieceInput(PieceType, Side, Board, UpdatedBoard):-
 pieceInput(PieceType, Side, Board, UpdatedBoard):-
         write('That play is not valid. Try again:'), nl, nl,
         pieceInput(PieceType, Side, Board, UpdatedBoard).
+
+decidePlayerMsg:-
+        write('Black Player, decide who goes first:'), nl,
+        write('\t1. White Player'), nl,
+        write('\t2. BlackPlayer'), nl, nl,
+        write('Choose an option:'), nl.
+
+getFirstPlayer(Side):-
+        decidePlayerMsg,
+        getInt(Choice),
+        getFirstPlayerChoice(Choice, Side).
+getFirstPlayer(Side):-
+        write('Unrecognized choice. Try again.'), nl, nl,
+        getFirstPlayer(Side).
+
+getFirstPlayerChoice(1, white).
+getFirstPlayerChoice(2, black).
+getFirstPlayerChoice(_, _):- fail.
