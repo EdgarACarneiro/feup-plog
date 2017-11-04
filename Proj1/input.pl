@@ -18,7 +18,7 @@ getEnter:-
 %Ask the User for a piece's row and column.
 getPosition(PieceType, Row, Col):-
         getRow(PieceType, Row),
-        getCol(PieceType, Col).
+        getCol(PieceType, Col), !.
 
 %Ask User for the Piece's row
 getRow(PieceType, Row):-
@@ -68,9 +68,9 @@ getFirstPlayerChoice(_, _):- fail.
 %Function used to update a worker position by moving it
 workerUpdate(Side, Board, UpdatedBoard):-
         currentSideDisplay(Side),
-        write('Worker current position:'), nl,
+        write('\tWorker current position'), nl,
         getPosition(worker, CurrRow, CurrCol),
-        write('Worker new position:'), nl,
+        write('\tWorker new position'), nl,
         getPosition(worker, DestRow, DestCol),
         moveWorker(Board, CurrRow, CurrCol, DestRow, DestCol, UpdatedBoard).
 workerUpdate(Side, Board, UpdatedBoard):-

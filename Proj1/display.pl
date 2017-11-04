@@ -93,3 +93,10 @@ printVerticalLabel(CurrentL):-
 
 printVerticalLabel(CurrentL):-
         write(CurrentL).
+
+
+wonMsg(Side):-  %TODO char art
+        write('\t*** '),
+        write(Side),
+        write(' won!! ***'), nl, nl,
+        write('\t  CONGRATULATIONS '), nl, nl.

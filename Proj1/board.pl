@@ -38,7 +38,7 @@ isValidPlay(black, Row, Col, Board) :-
         isIntersection(Row, Col, Board).
 
 %No conditions if there is no piece
-isValidPlay(none, _, _, _, _).
+isValidPlay(none, _, _, _).
 
 % PLACEHOLDER - probably receive [Row1,Col1],[Row2,Col2] positions of workers 
 isIntersection(_Row, _Col, _Board).

@@ -27,11 +27,20 @@ initGame:-
 	pieceInput(worker, white, B1, B2),
 	printBoard(B2, N),
 	getFirstPlayer(Side),
-	gameLoop(Side, B2, _).
+	printBoard(B2, N),
+	gameLoop(Side, N, B2).
 
-gameLoop(Side, Board, UpdatedBoard):-
+gameLoop(Side, BoardSize, Board):-
+	workerUpdate(Side, Board, B1),
+	printBoard(B1, BoardSize),
+	pieceInput(Side, Side, B1, B2),
+	printBoard(B2, BoardSize), !,
+	decideNextStep(Side, BoardSize, B2).
+
+decideNextStep(Side, _BoardSize, Board):-
+	gameIsWon(Side, Board), !,
+	wonMsg(Side),
 	getEnter.
-	/*workerUpdate(Side, Board, B1),
-	pieceInput()
-	changePlayer(Side, NewSide),
-	gameLoop(NewSide, _, _).*/
+decideNextStep(Side, BoardSize, Board):-
+	changePlayer(Side, NewSide), !,
+	gameLoop(NewSide, BoardSize, Board).
