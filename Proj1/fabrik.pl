@@ -5,20 +5,14 @@
 :- include('input.pl').
 :- include('test.pl').
 
-/*
-initGame:-
-	boardSize(N),
-	initGame(N).
-initGame(N) :-
-	boardSize(N),
-	createBoard(B, N),
-	printBoard(B, N).
-*/
 
 fabrik:-
 	mainMenuHandler.
 
-initGame:-
+initGame :-
+	boardSize(N), !,
+	initGame(N).
+initGame(N):-
 	boardSize(N),
 	createBoard(B0, N),
 	printBoard(B0, N),

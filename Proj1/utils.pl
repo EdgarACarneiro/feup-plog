@@ -1,6 +1,7 @@
 %% CONSTANTS
+
 boardSize(9).
-boardSize(11).
+%boardSize(11).
 
 winningStreakN(5).
 
