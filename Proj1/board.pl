@@ -20,7 +20,7 @@ createBoardLine([FirstEle | OtherEle], N) :-
 
 
 % Access the element in the [Row,Col] position of the given board
-getElement(Row, Col, Board, Element):-
+getElement(Board, Row, Col, Element):-
         nth0(Row, Board, RowLine, _),
         nth0(Col, RowLine, Element, _), !.
 
@@ -28,14 +28,14 @@ getElement(Row, Col, Board, Element):-
 % % Validation Predicates
 % Worker can be played if [Row,Col]=none
 isValidPlay(worker, Row, Col, Board) :- !,
-        getElement(Row, Col, Board, none).
+        getElement(Board, Row, Col, none).
 
 % No conditions if there is no piece
 isValidPlay(none, _, _, _) :- !.
 
 % White/Black pieces can be played if [Row,Col] is in intersection of Workers' lines of sight
 isValidPlay(_, Row, Col, Board) :-
-        getElement(Row, Col, Board, none),
+        getElement(Board, Row, Col, none),
         isIntersection(Board, Row, Col).
 
 % Fetches the position of both workers and checks if [Row,Col] is in their lines of sight
@@ -80,21 +80,21 @@ lineOfSight(Board, Row, Col, Positions) :-
 
 horizontalLineOfSight(Board, Row, Col, Positions, ColChange) :-
         NewCol is Col + ColChange,
-        isValidPosition(Row, NewCol, Board), !,
+        isValidPosition(Board, Row, NewCol), !,
         horizontalLineOfSight(Board, Row, NewCol, OtherPositions, ColChange),
         append([[Row, NewCol] | Positions], OtherPositions, Positions).
-horizontalLineOfSight(_Row, _Col, _Board, _Positions, _ColChange) :- !.
+horizontalLineOfSight(_Row, _Col, _Board, _Positions, _ColChange) :- !. % check if element at Row,Col is not none ?
 
 verticalLineOfSight(Board, Row, Col, Positions, RowChange) :-
         NewRow is Row + RowChange,
-        isValidPosition(NewRow, Col, Board), !,
+        isValidPosition(Board, NewRow, Col), !,
         verticalLineOfSight(Board, NewRow, Col, OtherPositions, RowChange),
         append([[NewRow, Col] | Positions], OtherPositions, Positions).
 verticalLineOfSight(_Row, _Col, _Board, _Positions, _ColChange) :- !.          
 
 diagonalLineOfSight(Board, Row, Col, Positions, RowChange, ColChange) :-
         NewRow is Row + RowChange, NewCol is Col + ColChange,
-        isValidPosition(NewRow, NewCol, Board), !,
+        isValidPosition(Board, NewRow, NewCol), !,
         diagonalLineOfSight(Board, NewRow, NewCol, OtherPositions, RowChange, ColChange),
         append([NewRow, NewCol], OtherPositions, Positions).
 diagonalLineOfSight(_Row, _Col, _Board, _Positions, _RowChange, _ColChange) :- !.
@@ -198,7 +198,7 @@ checkDiagLineWinAux(Side, Board, Row, Col, NumPos, CurrCount, UpdatedCount) :-
 
 %Check the Element in the given position and update Count.
 checkDiagonalElem(Side, Board, Row, Col, Count, NewCount) :-
-        getElement(Row, Col, Board, Element),
+        getElement(Board, Row, Col, Element),
         Element = Side, !, 
         NewCount is (Count + 1).
 checkDiagonalElem(_Side, _Board, _Row, _Col, _Count, NewCount) :-
@@ -206,6 +206,6 @@ checkDiagonalElem(_Side, _Board, _Row, _Col, _Count, NewCount) :-
 
 
 moveWorker(Board, Row, Col, DestRow, DestCol, UpdatedBoard):-
-        getElement(Row, Col, Board, worker),
+        getElement(Board, Row, Col, worker),
         setPiece(none, Row, Col, Board, TempBoard),
         setPiece(worker, DestRow, DestCol, TempBoard, UpdatedBoard).
