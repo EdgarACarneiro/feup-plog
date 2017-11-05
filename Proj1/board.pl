@@ -25,7 +25,7 @@ getElement(Board, Row, Col, Element):-
         nth0(Col, RowLine, Element, _), !.
 
 
-% % Validation Predicates
+%% Validation Predicates
 % Worker can be played if [Row,Col]=none
 isValidPlay(worker, Row, Col, Board) :- !,
         getElement(Board, Row, Col, none).
@@ -52,7 +52,9 @@ getIntersections(Board, Row1, Col1, Row2, Col2, Positions) :-
 
 % Position is in Board and is empty ?
 isValidPosition(Board, Row, Col) :-
-        Col >= 0, boardSize(N), !, Col =< N,
+        boardSize(N),
+        Row >= 0, Col >= 0,
+        Row =< N, Col =< N,
         getElement(Board, Row, Col, none).
 
 % Possible values for coordinates' change
@@ -68,7 +70,7 @@ rowColChange(RowChange, ColChange) :-
 % Spreads outwards from the worker's position and stops on end of board or when a piece blocks the line of sight
 % Returns all positions of the worker's lines of sight
 lineOfSight(Board, Row, Col, Positions) :-
-        findall(PartialPositions, (rowColChange(RChange,CChange), diagonalLineOfSight(Board, Row, Col, PartialPositions, RChange, CChange)), Positions).
+        findall(PartialPositions, (rowColChange(RChange,CChange), lineOfSight(Board, Row, Col, RChange, CChange, PartialPositions)), Positions).
 
 %% TODO
 %% TODO Eliminar horizontal e vertical lines of sight e por tudo diagonal com change 0 na Row/Col
@@ -76,12 +78,12 @@ lineOfSight(Board, Row, Col, Positions) :-
 %% TODO juntar todas as solucoes que cumprem predicado
 %% Por condicao para nunca iterar sobre Row/Col change 0,0!
 
-diagonalLineOfSight(Board, Row, Col, Positions, RowChange, ColChange) :-
+lineOfSight(Board, Row, Col, RowChange, ColChange, Positions) :-
         NewRow is Row + RowChange, NewCol is Col + ColChange,
         isValidPosition(Board, NewRow, NewCol), !,
-        diagonalLineOfSight(Board, NewRow, NewCol, OtherPositions, RowChange, ColChange),
+        lineOfSight(Board, NewRow, NewCol, RowChange, ColChange, OtherPositions),
         append([NewRow, NewCol], OtherPositions, Positions).
-diagonalLineOfSight(_Board, _Row, _Col, _Positions, _RowChange, _ColChange) :- !.
+lineOfSight(_Board, _Row, _Col, _RowChange, _ColChange, []) :- !.
 
                                                                    
 % Set piece on board

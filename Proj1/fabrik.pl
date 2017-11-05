@@ -4,8 +4,6 @@
 :- include('menus.pl').
 :- include('input.pl').
 :- include('test.pl').
-:- use_module(library(lists)).
-
 
 
 fabrik:-

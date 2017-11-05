@@ -1,8 +1,6 @@
 
 %% Board configurations for testing
 
-testBoardSize(9).
-
 board1([
       [none, none, none, none, none, none, none, worker, none],
       [white, white, white, none, none, none, none, none, none],
