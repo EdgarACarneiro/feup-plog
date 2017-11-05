@@ -55,46 +55,26 @@ isValidPosition(Board, Row, Col) :-
         Col >= 0, boardSize(N), !, Col =< N,
         getElement(Board, Row, Col, none).
 
+% Possible values for coordinates' change
+coordinateChange(0).
+coordinateChange(1).
+coordinateChange(-1).
+
+rowColChange(RowChange, ColChange) :-
+        coordinateChange(RowChange),
+        coordinateChange(ColChange),
+        \+ (RowChange = 0, ColChange = 0).
+
 % Spreads outwards from the worker's position and stops on end of board or when a piece blocks the line of sight
 % Returns all positions of the worker's lines of sight
 lineOfSight(Board, Row, Col, Positions) :-
-        horizontalLineOfSight(Board, Row, Col, HorPos1, 1),
-        horizontalLineOfSight(Board, Row, Col, HorPos2, -1),
-        verticalLineOfSight(Board, Row, Col, VerPos1, 1),
-        verticalLineOfSight(Board, Row, Col, VerPos2, -1),
-        diagonalLineOfSight(Board, Row, Col, DiagPos1, 1, 1),
-        diagonalLineOfSight(Board, Row, Col, DiagPos2, 1, -1),
-        diagonalLineOfSight(Board, Row, Col, DiagPos3, -1, 1),
-        diagonalLineOfSight(Board, Row, Col, DiagPos4, -1, -1),
-        append(HorPos1, HorPos2, TmpPos1),
-        append(VerPos1, TmpPos1, TmpPos2),
-        append(VerPos2, TmpPos2, TmpPos3),
-        append(DiagPos1, TmpPos3, TmpPos4),
-        append(DiagPos2, TmpPos4, TmpPos5),
-        append(DiagPos3, TmpPos5, TmpPos6),
-        append(DiagPos4, TmpPos6, Positions).
-
-%% TODO passar validacoes e funcoes auxiliares para outro ficheiro goddamn it
+        findall(PartialPositions, (rowColChange(RChange,CChange), diagonalLineOfSight(Board, Row, Col, PartialPositions, RChange, CChange)), Positions).
 
 %% TODO
 %% TODO Eliminar horizontal e vertical lines of sight e por tudo diagonal com change 0 na Row/Col
 %% TODO e definir predidaco com possiveis Row/Col changes para permutar sem ser hardcoded,
 %% TODO juntar todas as solucoes que cumprem predicado
 %% Por condicao para nunca iterar sobre Row/Col change 0,0!
-
-horizontalLineOfSight(Board, Row, Col, Positions, ColChange) :-
-        NewCol is Col + ColChange,
-        isValidPosition(Board, Row, NewCol), /*!,*/
-        horizontalLineOfSight(Board, Row, NewCol, OtherPositions, ColChange),
-        append([[Row, NewCol] | Positions], OtherPositions, Positions).
-horizontalLineOfSight(_Board, _Row, _Col, _Positions, _ColChange) :- !. % check if element at Row,Col is not none ?
-
-verticalLineOfSight(Board, Row, Col, Positions, RowChange) :-
-        NewRow is Row + RowChange,
-        isValidPosition(Board, NewRow, Col), !,
-        verticalLineOfSight(Board, NewRow, Col, OtherPositions, RowChange),
-        append([[NewRow, Col] | Positions], OtherPositions, Positions).
-verticalLineOfSight(_Board, _Row, _Col, _Positions, _ColChange) :- !.          
 
 diagonalLineOfSight(Board, Row, Col, Positions, RowChange, ColChange) :-
         NewRow is Row + RowChange, NewCol is Col + ColChange,
@@ -118,7 +98,7 @@ setPiece(Piece, Row, Col, Board, NewBoard) :-
 findBothWorkers(Board, Row1, Col1, Row2, Col2) :-
         findWorker(Board, Row1, Col1),
         findWorker(Board, Row2, Col2),
-        (Row1 \= Row2; Col1 \= Col2), !. % Cut prevents backtracking over Row/Col permutations 
+        \+ (Row1 = Row2, Col1 = Col2), !. % Cut prevents backtracking over Row/Col permutations 
 
 % Finds a worker's position
 findWorker(Board, OutputRow, OutputCol) :-
