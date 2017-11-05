@@ -8,7 +8,7 @@ winningStreakN(5).
 changePlayer(black, white).
 changePlayer(white, black).
 
-%Next Position for the given board
+% Next Position for the given board
 nextPos(Board, CurrRow, CurrCol, CurrRow, NextCol):-
 	NextCol is (CurrCol + 1),
     	length(Board, Size),
@@ -20,10 +20,8 @@ unknownInput:-
 	write('Invalid option chosen.'), nl,
 	getEnter.
 
-% Site used: https://stackoverflow.com/questions/16441062/how-to-clear-screen-in-sicstus-prolog -> doesnt work
 clearConsole:-
 	clearConsole(60).
-
 clearConsole(0).
 clearConsole(N) :-
 	nl, 
