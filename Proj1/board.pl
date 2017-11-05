@@ -44,12 +44,13 @@ isIntersection(Board, Row, Col) :-
         getIntersections(Board, Row1, Col1, Row2, Col2, Positions),
         member([Row, Col], Positions).
 
-% PLACEHOLDER - probably receive [Row1,Col1],[Row2,Col2] positions of workers 
+% Gets the intersections of the workers' lines of sight
 getIntersections(Board, Row1, Col1, Row2, Col2, Positions) :-
         lineOfSight(Board, Row1, Col1, Pos1),
         lineOfSight(Board, Row2, Col2, Pos2),
         intersection(Pos1, Pos2, Positions).
 
+% Position is in Board and is empty ?
 isValidPosition(Board, Row, Col) :-
         Col >= 0, boardSize(N), Col =< N,
         getElement(Board, Row, Col, none).
@@ -98,7 +99,7 @@ diagonalLineOfSight(Board, Row, Col, Positions, RowChange, ColChange) :-
         diagonalLineOfSight(Board, NewRow, NewCol, OtherPositions, RowChange, ColChange),
         append([NewRow, NewCol], OtherPositions, Positions).
 diagonalLineOfSight(_Row, _Col, _Board, _Positions, _RowChange, _ColChange) :- !.
-                                                               
+
                                                                    
 % Set piece on board
 % Sets the piece of the given type on the given position, on the given Board
@@ -114,7 +115,7 @@ setPiece(Piece, Row, Col, Board, NewBoard) :-
 findBothWorkers(Board, Row1, Col1, Row2, Col2) :-
         findWorker(Board, Row1, Col1),
         findWorker(Board, Row2, Col2),
-        (Row1 \= Row2; Col1 \= Col2), !. % Cut prevents Row/Col permutations over backtracking
+        (Row1 \= Row2; Col1 \= Col2), !. % Cut prevents backtracking over Row/Col permutations 
 
 % Finds a worker's position
 findWorker(Board, OutputRow, OutputCol) :-

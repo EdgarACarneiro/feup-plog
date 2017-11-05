@@ -34,7 +34,7 @@ board3([
       [none, none, black, black, white, black, black, none, none],
       [none, none, none, none, white, none, none, none, none],
       [none, none, none, none, white, none, none, none, none],
-      [none, none, none, none, white, none, none, none, none],
+      [none, worker, none, none, white, none, none, none, none],
       [none, none, none, none, white, worker, none, none, none],
       [none, none, none, none, none, none, none, none, none]
 ]).
