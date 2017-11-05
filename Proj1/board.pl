@@ -52,7 +52,7 @@ getIntersections(Board, Row1, Col1, Row2, Col2, Positions) :-
 
 % Position is in Board and is empty ?
 isValidPosition(Board, Row, Col) :-
-        Col >= 0, boardSize(N), Col =< N,
+        Col >= 0, boardSize(N), !, Col =< N,
         getElement(Board, Row, Col, none).
 
 % Spreads outwards from the worker's position and stops on end of board or when a piece blocks the line of sight
@@ -78,27 +78,30 @@ lineOfSight(Board, Row, Col, Positions) :-
 
 %% TODO
 %% TODO Eliminar horizontal e vertical lines of sight e por tudo diagonal com change 0 na Row/Col
+%% TODO e definir predidaco com possiveis Row/Col changes para permutar sem ser hardcoded,
+%% TODO juntar todas as solucoes que cumprem predicado
+%% Por condicao para nunca iterar sobre Row/Col change 0,0!
 
 horizontalLineOfSight(Board, Row, Col, Positions, ColChange) :-
         NewCol is Col + ColChange,
-        isValidPosition(Board, Row, NewCol), !,
+        isValidPosition(Board, Row, NewCol), /*!,*/
         horizontalLineOfSight(Board, Row, NewCol, OtherPositions, ColChange),
         append([[Row, NewCol] | Positions], OtherPositions, Positions).
-horizontalLineOfSight(_Row, _Col, _Board, _Positions, _ColChange) :- !. % check if element at Row,Col is not none ?
+horizontalLineOfSight(_Board, _Row, _Col, _Positions, _ColChange) :- !. % check if element at Row,Col is not none ?
 
 verticalLineOfSight(Board, Row, Col, Positions, RowChange) :-
         NewRow is Row + RowChange,
         isValidPosition(Board, NewRow, Col), !,
         verticalLineOfSight(Board, NewRow, Col, OtherPositions, RowChange),
         append([[NewRow, Col] | Positions], OtherPositions, Positions).
-verticalLineOfSight(_Row, _Col, _Board, _Positions, _ColChange) :- !.          
+verticalLineOfSight(_Board, _Row, _Col, _Positions, _ColChange) :- !.          
 
 diagonalLineOfSight(Board, Row, Col, Positions, RowChange, ColChange) :-
         NewRow is Row + RowChange, NewCol is Col + ColChange,
         isValidPosition(Board, NewRow, NewCol), !,
         diagonalLineOfSight(Board, NewRow, NewCol, OtherPositions, RowChange, ColChange),
         append([NewRow, NewCol], OtherPositions, Positions).
-diagonalLineOfSight(_Row, _Col, _Board, _Positions, _RowChange, _ColChange) :- !.
+diagonalLineOfSight(_Board, _Row, _Col, _Positions, _RowChange, _ColChange) :- !.
 
                                                                    
 % Set piece on board

@@ -28,7 +28,7 @@ board2([
 ]).
 
 board3([
-      [black, black, black, white, none, none, none, none, none],
+      [none, black, black, white, none, none, none, none, none],
       [none, black, black, none, none, none, none, none, none],
       [none, none, black, none, none, none, none, none, none],
       [none, none, black, black, white, black, black, none, none],
