@@ -71,7 +71,7 @@ rowColChange(RowChange, ColChange) :-
 % Returns all positions of the worker's lines of sight
 positionsInSight(Board, Row, Col, Positions) :-
         findall(PartialPositions, (rowColChange(RChange,CChange), lineOfSight(Board, Row, Col, RChange, CChange, PartialPositions)), ListOfLists),
-        matrixToList(ListOfLists, Positions).
+        append(ListOfLists, Positions).
 
 lineOfSight(Board, Row, Col, RowChange, ColChange, Positions) :-
         NewRow is Row + RowChange, NewCol is Col + ColChange,
