@@ -38,8 +38,8 @@ board3([
 ]).
 
 board4([
-      [none, none, none, none, black, none, none, none, none],
-      [none, none, none, none, none, black, none, none, none],
+      [none, none, none, none, black, none, white, none, none],
+      [none, white, none, white, none, black, none, none, none],
       [none, none, black, none, none, none, none, none, none],
       [none, none, none, black, none, worker, none, black, none],
       [white, none, none, none, black, none, none, none, black],

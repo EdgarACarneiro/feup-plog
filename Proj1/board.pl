@@ -46,8 +46,8 @@ isIntersection(Board, Row, Col) :-
 
 % Gets the intersections of the workers' lines of sight
 getIntersections(Board, Row1, Col1, Row2, Col2, Positions) :-
-        lineOfSight(Board, Row1, Col1, Pos1),
-        lineOfSight(Board, Row2, Col2, Pos2),
+        positionsInSight(Board, Row1, Col1, Pos1), write(Pos1), nl, % TODO delete write
+        positionsInSight(Board, Row2, Col2, Pos2), write(Pos2), nl, % TODO delete write
         intersection(Pos1, Pos2, Positions).
 
 % Position is in Board and is empty ?
@@ -69,20 +69,15 @@ rowColChange(RowChange, ColChange) :-
 
 % Spreads outwards from the worker's position and stops on end of board or when a piece blocks the line of sight
 % Returns all positions of the worker's lines of sight
-lineOfSight(Board, Row, Col, Positions) :-
-        findall(PartialPositions, (rowColChange(RChange,CChange), lineOfSight(Board, Row, Col, RChange, CChange, PartialPositions)), Positions).
-
-%% TODO
-%% TODO Eliminar horizontal e vertical lines of sight e por tudo diagonal com change 0 na Row/Col
-%% TODO e definir predidaco com possiveis Row/Col changes para permutar sem ser hardcoded,
-%% TODO juntar todas as solucoes que cumprem predicado
-%% Por condicao para nunca iterar sobre Row/Col change 0,0!
+positionsInSight(Board, Row, Col, Positions) :-
+        findall(PartialPositions, (rowColChange(RChange,CChange), lineOfSight(Board, Row, Col, RChange, CChange, PartialPositions)), ListOfLists),
+        matrixToList(ListOfLists, Positions).
 
 lineOfSight(Board, Row, Col, RowChange, ColChange, Positions) :-
         NewRow is Row + RowChange, NewCol is Col + ColChange,
         isValidPosition(Board, NewRow, NewCol), !,
         lineOfSight(Board, NewRow, NewCol, RowChange, ColChange, OtherPositions),
-        append([NewRow, NewCol], OtherPositions, Positions).
+        append([[NewRow, NewCol]], OtherPositions, Positions).
 lineOfSight(_Board, _Row, _Col, _RowChange, _ColChange, []) :- !.
 
                                                                    

@@ -27,3 +27,10 @@ clearConsole(N) :-
 	nl, 
 	N1 is N-1, 
 	clearConsole(N1).
+
+
+% matrixToList converts a list of lists into a single list containing all elements
+matrixToList([FirstList | NextLists], List) :-
+	matrixToList(NextLists, TmpList),
+	append(FirstList, TmpList, List).
+matrixToList([], []).
