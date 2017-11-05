@@ -1,6 +1,7 @@
 :- include('utils.pl').
 :- use_module(library(lists)).
 :- use_module(library(clpfd)).
+:- use_module(library(sets)).
 
 % Generate a board predicate with N x N empty spaces
 createBoard(Board, N) :-
@@ -46,8 +47,8 @@ isIntersection(Board, Row, Col) :-
 
 % Gets the intersections of the workers' lines of sight
 getIntersections(Board, Row1, Col1, Row2, Col2, Positions) :-
-        positionsInSight(Board, Row1, Col1, Pos1), write(Pos1), nl, % TODO delete write
-        positionsInSight(Board, Row2, Col2, Pos2), write(Pos2), nl, % TODO delete write
+        positionsInSight(Board, Row1, Col1, Pos1),
+        positionsInSight(Board, Row2, Col2, Pos2),
         intersection(Pos1, Pos2, Positions).
 
 % Position is in Board and is empty ?

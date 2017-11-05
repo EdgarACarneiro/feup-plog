@@ -41,11 +41,11 @@ board4([
       [none, none, none, none, black, none, white, none, none],
       [none, white, none, white, none, black, none, none, none],
       [none, none, black, none, none, none, none, none, none],
-      [none, none, none, black, none, worker, none, black, none],
+      [none, none, none, black, none, none, none, black, none],
       [white, none, none, none, black, none, none, none, black],
       [none, white, none, none, none, black, none, none, none],
       [none, none, white, none, none, none, black, none, none],
-      [none, none, none, worker, none, none, none, none, none],
+      [none, none, none, worker, none, none, none, worker, none],
       [none, none, none, none, white, none, none, none, none]
 ]).
 
