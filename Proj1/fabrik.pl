@@ -3,6 +3,7 @@
 :- include('utils.pl').
 :- include('menus.pl').
 :- include('input.pl').
+:- include('ai.pl').
 :- include('test.pl').
 
 
