@@ -8,14 +8,6 @@ winningStreakN(5).
 changePlayer(black, white).
 changePlayer(white, black).
 
-% Next Position for the given board
-nextPos(Board, CurrRow, CurrCol, CurrRow, NextCol):-
-	NextCol is (CurrCol + 1),
-    	length(Board, Size),
-   	NextCol < Size, !.
-nextPos(_Board, CurrRow, _CurrCol, NextRow, 0):-
-    	NextRow is (CurrRow + 1).
-
 unknownInput:-
 	write('Invalid option chosen.'), nl,
 	getEnter.
