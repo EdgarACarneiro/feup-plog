@@ -100,14 +100,14 @@ diagonalEvaluation(_Side, _Board, _Value):-
 	%TODO,
 	fail.
 
-evaluateElement(Row, Col, Board, Streak, Value):-
-	getElement(Board, Row, Col, Side),
-	NewStreak is (Streak + 1),
-	TempValue is (NewStreak * NewStreak),
-	%evaluateEnemyNeighborhood(Side, Board,Row, Col, CounterValue),
-	Valus is (TempValue + CounterValue),
-	getNextPosition(Row, Col, NRow, NCol), !,
-	evaluateElement(Side, Board, Row, Col, NewStreak, Value).
+%evaluateElement(Row, Col, Board, Streak, Value):-
+%	getElement(Board, Row, Col, Side),
+%	NewStreak is (Streak + 1),
+%	TempValue is (NewStreak * NewStreak),
+%	%evaluateEnemyNeighborhood(Side, Board,Row, Col, CounterValue),
+%	Valus is (TempValue + CounterValue),
+%	getNextPosition(Row, Col, NRow, NCol), !,
+%	evaluateElement(Side, Board, Row, Col, NewStreak, Value).
 
 
 getNextPosition(Row, Col, Row, NCol):-
