@@ -139,7 +139,7 @@ checkVerticalWin(Side, Board) :-
 
 % Check Diagonal Win for side 'Side'
 checkDiagonalWin(Side, Board) :-
-        length(Board, Size),
+        boardSize(Size),
         checkDiffDiagonals(Side, Board, Size).
 
 %Check diagonals from [0, 0] to [0, BoardSize]

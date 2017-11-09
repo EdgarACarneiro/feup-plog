@@ -1,11 +1,5 @@
 :- dynamic(rowcolChange/1).
 
-evaluateBoard(Side, Board, Value):-
-	%Definir protocolo de avaliação aqui
-	%Começa em 0 um Board inicial
-	%Por cada n em linha ele conta mais, tem que ter fator de escala para fazer urge para quebrar os em linha
-	fail.
-
 % Possible values for Row and Col positions
 genRowColFacts:-
 	boardSize(N),
@@ -28,18 +22,48 @@ findWorkersBoards(Board, PossibleBoards):-
 	genRowColFacts,
 	getWorkerBoards(Board, Row1, Col1, PossibleBoards1),
 	getWorkerBoards(Board, Row2, Col2, PossibleBoards2),
-	append(PossibleBoards1, PossibleBoards2, PossibleBoards).
-	%printAllBoards(PossibleBoards).
-	%tryWorkerPositions(Board, Row2, Col2, PossibleBoards2).
-	%join das listas e remoção dos seus duplicados -> função joinAndTrim(List1, List2, FinalList)
-	%devolução dos positions boards.
+	union(PossibleBoards1, PossibleBoards2, PossibleBoards). %No duplicates
 
 % All the boards obtained by moving a worker through a Board
 getWorkerBoards(Board, Row, Col, ListOfBoards):-
 	findall(TempPossibleBoards, (nextPos(NewRow, NewCol), moveWorker(Board, Row, Col, NewRow, NewCol, TempPossibleBoards)), ListOfBoards).
 
+getBoardMoves(Board, Side, PossibleBoards):-
+	findWorkersBoards(Board, WorkerBoards), !,
+	getPossibleBoards(Side, WorkerBoards, [], PossibleBoards),
+	printAllBoards(PossibleBoards).
+
+getPossibleBoards(_, [], AllBoards, AllBoards).
+getPossibleBoards(Side, [WorkerBoard | OtherBoards], SoFarBoards, PossibleBoards):-
+	findBothWorkers(WorkerBoard, Row1, Col1, Row2, Col2),
+	getIntersections(WorkerBoard, Row1, Col1, Row2, Col2, IntersectionsList),
+	genNewBoards(Side, WorkerBoard, IntersectionsList, [], NewBoards),
+	write('HERE: '), nl, write(NewBoards), %NewBoards = [GG | Res], printBoard(GG, 3), nl,
+	append(NewBoards, SoFarBoards, PossibleBoards), !,
+	getPossibleBoards(Side, OtherBoards, PossibleBoards, _).
+
+genNewBoards(_, _, [], Boards, Boards):-
+	write('BUBa: '), write(Boards), nl, nl, nl, !.
+genNewBoards(Side, Board, [Intersec | OtherIntersec], FoundBoards, NewBoards):-
+	write('Shit: '), write(NewBoards), nl,
+	Intersec = [Row, Col],
+	setPiece(Side, Row, Col, Board, TempBoard),
+	append([TempBoard], FoundBoards, NewBoards), !,
+	genNewBoards(Side, Board, OtherIntersec, NewBoards, _), !.
+
+
 printAllBoards([]).
 printAllBoards([Board | NextBoards]):-
-	printBoard(Board, 9),
+	boardSize(Size),
+	printBoard(Board, Size),
 	printAllBoards(NextBoards).
-%board5(B), findWorkersBoards(B, PP).
+
+evaluateBoard(Side, Board, Value):-
+	%Definir protocolo de avaliação aqui
+	%Começa em 0 um Board inicial
+	%Por cada n em linha ele conta mais, tem que ter fator de escala para fazer urge para quebrar os em linha
+	fail.
+
+	%tryWorkerPositions(Board, Row2, Col2, PossibleBoards2).
+	%join das listas e remoção dos seus duplicados -> função joinAndTrim(List1, List2, FinalList)
+	%devolução dos positions boards.

@@ -60,3 +60,9 @@ board5([
       [none, none, black, none, none, none, none, none, none],
       [none, none, none, none, white, white, white, none, none]
 ]).
+
+smallboard([
+      [worker, none, none],
+      [none, none, none],
+      [none, none, worker]
+]).
