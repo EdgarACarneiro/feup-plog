@@ -1,6 +1,6 @@
 %% CONSTANTS
 
-boardSize(3) :- !.
+boardSize(9) :- !.
 %boardSize(11) :- !.
 
 winningStreakN(5).

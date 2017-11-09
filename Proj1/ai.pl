@@ -17,7 +17,7 @@ nextPos(RowChange, ColChange) :-
         rowcolChange(ColChange).
 
 %returns a List containing all the possible Boards by moving the workers
-findWorkersBoards(Board, PossibleBoards):-
+findWorkerBoards(Board, PossibleBoards):-
 	findBothWorkers(Board, Row1, Col1, Row2, Col2),
 	genRowColFacts,
 	getWorkerBoards(Board, Row1, Col1, PossibleBoards1),
@@ -28,28 +28,31 @@ findWorkersBoards(Board, PossibleBoards):-
 getWorkerBoards(Board, Row, Col, ListOfBoards):-
 	findall(TempPossibleBoards, (nextPos(NewRow, NewCol), moveWorker(Board, Row, Col, NewRow, NewCol, TempPossibleBoards)), ListOfBoards).
 
-getBoardMoves(Board, Side, PossibleBoards):-
-	findWorkersBoards(Board, WorkerBoards), !,
-	getPossibleBoards(Side, WorkerBoards, [], PossibleBoards),
-	printAllBoards(PossibleBoards).
+%Get all the boards where a piece can go, given a List of Boards with different worker positions
+getPieceBoards(Side, WorkerBoards, PossibleBoards):-
+	getPieceBoardsAux(Side, WorkerBoards, [], PossibleBoards).
 
-getPossibleBoards(_, [], AllBoards, AllBoards).
-getPossibleBoards(Side, [WorkerBoard | OtherBoards], SoFarBoards, PossibleBoards):-
+getPieceBoardsAux(_, [], PossibleBoards, PossibleBoards) :- !.
+getPieceBoardsAux(Side, [WorkerBoard | OtherBoards], SoFarBoards, PossibleBoards):-
 	findBothWorkers(WorkerBoard, Row1, Col1, Row2, Col2),
 	getIntersections(WorkerBoard, Row1, Col1, Row2, Col2, IntersectionsList),
 	genNewBoards(Side, WorkerBoard, IntersectionsList, [], NewBoards),
-	write('HERE: '), nl, write(NewBoards), %NewBoards = [GG | Res], printBoard(GG, 3), nl,
-	append(NewBoards, SoFarBoards, PossibleBoards), !,
-	getPossibleBoards(Side, OtherBoards, PossibleBoards, _).
+	append(NewBoards, SoFarBoards, UpdatedBoards), !,
+	getPieceBoardsAux(Side, OtherBoards, UpdatedBoards, PossibleBoards).
 
-genNewBoards(_, _, [], Boards, Boards):-
-	write('BUBa: '), write(Boards), nl, nl, nl, !.
-genNewBoards(Side, Board, [Intersec | OtherIntersec], FoundBoards, NewBoards):-
-	write('Shit: '), write(NewBoards), nl,
+%Generates all the boards associated to a certain board with fix workers.
+%Boards with the different places where the piece can be played
+genNewBoards(_, _, [], AllBoards, AllBoards):- !.
+genNewBoards(Side, Board, [Intersec | OtherIntersec], FoundBoards, AllBoards):-
 	Intersec = [Row, Col],
 	setPiece(Side, Row, Col, Board, TempBoard),
-	append([TempBoard], FoundBoards, NewBoards), !,
-	genNewBoards(Side, Board, OtherIntersec, NewBoards, _), !.
+	append([TempBoard], FoundBoards, UpdatedBoards), !,
+	genNewBoards(Side, Board, OtherIntersec, UpdatedBoards, AllBoards).
+
+%Returns all the possible resulting boards, taking into account the move worker play and the set piece play
+getPossibleBoards(Side, Board, PossibleBoards):-
+	findWorkerBoards(Board, WorkerBoards), !,
+	getPieceBoards(Side, WorkerBoards, PossibleBoards).
 
 
 printAllBoards([]).
@@ -58,12 +61,8 @@ printAllBoards([Board | NextBoards]):-
 	printBoard(Board, Size),
 	printAllBoards(NextBoards).
 
-evaluateBoard(Side, Board, Value):-
+evaluateBoard(_Side, _Board, _Value):-
 	%Definir protocolo de avaliação aqui
 	%Começa em 0 um Board inicial
 	%Por cada n em linha ele conta mais, tem que ter fator de escala para fazer urge para quebrar os em linha
 	fail.
-
-	%tryWorkerPositions(Board, Row2, Col2, PossibleBoards2).
-	%join das listas e remoção dos seus duplicados -> função joinAndTrim(List1, List2, FinalList)
-	%devolução dos positions boards.
