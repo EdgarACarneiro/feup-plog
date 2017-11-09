@@ -78,3 +78,15 @@ boardE1([
       [none, none, none, none, none, none, none, none, none],
       [none, none, none, none, none, none, none, none, none]
 ]).
+
+boardE2([
+      [none, none, none, none, none, none, none, none, none],
+      [none, none, white, black, black, black, black, none, none],
+      [none, none, none, none, none, none, none, none, none],
+      [none, none, none, none, none, none, none, none, none],
+      [none, none, white, none, black, none, none, none, none],
+      [none, none, none, black, none, black, none, black, none],
+      [none, none, none, none, black, none, black, black, none],
+      [none, none, none, none, none, none, none, white, none],
+      [none, none, none, none, none, none, none, none, none]
+]).

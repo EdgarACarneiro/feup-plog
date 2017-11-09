@@ -1,3 +1,7 @@
+unknownInput:-
+        write('Invalid option chosen.'), nl,
+        getEnter.
+
 % TODO: Change this to handle strings and not only 1 char
 %Ask the User for a int
 getInt(Input):-

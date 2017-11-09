@@ -1,7 +1,9 @@
 :- dynamic(rowcolChange/1).
 
-%TODO - needed a float here for 0.6
-enemyFactor(2).
+%Defense factor in AI evaluation function
+%2 -> Half of Atack factor
+%3 -> A third of Atack factor,  and so on..
+defenseFactor(2).
 
 % Possible values for Row and Col positions
 genRowColFacts:-
@@ -15,7 +17,7 @@ genRowColFactsAux(Current, BoardSize):-
 	genRowColFactsAux(NewValue, BoardSize).
 
 %Used to backtrace over the possible positions
-nextPos(RowChange, ColChange) :-
+changePos(RowChange, ColChange) :-
         rowcolChange(RowChange),
         rowcolChange(ColChange).
 
@@ -29,7 +31,7 @@ findWorkerBoards(Board, PossibleBoards):-
 
 % All the boards obtained by moving a worker through a Board
 getWorkerBoards(Board, Row, Col, ListOfBoards):-
-	findall(TempPossibleBoards, (nextPos(NewRow, NewCol), moveWorker(Board, Row, Col, NewRow, NewCol, TempPossibleBoards)), ListOfBoards).
+	findall(TempPossibleBoards, (changePos(NewRow, NewCol), moveWorker(Board, Row, Col, NewRow, NewCol, TempPossibleBoards)), ListOfBoards).
 
 %Get all the boards where a piece can go, given a List of Boards with different worker positions
 getPieceBoards(Side, WorkerBoards, PossibleBoards):-
@@ -62,7 +64,9 @@ getPossibleBoards(Side, Board, PossibleBoards):-
 evaluateBoard(Side, Board, BoardValue):-
 	horizontalEvaluation(Side, Board, HorizontalValue),
 	verticalEvaluation(Side, Board, VerticalValue),
-	BoardValue is (HorizontalValue + VerticalValue).
+	diagonalEvaluation(Side, Board, DiagonalValue),
+	defensiveEvaluation(Side, Board, DefensiveValue),
+	BoardValue is (HorizontalValue + VerticalValue + DiagonalValue + DefensiveValue).
 
 %Makes an Horizontal Evaluation of the given board
 horizontalEvaluation(Side, Board, Value):-
@@ -96,9 +100,45 @@ verticalEvaluation(Side, Board, Value):-
 	horizontalRowEvaluation(Side, TransposedBoard, Value).
 
 %Makes a diagonal Evaluation of the given board
-diagonalEvaluation(_Side, _Board, _Value):-
-	%TODO,
-	fail.
+diagonalEvaluation(_Side, _Board, 0).
+	%TODO
+
+defensiveEvaluation(Side, Board, Value):-
+	defensiveEvaluationRec(Side, Board, 0, 0, 0, Value).
+
+%Piece is of type Side
+defensiveEvaluationRec(Side, Board, Row, Col, CurrentValue, Value):-
+	getElement(Board, Row, Col, Side),
+	updateDefenseValue(Side, Board, Row, Col, CurrentValue, UpdatedValue),
+	getNextPosition(Row, Col, NewRow, NewCol),
+	defensiveEvaluationRec(Side, Board, NewRow, NewCol, UpdatedValue, Value).
+%Piece is not of type Side
+defensiveEvaluationRec(Side, Board, Row, Col, CurrentValue, Value):-
+	getElement(Board, Row, Col, _),
+	getNextPosition(Row, Col, NewRow, NewCol),
+	defensiveEvaluationRec(Side, Board, NewRow, NewCol, CurrentValue, Value).
+%Finished, accessed unixstent element - Finished Board
+defensiveEvaluationRec(_, _, _, _, FinalValue, FinalValue):- !.
+
+%Evaluates Enemy Streaks near the given position
+updateDefenseValue(Side, Board, Row, Col, CurrentValue, UpdatedValue):-
+	findall(LineValue, (rowColChange(RChange,CChange), lineDefenseValue(Side, Board, Row, Col, RChange, CChange, 1, LineValue)), ListOfValues),
+	write('Lista de Valores: '), write(ListOfValues), nl, nl,
+	append(ListOfValues, ListValues),
+	sum_list(ListValues, Sum),
+	write('Sum: '), write(Sum), nl,
+	UpdatedValue is (CurrentValue + Sum).
+
+lineDefenseValue(Side, Board, Row, Col, RowChange, ColChange, Streak, Value):-
+	NewRow is Row + RowChange, NewCol is Col + ColChange,
+	changePlayer(Side, Enemy),
+        getElement(Board, NewRow, NewCol, Enemy), !,
+        NewStreak is (Streak + 1),
+        lineDefenseValue(Side, Board, NewRow, NewCol, RowChange, ColChange, NewStreak, OtherValues),
+        defenseFactor(Factor),
+        PosValue is ((Streak * Streak) / Factor),
+        append([PosValue], OtherValues, Value).
+lineDefenseValue(_Side, _Board, _Row, _Col, _RowChange, _ColChange, _Streak, _Value):- !. %Needed?
 
 %evaluateElement(Row, Col, Board, Streak, Value):-
 %	getElement(Board, Row, Col, Side),
@@ -108,18 +148,3 @@ diagonalEvaluation(_Side, _Board, _Value):-
 %	Valus is (TempValue + CounterValue),
 %	getNextPosition(Row, Col, NRow, NCol), !,
 %	evaluateElement(Side, Board, Row, Col, NewStreak, Value).
-
-
-getNextPosition(Row, Col, Row, NCol):-
-	NCol is (Col + 1),
-	boardSize(Size),
-	NCol < Size.
-
-getNextPosition(Row, _Col, NRow, 0):-
-	NRow is (Row + 1).
-
-printAllBoards([]).
-printAllBoards([Board | NextBoards]):-
-	boardSize(Size),
-	printBoard(Board, Size),
-	printAllBoards(NextBoards).
