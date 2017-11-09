@@ -66,3 +66,15 @@ smallboard([
       [none, none, none],
       [none, none, worker]
 ]).
+
+boardE1([
+      [none, none, none, none, none, none, none, none, none],
+      [none, none, none, black, black, black, none, none, none],
+      [none, none, none, none, none, none, none, none, none],
+      [none, none, none, none, none, none, none, none, none],
+      [none, none, none, none, none, none, none, none, none],
+      [none, none, none, white, white, none, none, none, none],
+      [none, none, none, none, none, none, none, none, none],
+      [none, none, none, none, none, none, none, none, none],
+      [none, none, none, none, none, none, none, none, none]
+]).
