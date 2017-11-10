@@ -17,21 +17,20 @@ genRowColFactsAux(Current, BoardSize):-
 	genRowColFactsAux(NewValue, BoardSize).
 
 %Used to backtrace over the possible positions
-changePos(RowChange, ColChange) :-
+validCoordinates(RowChange, ColChange) :-
         validCoord(RowChange),
         validCoord(ColChange).
 
 %returns a List containing all the possible Boards by moving the workers
 findWorkerBoards(Board, PossibleBoards):-
 	findBothWorkers(Board, Row1, Col1, Row2, Col2),
-	genRowColFacts,
 	getWorkerBoards(Board, Row1, Col1, PossibleBoards1),
 	getWorkerBoards(Board, Row2, Col2, PossibleBoards2),
-	union(PossibleBoards1, PossibleBoards2, PossibleBoards). %No duplicates
+	union(PossibleBoards1, PossibleBoards2, PossibleBoards). % No duplicates
 
 % All the boards obtained by moving a worker through a Board
 getWorkerBoards(Board, Row, Col, ListOfBoards):-
-	findall(TempPossibleBoards, (changePos(NewRow, NewCol), moveWorker(Board, Row, Col, NewRow, NewCol, TempPossibleBoards)), ListOfBoards).
+	findall(PossibleBoard, (validCoordinates(NewRow, NewCol), moveWorker(Board, Row, Col, NewRow, NewCol, PossibleBoard)), ListOfBoards), !.
 
 %Get all the boards where a piece can go, given a List of Boards with different worker positions
 getPieceBoards(Side, WorkerBoards, PossibleBoards):-
@@ -97,7 +96,7 @@ horizontalRowEvaluation(Side, [_Col | OtherCols], _, _, CurrentValue, Value):-
 %Makes a vertical Evaluation of the given board
 verticalEvaluation(Side, Board, Value):-
 	transpose(Board, TransposedBoard),
-	horizontalRowEvaluation(Side, TransposedBoard, Value).
+	horizontalRowEvaluation(Side, TransposedBoard, Value). % TODO fix warning
 
 %Makes a diagonal Evaluation of the given board
 diagonalEvaluation(Side, Board, Value):-
@@ -161,7 +160,7 @@ defensiveEvaluationRec(_, _, _, _, FinalValue, FinalValue):- !.
 
 %Evaluates Enemy Streaks near the given position
 updateDefenseValue(Side, Board, Row, Col, CurrentValue, UpdatedValue):-
-	findall(LineValue, (changePos(RChange,CChange), lineDefenseValue(Side, Board, Row, Col, RChange, CChange, 0, LineValue)), ListOfValues),
+	findall(LineValue, (validCoordinates(RChange,CChange), lineDefenseValue(Side, Board, Row, Col, RChange, CChange, 0, LineValue)), ListOfValues),
 	append(ListOfValues, ListValues),
 	sum_list(ListValues, Sum),
 	UpdatedValue is (CurrentValue + Sum).

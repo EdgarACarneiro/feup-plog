@@ -1,6 +1,7 @@
 %% CONSTANTS
 
-boardSize(9) :- !.
+boardSize(3) :- write('TEST BOARD SIZE DEFINED AS 3'), nl, !.
+%boardSize(9) :- !.
 %boardSize(11) :- !.
 
 winningStreakN(5).

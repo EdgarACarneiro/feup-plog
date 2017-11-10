@@ -11,6 +11,7 @@ fabrik:-
 	mainMenuHandler.
 
 initGame :-
+	genRowColFacts,
 	boardSize(N), !,
 	initGame(N).
 initGame(N):-
