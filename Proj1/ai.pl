@@ -1,8 +1,8 @@
 :- dynamic(rowcolChange/1).
 
 %Defense factor in AI evaluation function
-%2 -> Half of Atack factor
-%3 -> A third of Atack factor,  and so on..
+%2 -> Half of Attack factor
+%3 -> A third of Attack factor,  and so on..
 defenseFactor(2).
 
 % Possible values for Row and Col positions
@@ -46,7 +46,7 @@ getPieceBoardsAux(Side, [WorkerBoard | OtherBoards], SoFarBoards, PossibleBoards
 	getPieceBoardsAux(Side, OtherBoards, UpdatedBoards, PossibleBoards).
 
 %Generates all the boards associated to a certain board with fix workers.
-%Boards with the different places where the piece can be played
+%Boards with all the different places where the piece can be played
 genNewBoards(_, _, [], AllBoards, AllBoards):- !.
 genNewBoards(Side, Board, [Intersec | OtherIntersec], FoundBoards, AllBoards):-
 	Intersec = [Row, Col],
@@ -110,13 +110,13 @@ diagonalEvaluationAux(Side, Board, Col, ColSize, CurrentValue, Value):-
 	%One quarter of the diagonal lines: left-right, top-down
 	diagonalLine(Side, Board, 0, Col, 1, 1, 0, 0, CurrentValue, DiagLine1Value),
 	%One quarter of the diagonal lines: right-left, top-down
-	diagonalLine(Side, Board, 0, Col, 1, -1, 0, DiagLine1Value, DiagLine2Value),
+	diagonalLine(Side, Board, 0, Col, 1, -1, 0, 0, DiagLine1Value, DiagLine2Value),
 	%One quarter of the diagonal lines: left-right, down-top
-	diagonalLine(Side, Board, BottomRow, Col, -1, 1, 0, DiagLine1Value, DiagLine2Value),
+	diagonalLine(Side, Board, BottomRow, Col, -1, 1, 0, 0, DiagLine2Value, DiagLine3Value),
 	%One quarter of the diagonal lines: right-left, down-top
-	diagonalLine(Side, Board, BottomRow, Col, -1, -1, 0, DiagLine1Value, DiagLine2Value),
+	diagonalLine(Side, Board, BottomRow, Col, -1, -1, 0, 0, DiagLine3Value, DiagLine4Value),
 	NewCol is (Col + 1),
-	diagonalEvaluationAux(Side, Board, NewCol, ColSize, DiagLine2Value, Value).
+	diagonalEvaluationAux(Side, Board, NewCol, ColSize, DiagLine4Value, Value).
 
 %Succession of Side Pieces
 diagonalLine(Side, Board, Row, Col, RowInc, ColInc, Streak, _EnemyStreak, CurrentValue, FinalValue):-
@@ -139,12 +139,11 @@ diagonalLine(Side, Board, Row, Col, RowInc, ColInc, _Streak, _EnemyStreak, Curre
 	NewRow is (Row + RowInc), NewCol is (Col + ColInc),
 	diagonalLine(Side, Board, NewRow, NewCol, RowInc, ColInc, 0, 0, CurrentValue, FinalValue).
 %It only fails again if [Row, Col] out of board
-diagonalLine(_Side, _Board, _Row, _Col, _Inc, _Streak, _EnemyStreak, FinalValue, FinalValue):- !.
+diagonalLine(_Side, _Board, _Row, _Col, _RowInc, _ColInc, _Streak, _EnemyStreak, FinalValue, FinalValue):- !.
 
 
 defensiveEvaluation(Side, Board, Value):-
 	defensiveEvaluationRec(Side, Board, 0, 0, 0, Value).
-
 %Piece is of type Side
 defensiveEvaluationRec(Side, Board, Row, Col, CurrentValue, Value):-
 	getElement(Board, Row, Col, Side),

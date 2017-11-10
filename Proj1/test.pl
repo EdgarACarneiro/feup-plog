@@ -92,5 +92,7 @@ boardE2([
       [none, none, none, none, none, none, none, white, none],
       [none, none, none, none, none, none, none, none, none]
 ]).
+%boardE2(B), diagonalEvaluation(black, B, V).
+%V = 42
 %boardE2(B), defensiveEvaluation(white, B, V).
 %V = 27
