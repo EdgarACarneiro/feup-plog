@@ -24,19 +24,30 @@ initGame(N):-
 	printBoard(B2, N),
 	getFirstPlayer(Side),
 	printBoard(B2, N),
-	gameLoop(Side, N, B2).
+	gameLoop(userFunction, userFunction, Side, N, B2).
 
-gameLoop(Side, BoardSize, Board):-
-	workerUpdate(Side, Board, B1),
-	printBoard(B1, BoardSize),
-	pieceInput(Side, Side, B1, B2),
-	printBoard(B2, BoardSize), !,
-	decideNextStep(Side, BoardSize, B2).
+gameLoop(Player1Function, _Player2Function, black, BoardSize, Board):-
+	call(Player1Function, Side, Board, BoardSize, NewBoard),
+	decideNextStep(Side, BoardSize, NewBoard).
 
-decideNextStep(Side, _BoardSize, Board):-
+gameLoop(_Player1Function, Player2Function, white, BoardSize, Board):-
+	call(Player2Function, Side, Board, BoardSize, NewBoard),
+	decideNextStep(Side, BoardSize, NewBoard).
+
+userFunction(Side, Board, BoardSize, NewBoard):-
+	workerUpdate(Side, Board, TempBoard),
+	printBoard(TempBoard, BoardSize),
+	pieceInput(Side, Side, TempBoard, NewBoard),
+	printBoard(NewBoard, BoardSize), !.
+
+aiFunction(_Side, _Board, _BoardSize, _NewBoard):-
+	%Mete aqui a chamada a função André
+	fail.
+
+decideNextStep(_Player1Function, _Player2Function, Side, _BoardSize, Board):-
 	gameIsWon(Side, Board), !,
 	wonMsg(Side),
 	getEnter.
-decideNextStep(Side, BoardSize, Board):-
+decideNextStep(Player1Function, Player2Function, Side, BoardSize, Board):-
 	changePlayer(Side, NewSide), !,
-	gameLoop(NewSide, BoardSize, Board).
+	gameLoop(Player1Function, Player2Function, NewSide, BoardSize, Board).
