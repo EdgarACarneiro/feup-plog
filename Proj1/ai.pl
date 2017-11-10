@@ -22,7 +22,7 @@ validCoordinates(RowChange, ColChange) :-
         validCoord(ColChange).
 
 %returns a List containing all the possible Boards by moving the workers
-findWorkerBoards(Board, PossibleBoards):-
+getAllWorkerPermutations(Board, PossibleBoards):-
 	findBothWorkers(Board, Row1, Col1, Row2, Col2),
 	getWorkerBoards(Board, Row1, Col1, PossibleBoards1),
 	getWorkerBoards(Board, Row2, Col2, PossibleBoards2),
@@ -55,7 +55,7 @@ genNewBoards(Side, Board, [Intersec | OtherIntersec], FoundBoards, AllBoards):-
 
 %Returns all the possible resulting boards, taking into account the move worker play and the set piece play
 getPossibleBoards(Side, Board, PossibleBoards):-
-	findWorkerBoards(Board, WorkerBoards), !,
+	getAllWorkerPermutations(Board, WorkerBoards), !,
 	getPieceBoards(Side, WorkerBoards, PossibleBoards).
 
 
