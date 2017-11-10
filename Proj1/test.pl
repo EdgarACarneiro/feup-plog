@@ -60,6 +60,26 @@ board5([
       [none, none, black, none, none, none, none, none, none],
       [none, none, none, none, white, white, white, none, none]
 ]).
+%board5(B), checkDiagonalWin(black, B).
+%yes
+%board5(B), checkDiagonalWin(white, B).
+%no
+
+board6([
+      [none, none, none, none, none, none, none, none, none],
+      [none, none, none, none, none, none, none, none, none],
+      [none, none, none, none, white, none, none, none, none],
+      [none, none, none, white, none, none, none, none, none],
+      [none, none, white, none, none, none, black, none, none],
+      [none, white, none, none, none, black, none, none, none],
+      [white, none, none, none, black, none, none, none, none],
+      [none, none, none, black, none, none, none, none, none],
+      [none, none, black, none, none, none, none, none, none]
+]).
+%board6(B), checkDiagonalWin(black, B).
+%yes
+%board6(B), checkDiagonalWin(white, B).
+%yes
 
 smallboard([
       [worker, none, none],

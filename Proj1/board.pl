@@ -136,56 +136,46 @@ checkVerticalWin(Side, Board) :-
         transpose(Board, TransposedBoard),
         checkHorizontalWin(Side, TransposedBoard).
 
+%Check Diagonal Win for side 'Side'
+checkDiagonalWin(Side, Board):-
+        boardSize(BoardSize),
+        checkDiagWinAux(Side, Board, 0, BoardSize).
 
-% Check Diagonal Win for side 'Side'
-checkDiagonalWin(Side, Board) :-
-        boardSize(Size),
-        checkDiffDiagonals(Side, Board, Size).
-
-%Check diagonals from [0, 0] to [0, BoardSize]
-checkDiffDiagonals(Side, Board, BoardSize) :-
-        checkDiagonalWinAux(Side, Board, 0, BoardSize).
-%Check diagonals from [0, 0] to [BoardSize, 0]
-checkDiffDiagonals(Side, Board, BoardSize) :-
-        transpose(Board, TransposedBoard),
-        checkDiagonalWinAux(Side, TransposedBoard, 0, BoardSize).
-
-%Checks the different diagonal lines of the given board starting at [0, 0] ending at [0, BoardSize].
-checkDiagonalWinAux(Side, Board, Col, BoardSize) :-
-        NumPositions is (BoardSize - Col),
-        winningStreakN(WinN),
-        NumPositions >= WinN,       %Number of cells there must be to happen N in a row
-        checkDiagLineWin(Side, Board, Col, NumPositions).
-checkDiagonalWinAux(Side, Board, Col, BoardSize) :-
+%One quarter of the diagonal lines: left-right, top-down
+checkDiagWinAux(Side, Board, Col, _BoardSize):-
+        checkDiagLineWin(Side, Board, 0, Col, 1, 1, 0).
+%One quarter of the diagonal lines: right-left, top-down
+checkDiagWinAux(Side, Board, Col, _BoardSize):-
+        checkDiagLineWin(Side, Board, 0, Col, 1, -1, 0).
+%One quarter of the diagonal lines: left-right, down-top
+checkDiagWinAux(Side, Board, Col, BoardSize):-
+        BottomRow is (BoardSize - 1),
+        checkDiagLineWin(Side, Board, BottomRow, Col, -1, 1, 0).
+%One quarter of the diagonal lines: right-left, down-top
+checkDiagWinAux(Side, Board, Col, BoardSize):-
+        BottomRow is (BoardSize - 1),
+        checkDiagLineWin(Side, Board, BottomRow, Col, -1, -1, 0).
+%Recursive Call
+checkDiagWinAux(Side, Board, Col, BoardSize):-
         NewCol is (Col + 1),
-        NewCol < BoardSize,
-        checkDiagonalWinAux(Side, Board, NewCol, BoardSize).
+        NewCol \= BoardSize,
+        checkDiagWinAux(Side, Board, NewCol, BoardSize).
 
-%Check If there are N in a row, in the given diagonal line.
-%Starts at Position [0, Col], and Line has NumPositions to evaluate.
-checkDiagLineWin(Side, Board, Col, NumPositions) :-
-        checkDiagLineWinAux(Side, Board, 0, Col, NumPositions, 0, _Count).
+%Iterates through the diagonal line, starting at [Row, Col], with direction Vector [RowInc, ColInc], checking for Winning Streak
+%Found N in-a-row, won game!
+checkDiagLineWin(_Side, _Board, _Row, _Col, _RowInc, _ColInc, Count):-
+        winningStreakN(Count), !, write('I did it'), nl, !.
+checkDiagLineWin(Side, Board, Row, Col, RowInc, ColInc, Count):-
+        getElement(Board, Row, Col, Side),
+        NewRow is (Row + RowInc), NewCol is (Col + ColInc),
+        NewCount is (Count + 1),
+        checkDiagLineWin(Side, Board, NewRow, NewCol, RowInc, ColInc, NewCount).
+checkDiagLineWin(Side, Board, Row, Col, RowInc, ColInc, _Count):-
+        getElement(Board, Row, Col, _),
+        NewRow is (Row + RowInc), NewCol is (Col + ColInc),
+        checkDiagLineWin(Side, Board, NewRow, NewCol, RowInc, ColInc, 0).
 
-checkDiagLineWinAux(Side, Board, Row, Col, _NumPos, CurrCount, UpdatedCount) :-
-        checkDiagonalElem(Side, Board, Row, Col, CurrCount, UpdatedCount),
-        winningStreakN(UpdatedCount), !.
-checkDiagLineWinAux(Side, Board, Row, Col, NumPos, CurrCount, UpdatedCount) :-
-        checkDiagonalElem(Side, Board, Row, Col, CurrCount, UpdatedCount),
-        NumPos > 0,
-        NewRow is (Row + 1),
-        NewCol is (Col + 1),
-        NewNumPos is (NumPos - 1), !,
-        checkDiagLineWinAux(Side, Board, NewRow, NewCol, NewNumPos, UpdatedCount, _NewCount).
-
-%Check the Element in the given position and update Count.
-checkDiagonalElem(Side, Board, Row, Col, Count, NewCount) :-
-        getElement(Board, Row, Col, Element),
-        Element = Side, !, 
-        NewCount is (Count + 1).
-checkDiagonalElem(_Side, _Board, _Row, _Col, _Count, NewCount) :-
-        NewCount is 0.
-
-
+%Moves a worker from the position [Row, Col] to the position [DestRow, DestCol], if possible
 moveWorker(Board, Row, Col, DestRow, DestCol, UpdatedBoard):-
         getElement(Board, Row, Col, worker),
         setPiece(none, Row, Col, Board, TempBoard),

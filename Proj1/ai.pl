@@ -101,24 +101,24 @@ verticalEvaluation(Side, Board, Value):-
 
 %Makes a diagonal Evaluation of the given board
 diagonalEvaluation(Side, Board, Value):-
-	boardSize(ColSize),
-	diagonalEvaluationAux(Side, Board, 0, ColSize, 0, Value).
-%Evaluates Half of the Diagonal Lines
-diagonalEvaluationAux(_Side, _Board, ColSize, ColSize, FinalValue, FinalValue) :- !.
-diagonalEvaluationAux(Side, Board, Col, ColSize, CurrentValue, Value):-
-	BottomRow is (ColSize - 1),
-	ColWithoutMainDiagonal is (Col - 1),
+	boardSize(BoardSize),
+	diagonalEvaluationAux(Side, Board, 0, BoardSize, 0, Value).
+diagonalEvaluationAux(_Side, _Board, BoardSize, BoardSize, FinalValue, FinalValue) :- !.
+diagonalEvaluationAux(Side, Board, Col, BoardSize, CurrentValue, Value):-
+	BottomRow is (BoardSize - 1),
+	ColWithoutMainDiag is (Col - 1),
 	%One quarter of the diagonal lines: left-right, top-down
 	diagonalLine(Side, Board, 0, Col, 1, 1, 0, 0, CurrentValue, DiagLine1Value),
 	%One quarter of the diagonal lines: right-left, top-down
-	diagonalLine(Side, Board, 0, ColWithoutMainDiagonal, 1, -1, 0, 0, DiagLine1Value, DiagLine2Value),
+	diagonalLine(Side, Board, 0, ColWithoutMainDiag, 1, -1, 0, 0, DiagLine1Value, DiagLine2Value),
 	%One quarter of the diagonal lines: left-right, down-top
 	diagonalLine(Side, Board, BottomRow, Col, -1, 1, 0, 0, DiagLine2Value, DiagLine3Value),
 	%One quarter of the diagonal lines: right-left, down-top
-	diagonalLine(Side, Board, BottomRow, ColWithoutMainDiagonal, -1, -1, 0, 0, DiagLine3Value, DiagLine4Value),
+	diagonalLine(Side, Board, BottomRow, ColWithoutMainDiag, -1, -1, 0, 0, DiagLine3Value, DiagLine4Value),
 	NewCol is (Col + 1),
-	diagonalEvaluationAux(Side, Board, NewCol, ColSize, DiagLine4Value, Value).
+	diagonalEvaluationAux(Side, Board, NewCol, BoardSize, DiagLine4Value, Value).
 
+%Iterates thorugh the diagonal line, starting at [Row, Col] with the direction Vector [RowInc, ColInc], updating the line value
 %Succession of Side Pieces
 diagonalLine(Side, Board, Row, Col, RowInc, ColInc, Streak, _EnemyStreak, CurrentValue, FinalValue):-
 	getElement(Board, Row, Col, Side),
