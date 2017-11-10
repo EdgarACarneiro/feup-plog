@@ -10,20 +10,20 @@ currentSideDisplay(Side):-
         write(' turn! ***'), nl, nl.
 
 % General PrintBoard
-printBoard(Board) :- !,
+printBoard(Board):-
         boardSize(N),
-        printBoard(Board, N).
+        printBoard(Board, N), !.
 
 % Board Printing - arguments: Board and Board size
-printBoard(Board, N):- !,
+printBoard(Board, N):-
         clearConsole,
         write('  '), printHorizontalLabel(N, N),
-        printBoard(Board, N, 1).
+        printBoard(Board, N, 1), !.
 
-printBoard([], N, _):- !,
+printBoard([], N, _):-
         printRowDivider(N), nl.
 
-printBoard([Line | Board], N, CurrentL) :- !,
+printBoard([Line | Board], N, CurrentL):-
         printRowDivider(N),
         printDesignRow(N),
         printVerticalLabel(CurrentL),
@@ -33,7 +33,7 @@ printBoard([Line | Board], N, CurrentL) :- !,
         NewL is (CurrentL + 1),
         printBoard(Board, N, NewL).
 
-printLine([]) :- nl.
+printLine([]):- nl.
 printLine([Head | Tail]) :-
         translate(Head, Code),
         write('   '),
