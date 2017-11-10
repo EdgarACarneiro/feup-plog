@@ -78,6 +78,8 @@ boardE1([
       [none, none, none, none, none, none, none, none, none],
       [none, none, none, none, none, none, none, none, none]
 ]).
+%BoardE1(B), horizontalEvaluation(black, B, V)
+%V = 9
 
 boardE2([
       [none, none, none, none, none, none, none, none, none],
@@ -90,3 +92,5 @@ boardE2([
       [none, none, none, none, none, none, none, white, none],
       [none, none, none, none, none, none, none, none, none]
 ]).
+%boardE2(B), defensiveEvaluation(white, B, V).
+%V = 27

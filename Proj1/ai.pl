@@ -100,8 +100,47 @@ verticalEvaluation(Side, Board, Value):-
 	horizontalRowEvaluation(Side, TransposedBoard, Value).
 
 %Makes a diagonal Evaluation of the given board
-diagonalEvaluation(_Side, _Board, 0).
-	%TODO
+diagonalEvaluation(Side, Board, Value):-
+	boardSize(ColSize),
+	diagonalEvaluationAux(Side, Board, 0, ColSize, 0, Value).
+%Evaluates Half of the Diagonal Lines
+diagonalEvaluationAux(_Side, _Board, ColSize, ColSize, FinalValue, FinalValue) :- !.
+diagonalEvaluationAux(Side, Board, Col, ColSize, CurrentValue, Value):-
+	BottomRow is (ColSize - 1),
+	%One quarter of the diagonal lines: left-right, top-down
+	diagonalLine(Side, Board, 0, Col, 1, 1, 0, 0, CurrentValue, DiagLine1Value),
+	%One quarter of the diagonal lines: right-left, top-down
+	diagonalLine(Side, Board, 0, Col, 1, -1, 0, DiagLine1Value, DiagLine2Value),
+	%One quarter of the diagonal lines: left-right, down-top
+	diagonalLine(Side, Board, BottomRow, Col, -1, 1, 0, DiagLine1Value, DiagLine2Value),
+	%One quarter of the diagonal lines: right-left, down-top
+	diagonalLine(Side, Board, BottomRow, Col, -1, -1, 0, DiagLine1Value, DiagLine2Value),
+	NewCol is (Col + 1),
+	diagonalEvaluationAux(Side, Board, NewCol, ColSize, DiagLine2Value, Value).
+
+%Succession of Side Pieces
+diagonalLine(Side, Board, Row, Col, RowInc, ColInc, Streak, _EnemyStreak, CurrentValue, FinalValue):-
+	getElement(Board, Row, Col, Side),
+	NewRow is (Row + RowInc), NewCol is (Col + ColInc),
+	NewStreak is (Streak + 1),
+	NewValue is (CurrentValue + (NewStreak * NewStreak)),
+	diagonalLine(Side, Board, NewRow, NewCol, RowInc, ColInc, NewStreak, 0, NewValue, FinalValue).
+%Sucession of Enemy Pieces
+diagonalLine(Side, Board, Row, Col, RowInc, ColInc, _Streak, EnemyStreak, CurrentValue, FinalValue):-
+	changePlayer(Side, Enemy),
+	getElement(Board, Row, Col, Enemy),
+	NewRow is (Row + RowInc), NewCol is (Col + ColInc),
+	NewEStreak is (EnemyStreak + 1),
+	NewValue is (CurrentValue - (NewEStreak * NewEStreak)),
+	diagonalLine(Side, Board, NewRow, NewCol, RowInc, ColInc, 0, NewEStreak, NewValue, FinalValue).
+%When nor white nor black
+diagonalLine(Side, Board, Row, Col, RowInc, ColInc, _Streak, _EnemyStreak, CurrentValue, FinalValue):-
+	getElement(Board, Row, Col, _),
+	NewRow is (Row + RowInc), NewCol is (Col + ColInc),
+	diagonalLine(Side, Board, NewRow, NewCol, RowInc, ColInc, 0, 0, CurrentValue, FinalValue).
+%It only fails again if [Row, Col] out of board
+diagonalLine(_Side, _Board, _Row, _Col, _Inc, _Streak, _EnemyStreak, FinalValue, FinalValue):- !.
+
 
 defensiveEvaluation(Side, Board, Value):-
 	defensiveEvaluationRec(Side, Board, 0, 0, 0, Value).
@@ -122,11 +161,9 @@ defensiveEvaluationRec(_, _, _, _, FinalValue, FinalValue):- !.
 
 %Evaluates Enemy Streaks near the given position
 updateDefenseValue(Side, Board, Row, Col, CurrentValue, UpdatedValue):-
-	findall(LineValue, (rowColChange(RChange,CChange), lineDefenseValue(Side, Board, Row, Col, RChange, CChange, 1, LineValue)), ListOfValues),
-	write('Lista de Valores: '), write(ListOfValues), nl, nl,
+	findall(LineValue, (rowColChange(RChange,CChange), lineDefenseValue(Side, Board, Row, Col, RChange, CChange, 0, LineValue)), ListOfValues),
 	append(ListOfValues, ListValues),
 	sum_list(ListValues, Sum),
-	write('Sum: '), write(Sum), nl,
 	UpdatedValue is (CurrentValue + Sum).
 
 lineDefenseValue(Side, Board, Row, Col, RowChange, ColChange, Streak, Value):-
@@ -136,15 +173,6 @@ lineDefenseValue(Side, Board, Row, Col, RowChange, ColChange, Streak, Value):-
         NewStreak is (Streak + 1),
         lineDefenseValue(Side, Board, NewRow, NewCol, RowChange, ColChange, NewStreak, OtherValues),
         defenseFactor(Factor),
-        PosValue is ((Streak * Streak) / Factor),
+        PosValue is ((NewStreak * NewStreak) / Factor),
         append([PosValue], OtherValues, Value).
 lineDefenseValue(_Side, _Board, _Row, _Col, _RowChange, _ColChange, _Streak, _Value):- !. %Needed?
-
-%evaluateElement(Row, Col, Board, Streak, Value):-
-%	getElement(Board, Row, Col, Side),
-%	NewStreak is (Streak + 1),
-%	TempValue is (NewStreak * NewStreak),
-%	%evaluateEnemyNeighborhood(Side, Board,Row, Col, CounterValue),
-%	Valus is (TempValue + CounterValue),
-%	getNextPosition(Row, Col, NRow, NCol), !,
-%	evaluateElement(Side, Board, Row, Col, NewStreak, Value).
