@@ -107,14 +107,15 @@ diagonalEvaluation(Side, Board, Value):-
 diagonalEvaluationAux(_Side, _Board, ColSize, ColSize, FinalValue, FinalValue) :- !.
 diagonalEvaluationAux(Side, Board, Col, ColSize, CurrentValue, Value):-
 	BottomRow is (ColSize - 1),
+	ColWithoutMainDiagonal is (Col - 1),
 	%One quarter of the diagonal lines: left-right, top-down
 	diagonalLine(Side, Board, 0, Col, 1, 1, 0, 0, CurrentValue, DiagLine1Value),
 	%One quarter of the diagonal lines: right-left, top-down
-	diagonalLine(Side, Board, 0, Col, 1, -1, 0, 0, DiagLine1Value, DiagLine2Value),
+	diagonalLine(Side, Board, 0, ColWithoutMainDiagonal, 1, -1, 0, 0, DiagLine1Value, DiagLine2Value),
 	%One quarter of the diagonal lines: left-right, down-top
 	diagonalLine(Side, Board, BottomRow, Col, -1, 1, 0, 0, DiagLine2Value, DiagLine3Value),
 	%One quarter of the diagonal lines: right-left, down-top
-	diagonalLine(Side, Board, BottomRow, Col, -1, -1, 0, 0, DiagLine3Value, DiagLine4Value),
+	diagonalLine(Side, Board, BottomRow, ColWithoutMainDiagonal, -1, -1, 0, 0, DiagLine3Value, DiagLine4Value),
 	NewCol is (Col + 1),
 	diagonalEvaluationAux(Side, Board, NewCol, ColSize, DiagLine4Value, Value).
 
