@@ -81,7 +81,7 @@ board6([
 %board6(B), checkDiagonalWin(white, B).
 %yes
 
-smallboard([
+smallBoard([
       [worker, none, none],
       [none, none, none],
       [none, none, worker]

@@ -1,4 +1,4 @@
-:- dynamic(rowcolChange/1).
+:- dynamic(validCoord/1).
 
 %Defense factor in AI evaluation function
 %2 -> Half of Attack factor
@@ -10,16 +10,16 @@ genRowColFacts:-
 	boardSize(N),
 	genRowColFactsAux(0, N), !.
 
-genRowColFactsAux(BoardSize, BoardSize).
+genRowColFactsAux(Current, Current).
 genRowColFactsAux(Current, BoardSize):-
-	asserta(rowcolChange(Current)),
+	asserta(validCoord(Current)),
 	NewValue is (Current + 1),
 	genRowColFactsAux(NewValue, BoardSize).
 
 %Used to backtrace over the possible positions
 changePos(RowChange, ColChange) :-
-        rowcolChange(RowChange),
-        rowcolChange(ColChange).
+        validCoord(RowChange),
+        validCoord(ColChange).
 
 %returns a List containing all the possible Boards by moving the workers
 findWorkerBoards(Board, PossibleBoards):-
@@ -161,7 +161,7 @@ defensiveEvaluationRec(_, _, _, _, FinalValue, FinalValue):- !.
 
 %Evaluates Enemy Streaks near the given position
 updateDefenseValue(Side, Board, Row, Col, CurrentValue, UpdatedValue):-
-	findall(LineValue, (rowColChange(RChange,CChange), lineDefenseValue(Side, Board, Row, Col, RChange, CChange, 0, LineValue)), ListOfValues),
+	findall(LineValue, (changePos(RChange,CChange), lineDefenseValue(Side, Board, Row, Col, RChange, CChange, 0, LineValue)), ListOfValues),
 	append(ListOfValues, ListValues),
 	sum_list(ListValues, Sum),
 	UpdatedValue is (CurrentValue + Sum).

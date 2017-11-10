@@ -9,6 +9,11 @@ currentSideDisplay(Side):-
         write(Side),
         write(' turn! ***'), nl, nl.
 
+% General PrintBoard
+printBoard(Board) :-
+        boardSize(N),
+        printBoard(Board, N).
+
 % Board Printing - arguments: Board and Board size
 printBoard(Board, N):-
         clearConsole, 
