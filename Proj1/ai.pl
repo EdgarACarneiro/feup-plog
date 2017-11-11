@@ -180,7 +180,7 @@ lineDefenseValue(_Side, _Board, _Row, _Col, _RowChange, _ColChange, _Streak, _Va
 evaluateAllBoards(Side, [FirstBoard | OtherBoards], Result) :-
 	evaluateBoard(Side, FirstBoard, FirstResult),
 	evaluateAllBoards(Side, OtherBoards, TmpResult),
-	append([[FirstResult, FirstBoard]], TmpResult, Result).
+	append([FirstResult-FirstBoard], TmpResult, Result).
 evaluateAllBoards(_, [], []).
 
 getBestPlay(Side, CurrentBoard, BestPlay) :-
