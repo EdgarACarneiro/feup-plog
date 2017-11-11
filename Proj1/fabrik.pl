@@ -41,6 +41,7 @@ decideNextStep(Player1Function, Player2Function, Side, Board) :-
 userFunction(Side, Board, NewBoard) :-
 	workerUpdate(Side, Board, TempBoard),
 	printBoard(TempBoard),
+	isPiecePlayPossible(Board), !,
 	pieceInput(Side, Side, TempBoard, NewBoard),
 	printBoard(NewBoard), !.
 

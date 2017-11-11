@@ -180,3 +180,10 @@ moveWorker(Board, Row, Col, DestRow, DestCol, UpdatedBoard):-
         getElement(Board, Row, Col, worker),
         setPiece(none, Row, Col, Board, TempBoard),
         setPiece(worker, DestRow, DestCol, TempBoard, UpdatedBoard).
+
+% Checks if any play is possible (with the worker already having been placed)
+isPiecePlayPossible(Board) :-
+        findBothWorkers(Board, R1, C1, R2, C2),
+        getIntersections(Board, R1, C1, R2, C2, PossiblePlays),
+        length(PossiblePlays, Length),
+        Length > 0, !.
