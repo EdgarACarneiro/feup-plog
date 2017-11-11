@@ -5,9 +5,7 @@ translate(white, 88). %White Pieces
 translate(worker, 9608). %9820. %Red Workers TODO
 
 currentSideDisplay(Side):-
-        write('   *** '),
-        write(Side),
-        write(' turn! ***'), nl, nl.
+        write('   *** '), write(Side), write(' turn! ***'), nl, nl.
 
 % General PrintBoard
 printBoard(Board):-
@@ -100,6 +98,14 @@ printVerticalLabel(CurrentL):-
         write(CurrentL).
 
 
+printFabrikTitle:-
+        clearConsole,
+        write('   *********************************'), nl,
+        write('   *    __  __   __   __           *'), nl,
+        write('   *   |_  |__| |__) |__| | |__/   *'), nl,
+        write('   *   |   |  | |__) | \\  | |  \\   *'), nl,
+        write('   *                               *'), nl,
+        write('   *********************************'), nl, nl.
 
 wonMsg(Side):-
         wonArtMsg(Side).

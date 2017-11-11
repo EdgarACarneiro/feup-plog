@@ -13,26 +13,23 @@ fabrik:-
 initGame(Player1, Player2) :-
 	genRowColFacts,
 	boardSize(N), !,
-	createBoard(B0, N),
-	printBoard(B0, N),
-	setWorker(Player1, black, B0, B1),
-	printBoard(B1, N),
-	setWorker(Player1, black, B1, B2),
-	printBoard(B2, N),
-	chooseStartingPlayer(Player1, Side),
-	printBoard(B2, N),
+	createBoard(B0, N), printBoard(B0, N),
+	setWorker(Player1, black, B0, B1), printBoard(B1, N),
+	setWorker(Player1, black, B1, B2), printBoard(B2, N),
+	chooseStartingPlayer(Player1, Side), printBoard(B2, N),
 	gameLoop(Player1, Player2, Side, N, B2).
 
 gameLoop(Player1Function, Player2Function, black, BoardSize, Board):-
-	call(Player1Function, Side, Board, BoardSize, NewBoard),
-	decideNextStep(Player1Function, Player2Function, Side, BoardSize, NewBoard), !.
+	call(Player1Function, black, Board, BoardSize, NewBoard),
+	decideNextStep(Player1Function, Player2Function, black, BoardSize, NewBoard), !.
 
 gameLoop(Player1Function, Player2Function, white, BoardSize, Board):-
-	call(Player2Function, Side, Board, BoardSize, NewBoard),
-	decideNextStep(Player1Function, Player2Function, Side, BoardSize, NewBoard), !.
+	call(Player2Function, white, Board, BoardSize, NewBoard),
+	decideNextStep(Player1Function, Player2Function, white, BoardSize, NewBoard), !.
 
 decideNextStep(_Player1Function, _Player2Function, Side, _BoardSize, Board):-
 	gameIsWon(Side, Board), !,
+	%destroyRowColFacts,
 	wonMsg(Side),
 	getEnter, !.
 decideNextStep(Player1Function, Player2Function, Side, BoardSize, Board):-

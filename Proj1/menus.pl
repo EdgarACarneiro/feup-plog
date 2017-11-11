@@ -37,15 +37,6 @@ rules:-
 	write('\tor diagonal line, all empty spaces between them are considered intersection points'), nl, nl,
 	write('\t\t\t\t   Source: https://spielstein.com/games/fabrik/rules'), nl, nl,
 	getEnter.
- 
-printFabrikTitle:-
-	clearConsole,
-	write('   *********************************'), nl,
-	write('   *    __  __   __   __           *'), nl,
-	write('   *   |_  |__| |__) |__| | |__/   *'), nl,
-	write('   *   |   |  | |__) | \\  | |  \\   *'), nl,
-	write('   *                               *'), nl,
-	write('   *********************************'), nl, nl.
 
 mainMenuHandler:-
 	mainMenu,
@@ -53,14 +44,14 @@ mainMenuHandler:-
 	mainMenuChoice(Choice), !.
 
 mainMenuChoice(1):-
-	playMenuHandler.
+	playMenuHandler, !.
 mainMenuChoice(2):-
 	rules,
-	mainMenuHandler.
+	mainMenuHandler, !.
 mainMenuChoice(3).
 mainMenuChoice(_):-
 	unknownInput,
-	mainMenuHandler.
+	mainMenuHandler, !.
 
 playMenuHandler:-
 	playMenu,
@@ -68,8 +59,8 @@ playMenuHandler:-
 	playMenuChoice(Choice), !.
 
 playMenuChoice(1):-
-	initGame(userFunction, userFunction),
-	mainMenuHandler.
+	initGame(userFunction, userFunction), !,
+	mainMenuHandler, !.
 playMenuChoice(2):-
 	write('Feature not yet developed..'), nl,	%TODO
 	getEnter,
@@ -79,7 +70,7 @@ playMenuChoice(3):-
 	getEnter,
 	playMenuHandler.
 playMenuChoice(4):-
-	mainMenuHandler.
+	mainMenuHandler, !.
 playMenuChoice(_):-
 	unknownInput,
-	mainMenuHandler.
+	mainMenuHandler, !.
