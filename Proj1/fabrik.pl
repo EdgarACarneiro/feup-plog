@@ -23,13 +23,13 @@ initGame(Player1, Player2) :-
 	printBoard(B2, N),
 	gameLoop(Player1, Player2, Side, N, B2).
 
-gameLoop(Player1Function, _Player2Function, black, BoardSize, Board):-
+gameLoop(Player1Function, Player2Function, black, BoardSize, Board):-
 	call(Player1Function, Side, Board, BoardSize, NewBoard),
-	decideNextStep(Side, BoardSize, NewBoard), !.
+	decideNextStep(Player1Function, Player2Function, Side, BoardSize, NewBoard), !.
 
-gameLoop(_Player1Function, Player2Function, white, BoardSize, Board):-
+gameLoop(Player1Function, Player2Function, white, BoardSize, Board):-
 	call(Player2Function, Side, Board, BoardSize, NewBoard),
-	decideNextStep(Side, BoardSize, NewBoard), !.
+	decideNextStep(Player1Function, Player2Function, Side, BoardSize, NewBoard), !.
 
 decideNextStep(_Player1Function, _Player2Function, Side, _BoardSize, Board):-
 	gameIsWon(Side, Board), !,
