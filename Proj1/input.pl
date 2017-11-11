@@ -2,12 +2,19 @@ unknownInput:-
         write('Invalid option chosen.'), nl,
         getEnter.
 
-% TODO: Change this to handle strings and not only 1 char
-%Ask the User for a int
+%Asks the User form a integer.
+%Reads the entire line
 getInt(Input):-
-        get_code(KbInput),
-        Input is KbInput - 48,  %Because of ASCII table
-        get_char(_), !.         %for the Enter
+        getIntCycle([], InputList),
+        concat_numbers(InputList, Input).
+getIntCycle(PrevInput, Input):-
+        get_code(user_input, KbInput),
+        evalCode(KbInput, PrevInput, Input).
+evalCode(10, _, _):- !.
+evalCode(Code, PrevInput, Input):-
+        Elem is (Code - 48),
+        getIntCycle(PrevInput, TmpInput),
+        append([Elem], TmpInput, Input).
 
 %Ask The User for a char
 getChar(Input):-

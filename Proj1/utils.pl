@@ -33,6 +33,17 @@ printAllBoards([Board | NextBoards]):-
 	printBoard(Board, Size),
 	printAllBoards(NextBoards).
 
+%Concatenates a list of of integers into an integer
+concat_numbers(IntList, Int):-
+	reverse(IntList, RevList),
+	concat_numbersAux(RevList, 1, Int), !.
+concat_numbersAux([], _, 0).
+concat_numbersAux([FirstInt | OtherInts], TenMulti, Int):-
+	NewTenM is (TenMulti * 10),
+	concat_numbersAux(OtherInts, NewTenM, TmpInt),
+	Int is (TenMulti * FirstInt + TmpInt).
+
+
 clearConsole:-
 	clearConsole(60).
 clearConsole(0).
