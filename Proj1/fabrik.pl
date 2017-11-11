@@ -20,37 +20,37 @@ initGame(Player1, Player2) :-
 	chooseStartingPlayer(Player1, Side), printBoard(B2),
 	gameLoop(Player1, Player2, Side, B2).
 
-gameLoop(Player1Function, Player2Function, black, Board):-
+gameLoop(Player1Function, Player2Function, black, Board) :-
 	call(Player1Function, black, Board, NewBoard),
 	decideNextStep(Player1Function, Player2Function, black, NewBoard), !.
 
-gameLoop(Player1Function, Player2Function, white, Board):-
+gameLoop(Player1Function, Player2Function, white, Board) :-
 	call(Player2Function, white, Board, NewBoard),
 	decideNextStep(Player1Function, Player2Function, white, NewBoard), !.
 
-decideNextStep(_Player1Function, _Player2Function, Side, Board):-
+decideNextStep(_Player1Function, _Player2Function, Side, Board) :-
 	gameIsWon(Side, Board), !,
 	%destroyRowColFacts,
 	wonMsg(Side),
 	getEnter, !.
-decideNextStep(Player1Function, Player2Function, Side, Board):-
+decideNextStep(Player1Function, Player2Function, Side, Board) :-
 	changePlayer(Side, NewSide), !,
 	gameLoop(Player1Function, Player2Function, NewSide, Board).
 
 
-userFunction(Side, Board, NewBoard):-
+userFunction(Side, Board, NewBoard) :-
 	workerUpdate(Side, Board, TempBoard),
 	printBoard(TempBoard),
 	pieceInput(Side, Side, TempBoard, NewBoard),
 	printBoard(NewBoard), !.
 
-aiFunction(Side, Board, NewBoard):-
+aiFunction(Side, Board, NewBoard) :-
 	getBestPlay(Side, Board, NewBoard).
 
-setFirstWorker(PlayerFunction, Side, Board, NewBoard):-
+setFirstWorker(PlayerFunction, Side, Board, NewBoard) :-
 	PlayerFunction = 'userFunction',
 	pieceInput(worker, Side, Board, NewBoard).
-setFirstWorker(PlayerFunction, _Side, Board, NewBoard):-
+setFirstWorker(PlayerFunction, _Side, Board, NewBoard) :-
 	PlayerFunction = 'aiFunction',
         boardSize(Size),
         random(0, Size, Row), random(0, Size, Col),

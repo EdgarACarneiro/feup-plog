@@ -62,13 +62,11 @@ playMenuChoice(1):-
 	initGame(userFunction, userFunction), !,
 	mainMenuHandler, !.
 playMenuChoice(2):-
-	write('Feature not yet developed..'), nl,	%TODO
-	getEnter,
-	playMenuHandler.
+        initGame(userFunction, aiFunction), !,
+        mainMenuHandler, !.
 playMenuChoice(3):-
-	write('Feature not yet developed..'), nl,	%TODO
-	getEnter,
-	playMenuHandler.
+        initGame(aiFunction, aiFunction), !,
+        mainMenuHandler, !.
 playMenuChoice(4):-
 	mainMenuHandler, !.
 playMenuChoice(_):-
