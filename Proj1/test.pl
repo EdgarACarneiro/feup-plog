@@ -81,6 +81,19 @@ board6([
 %board6(B), checkDiagonalWin(white, B).
 %yes
 
+board7([
+      [none, none, none, none, none, none, none, none, none],
+      [none, none, none, none, none, none, none, none, none],
+      [none, none, none, none, none, none, none, none, white],
+      [none, none, none, none, none, none, none, black, none],
+      [none, none, none, none, none, none, black, none, none],
+      [none, none, none, none, worker, white, none, none, none],
+      [none, none, none, none, black, black, none, none, none],
+      [none, none, none, none, white, none, none, none, none],
+      [none, none, none, none, white, none, none, none, worker]
+]).
+
+
 smallBoard([
       [worker, none, none],
       [none, none, none],

@@ -44,6 +44,10 @@ userFunction(Side, Board, NewBoard) :-
 	isPiecePlayPossible(Board), !,
 	pieceInput(Side, Side, TempBoard, NewBoard),
 	printBoard(NewBoard), !.
+userFunction(Side, _, _) :-
+        changePlayer(Side, NewSide),
+	wonMsg(NewSide), % Side loses if no play is possible
+	getEnter, !, fail.
 
 aiFunction(Side, Board, NewBoard) :-
 	getBestPlay(Side, Board, NewBoard),
