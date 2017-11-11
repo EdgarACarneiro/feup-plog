@@ -56,7 +56,7 @@ setFirstWorker(PlayerFunction, _Side, Board, NewBoard) :-
         random(0, Size, Row), random(0, Size, Col),
         setPiece(worker, Row, Col, Board, NewBoard).
 
-chooseStartingPlayer(Player1, Side) :- % passar igualdade para a definicao do predicado
+chooseStartingPlayer(Player1, Side) :- % TODO passar igualdade para a definicao do predicado
         Player1 = 'userFunction',
         getFirstPlayer(Side), !.
 chooseStartingPlayer(Player1, white) :- % same
