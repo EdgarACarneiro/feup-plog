@@ -182,6 +182,3 @@ evaluateAllBoards(Side, [FirstBoard | OtherBoards], Result) :-
 	evaluateAllBoards(Side, OtherBoards, TmpResult),
 	append([[FirstResult, FirstBoard]], TmpResult, Result).
 evaluateAllBoards(_, [], []).
-	
-	
-	

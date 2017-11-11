@@ -68,7 +68,7 @@ playMenuHandler:-
 	playMenuChoice(Choice), !.
 
 playMenuChoice(1):-
-	initGame,
+	initGame(userFunction, userFunction),
 	mainMenuHandler.
 playMenuChoice(2):-
 	write('Feature not yet developed..'), nl,	%TODO

@@ -10,29 +10,35 @@
 fabrik:-
 	mainMenuHandler.
 
-initGame :-
+initGame(Player1, Player2) :-
 	genRowColFacts,
 	boardSize(N), !,
-	initGame(N).
-initGame(N):-
-	boardSize(N),
 	createBoard(B0, N),
 	printBoard(B0, N),
-	pieceInput(worker, black, B0, B1),
+	setWorker(Player1, black, B0, B1),
 	printBoard(B1, N),
-	pieceInput(worker, white, B1, B2),
+	setWorker(Player1, black, B1, B2),
 	printBoard(B2, N),
-	getFirstPlayer(Side),
+	chooseStartingPlayer(Player1, Side),
 	printBoard(B2, N),
-	gameLoop(userFunction, userFunction, Side, N, B2).
+	gameLoop(Player1, Player2, Side, N, B2).
 
 gameLoop(Player1Function, _Player2Function, black, BoardSize, Board):-
 	call(Player1Function, Side, Board, BoardSize, NewBoard),
-	decideNextStep(Side, BoardSize, NewBoard).
+	decideNextStep(Side, BoardSize, NewBoard), !.
 
 gameLoop(_Player1Function, Player2Function, white, BoardSize, Board):-
 	call(Player2Function, Side, Board, BoardSize, NewBoard),
-	decideNextStep(Side, BoardSize, NewBoard).
+	decideNextStep(Side, BoardSize, NewBoard), !.
+
+decideNextStep(_Player1Function, _Player2Function, Side, _BoardSize, Board):-
+	gameIsWon(Side, Board), !,
+	wonMsg(Side),
+	getEnter, !.
+decideNextStep(Player1Function, Player2Function, Side, BoardSize, Board):-
+	changePlayer(Side, NewSide), !,
+	gameLoop(Player1Function, Player2Function, NewSide, BoardSize, Board).
+
 
 userFunction(Side, Board, BoardSize, NewBoard):-
 	workerUpdate(Side, Board, TempBoard),
@@ -44,10 +50,18 @@ aiFunction(_Side, _Board, _BoardSize, _NewBoard):-
 	%Mete aqui a chamada a função André
 	fail.
 
-decideNextStep(_Player1Function, _Player2Function, Side, _BoardSize, Board):-
-	gameIsWon(Side, Board), !,
-	wonMsg(Side),
-	getEnter.
-decideNextStep(Player1Function, Player2Function, Side, BoardSize, Board):-
-	changePlayer(Side, NewSide), !,
-	gameLoop(Player1Function, Player2Function, NewSide, BoardSize, Board).
+setWorker(PlayerFunction, Side, Board, NewBoard):-
+	PlayerFunction = 'userFunction',
+	pieceInput(worker, Side, Board, NewBoard).
+setWorker(PlayerFunction, _Side, _Board, _NewBoard):-
+	PlayerFunction = 'aiFunction',
+	%meter um worker random num sitio
+	fail.
+
+chooseStartingPlayer(Player1, Side):-
+        Player1 = 'userFunction',
+        getFirstPlayer(Side), !.
+chooseStartingPlayer(Player1, _Side):-
+	Player1 = 'aiFunction',
+	%meter um random worker no board
+	fail.
