@@ -16,7 +16,7 @@ initGame(Player1, Player2) :-
 	boardSize(N), !,
 	createBoard(B0, N), printBoard(B0),
 	setFirstWorker(Player1, black, B0, B1), printBoard(B1),
-	setFirstWorker(Player1, black, B1, B2), printBoard(B2),
+	setFirstWorker(Player2, black, B1, B2), printBoard(B2),
 	chooseStartingPlayer(Player1, Side), printBoard(B2),
 	gameLoop(Player1, Player2, Side, B2).
 
@@ -30,7 +30,7 @@ gameLoop(Player1Function, Player2Function, white, Board) :-
 
 decideNextStep(_Player1Function, _Player2Function, Side, Board) :-
 	gameIsWon(Side, Board), !,
-	%destroyRowColFacts,
+	%destroyRowColFacts, TODO
 	wonMsg(Side),
 	getEnter, !.
 decideNextStep(Player1Function, Player2Function, Side, Board) :-
@@ -45,19 +45,16 @@ userFunction(Side, Board, NewBoard) :-
 	printBoard(NewBoard), !.
 
 aiFunction(Side, Board, NewBoard) :-
-	getBestPlay(Side, Board, NewBoard).
+	getBestPlay(Side, Board, NewBoard),
+	printBoard(NewBoard).
 
-setFirstWorker(PlayerFunction, Side, Board, NewBoard) :-
-	PlayerFunction = 'userFunction',
+setFirstWorker('userFunction', Side, Board, NewBoard) :-
 	pieceInput(worker, Side, Board, NewBoard).
-setFirstWorker(PlayerFunction, _Side, Board, NewBoard) :-
-	PlayerFunction = 'aiFunction',
+setFirstWorker('aiFunction', _Side, Board, NewBoard) :-
         boardSize(Size),
         random(0, Size, Row), random(0, Size, Col),
         setPiece(worker, Row, Col, Board, NewBoard).
 
-chooseStartingPlayer(Player1, Side) :- % TODO passar igualdade para a definicao do predicado
-        Player1 = 'userFunction',
+chooseStartingPlayer('userFunction', Side) :-
         getFirstPlayer(Side), !.
-chooseStartingPlayer(Player1, white) :- % same
-	Player1 = 'aiFunction'.
+chooseStartingPlayer('aiFunction', white). % always white
