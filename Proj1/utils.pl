@@ -44,3 +44,4 @@ clearConsole(N) :-
 printBoardEval([Val, Board]) :-
 	printBoard(Board), nl,
 	write('Value: '), write(Val), nl.
+
