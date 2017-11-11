@@ -5,6 +5,7 @@
 :- include('input.pl').
 :- include('ai.pl').
 :- include('test.pl').
+:- use_module(library(random)).
 
 
 fabrik:-
@@ -13,52 +14,50 @@ fabrik:-
 initGame(Player1, Player2) :-
 	genRowColFacts,
 	boardSize(N), !,
-	createBoard(B0, N), printBoard(B0, N),
-	setWorker(Player1, black, B0, B1), printBoard(B1, N),
-	setWorker(Player1, black, B1, B2), printBoard(B2, N),
-	chooseStartingPlayer(Player1, Side), printBoard(B2, N),
-	gameLoop(Player1, Player2, Side, N, B2).
+	createBoard(B0, N), printBoard(B0),
+	setFirstWorker(Player1, black, B0, B1), printBoard(B1),
+	setFirstWorker(Player1, black, B1, B2), printBoard(B2),
+	chooseStartingPlayer(Player1, Side), printBoard(B2),
+	gameLoop(Player1, Player2, Side, B2).
 
-gameLoop(Player1Function, Player2Function, black, BoardSize, Board):-
-	call(Player1Function, black, Board, BoardSize, NewBoard),
-	decideNextStep(Player1Function, Player2Function, black, BoardSize, NewBoard), !.
+gameLoop(Player1Function, Player2Function, black, Board):-
+	call(Player1Function, black, Board, NewBoard),
+	decideNextStep(Player1Function, Player2Function, black, NewBoard), !.
 
-gameLoop(Player1Function, Player2Function, white, BoardSize, Board):-
-	call(Player2Function, white, Board, BoardSize, NewBoard),
-	decideNextStep(Player1Function, Player2Function, white, BoardSize, NewBoard), !.
+gameLoop(Player1Function, Player2Function, white, Board):-
+	call(Player2Function, white, Board, NewBoard),
+	decideNextStep(Player1Function, Player2Function, white, NewBoard), !.
 
-decideNextStep(_Player1Function, _Player2Function, Side, _BoardSize, Board):-
+decideNextStep(_Player1Function, _Player2Function, Side, Board):-
 	gameIsWon(Side, Board), !,
 	%destroyRowColFacts,
 	wonMsg(Side),
 	getEnter, !.
-decideNextStep(Player1Function, Player2Function, Side, BoardSize, Board):-
+decideNextStep(Player1Function, Player2Function, Side, Board):-
 	changePlayer(Side, NewSide), !,
-	gameLoop(Player1Function, Player2Function, NewSide, BoardSize, Board).
+	gameLoop(Player1Function, Player2Function, NewSide, Board).
 
 
-userFunction(Side, Board, BoardSize, NewBoard):-
+userFunction(Side, Board, NewBoard):-
 	workerUpdate(Side, Board, TempBoard),
-	printBoard(TempBoard, BoardSize),
+	printBoard(TempBoard),
 	pieceInput(Side, Side, TempBoard, NewBoard),
-	printBoard(NewBoard, BoardSize), !.
+	printBoard(NewBoard), !.
 
-aiFunction(_Side, _Board, _BoardSize, _NewBoard):-
-	%Mete aqui a chamada a função André
-	fail.
+aiFunction(Side, Board, NewBoard):-
+	getBestPlay(Side, Board, NewBoard).
 
-setWorker(PlayerFunction, Side, Board, NewBoard):-
+setFirstWorker(PlayerFunction, Side, Board, NewBoard):-
 	PlayerFunction = 'userFunction',
 	pieceInput(worker, Side, Board, NewBoard).
-setWorker(PlayerFunction, _Side, _Board, _NewBoard):-
+setFirstWorker(PlayerFunction, _Side, Board, NewBoard):-
 	PlayerFunction = 'aiFunction',
-	%meter um worker random num sitio
-	fail.
+        boardSize(Size),
+        random(0, Size, Row), random(0, Size, Col),
+        setPiece(worker, Row, Col, Board, NewBoard).
 
-chooseStartingPlayer(Player1, Side):-
+chooseStartingPlayer(Player1, Side) :- % passar igualdade para a definicao do predicado
         Player1 = 'userFunction',
         getFirstPlayer(Side), !.
-chooseStartingPlayer(Player1, _Side):-
-	Player1 = 'aiFunction',
-	%meter um random worker no board
-	fail.
+chooseStartingPlayer(Player1, white) :- % same
+	Player1 = 'aiFunction'.

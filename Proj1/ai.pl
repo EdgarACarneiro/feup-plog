@@ -183,8 +183,8 @@ evaluateAllBoards(Side, [FirstBoard | OtherBoards], Result) :-
 	append([FirstResult-FirstBoard], TmpResult, Result).
 evaluateAllBoards(_, [], []).
 
-getBestPlay(Side, CurrentBoard, Grade-Play) :-
+getBestPlay(Side, CurrentBoard, Play) :-
 	getPossibleBoards(Side, CurrentBoard, PossibleBoards),
 	evaluateAllBoards(Side, PossibleBoards, GradedBoards),
 	keysort(GradedBoards, Plays),
-	last(Plays, Grade-Play).
+	last(Plays, _Grade-Play).
