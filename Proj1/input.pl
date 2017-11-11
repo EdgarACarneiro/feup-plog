@@ -17,14 +17,19 @@ evalCode(Code, PrevInput, Input):-
         append([Elem], TmpInput, Input).
 
 %Ask The User for a char
+%Reads the entire line
 getChar(Input):-
-        get_char(Input),
-        get_char(_), !.
+        get_char(user_input, KbInput),
+        evalChar(KbInput, Input).
+evalChar('\n', ''):- !.
+evalChar(Code, Input):-
+        getChar(TmpInput),
+        atom_concat(Code, TmpInput, Input).
 
 %'Press enter to continue' function
 getEnter:-
         write('Press enter to continue.'), nl,
-        get_char(_).
+        getChar(_Input).
 
 %Ask the User for a piece's row and column.
 getPosition(PieceType, Row, Col):-
@@ -78,9 +83,7 @@ workerUpdate(Side, Board, UpdatedBoard):-
 
 workerUpdateChoice(1, Side, Board, UpdatedBoard):-
         moveWorkerInput(Side, Board, UpdatedBoard), !.
-workerUpdateChoice(2, _Side, Board, Board):-
-        nl, write('Worker kept in place!'), nl,
-        getEnter.
+workerUpdateChoice(2, _Side, Board, Board):- !.
 workerUpdateChoice(_, Side, Board, UpdatedBoard):-
         unknownInput,
         workerUpdate(Side, Board, UpdatedBoard).
