@@ -1,9 +1,8 @@
 :- dynamic(validCoord/1).
 
 % Defense factor in AI evaluation function
-% 2 -> Half of Attack factor
-% 3 -> A third of Attack factor,  and so on..
-defenseFactor(2).
+defenseFactor(Value, NewValue):-
+	NewValue is (Value * 9 / 10).
 
 %Destroy the board facts generated for every game
 destroyRowColFacts:-
@@ -83,7 +82,7 @@ horizontalRowEvaluation(_, [], _, _, LineFValue, LineFValue) :- !.
 % Succession of Side Pieces
 horizontalRowEvaluation(Side, [Side | OtherCols], Streak, _EnemyStreak, CurrentValue, LineFValue) :-
 	NewStreak is (Streak + 1),
-	NewValue is (CurrentValue + (NewStreak * NewStreak)),
+	NewValue is (CurrentValue + (NewStreak * NewStreak * NewStreak)),
 	% neighborEnemyStreaks
 	horizontalRowEvaluation(Side, OtherCols, NewStreak, 0, NewValue, LineFValue).
 % Succession of Enemy Pieces
@@ -91,7 +90,7 @@ horizontalRowEvaluation(Side, [Col | OtherCols], _Streak, EnemyStreak, CurrentVa
 	changePlayer(Side, Enemy),
 	Col = Enemy,
 	NewEnemyStreak is (EnemyStreak + 1),
-	NewValue is (CurrentValue - (NewEnemyStreak * NewEnemyStreak)),
+	NewValue is (CurrentValue - (NewEnemyStreak * NewEnemyStreak * NewEnemyStreak)),
 	horizontalRowEvaluation(Side, OtherCols, 0, NewEnemyStreak, NewValue, LineFValue).
 % When nor white nor black
 horizontalRowEvaluation(Side, [_Col | OtherCols], _, _, CurrentValue, Value) :-
@@ -127,7 +126,7 @@ diagonalLine(Side, Board, Row, Col, RowInc, ColInc, Streak, _EnemyStreak, Curren
 	getElement(Board, Row, Col, Side),
 	NewRow is (Row + RowInc), NewCol is (Col + ColInc),
 	NewStreak is (Streak + 1),
-	NewValue is (CurrentValue + (NewStreak * NewStreak)),
+	NewValue is (CurrentValue + (NewStreak * NewStreak * NewStreak)),
 	diagonalLine(Side, Board, NewRow, NewCol, RowInc, ColInc, NewStreak, 0, NewValue, FinalValue).
 % Sucession of Enemy Pieces
 diagonalLine(Side, Board, Row, Col, RowInc, ColInc, _Streak, EnemyStreak, CurrentValue, FinalValue) :-
@@ -135,7 +134,7 @@ diagonalLine(Side, Board, Row, Col, RowInc, ColInc, _Streak, EnemyStreak, Curren
 	getElement(Board, Row, Col, Enemy),
 	NewRow is (Row + RowInc), NewCol is (Col + ColInc),
 	NewEStreak is (EnemyStreak + 1),
-	NewValue is (CurrentValue - (NewEStreak * NewEStreak)),
+	NewValue is (CurrentValue - (NewEStreak * NewEStreak * NewEStreak)),
 	diagonalLine(Side, Board, NewRow, NewCol, RowInc, ColInc, 0, NewEStreak, NewValue, FinalValue).
 % When nor white nor black
 diagonalLine(Side, Board, Row, Col, RowInc, ColInc, _Streak, _EnemyStreak, CurrentValue, FinalValue) :-
@@ -175,8 +174,8 @@ lineDefenseValue(Side, Board, Row, Col, RowChange, ColChange, Streak, Value) :-
         getElement(Board, NewRow, NewCol, Enemy), !,
         NewStreak is (Streak + 1),
         lineDefenseValue(Side, Board, NewRow, NewCol, RowChange, ColChange, NewStreak, OtherValues),
-        defenseFactor(Factor),
-        PosValue is ((NewStreak * NewStreak) / Factor),
+        TmpValue is (NewStreak * NewStreak * NewStreak),
+        defenseFactor(TmpValue, PosValue),
         append([PosValue], OtherValues, Value).
 lineDefenseValue(_Side, _Board, _Row, _Col, _RowChange, _ColChange, _Streak, _Value) :- !. % Needed?
 
@@ -191,4 +190,4 @@ getBestPlay(Side, CurrentBoard, Play) :-
 	getPossibleBoards(Side, CurrentBoard, PossibleBoards),
 	evaluateAllBoards(Side, PossibleBoards, GradedBoards),
 	keysort(GradedBoards, Plays),
-	last(Plays, _Grade-Play).
+	last(Plays, Grade-Play).
