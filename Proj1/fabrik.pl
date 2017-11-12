@@ -51,7 +51,7 @@ userFunction(Side, _, _) :-
 
 aiFunction(Side, Board, NewBoard) :-
 	getGreedyPlay(Side, Board, NewBoard),
-	printBoard(NewBoard), getEnter, !.
+	printBoard(NewBoard).%, getEnter, !.
 
 setFirstWorker('userFunction', Side, Board, NewBoard) :-
 	pieceInput(worker, Side, Board, NewBoard).
