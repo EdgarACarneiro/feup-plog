@@ -1,8 +1,8 @@
 % Dictionary for Board Elements
-translate(none, 32).
+translate(none, 32). %Empty Cell
 translate(black, 79). %Dark Pieces
 translate(white, 88). %White Pieces
-translate(worker, 9608). %9820. %Red Workers TODO
+translate(worker, 9608). %Red Workers
 
 currentSideDisplay(Side):-
         write('   *** '), write(Side), write(' turn! ***'), nl, nl.
