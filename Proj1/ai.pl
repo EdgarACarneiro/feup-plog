@@ -3,7 +3,7 @@
 
 % Defense factor in AI evaluation function
 defenseFactor(Value, NewValue):-
-	NewValue is (Value * 9 / 10).
+	NewValue is (Value * 1).
 
 %Destroy the board facts generated for every game
 destroyRowColFacts:-
