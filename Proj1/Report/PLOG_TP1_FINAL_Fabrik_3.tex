@@ -370,7 +370,7 @@ printVerticalLabel(CurrentL):-
 
 \end{lstlisting}
 
-\newpage
+\newpagegit 
 
 Representação de um tabuleiro, usando o código mencionado:\newline
 
@@ -421,27 +421,27 @@ De destacar, que após vários testes o factor de Defesa foi definido para 1 sen
 
 A avaliação do tabuleiro é feita através da chamada do predicado:
 \begin{itemize}
-	\item \textbf{evaluateBoard(Side, Board, BoardValue)}
+	\item \textbf{evaluateBoard(+Side, +Board, +BoardValue)}
 \end{itemize}
 
 Que por sua vez usa os predicados:
 \begin{itemize}
-	\item \textbf{horizontalEvaluation(Side, Board, HorizontalValue)}
-	\item \textbf{verticalEvaluation(Side, Board, VerticalValue)}
-	\item \textbf{diagonalEvaluation(Side, Board, DiagonalValue)}
-	\item \textbf{defensiveEvaluation(Side, Board, DefensiveValue)}
+	\item \textbf{horizontalEvaluation(+Side, +Board, -HorizontalValue)}
+	\item \textbf{verticalEvaluation(+Side, +Board, -VerticalValue)}
+	\item \textbf{diagonalEvaluation(+Side, +Board, -DiagonalValue)}
+	\item \textbf{defensiveEvaluation(+Side, +Board, -DefensiveValue)}
 \end{itemize}
 
 \newpage
 
-\subsection{Final do Jogo} Verificação do fim do jogo, com identificação do vencedor. Exemplo: \textit{game\_over(+Board, -Winner)}.
+\subsection{Final do Jogo}
 
 Existem três maneiras possíveis de terminação do jogo: a inexistência  de posições que sejam a interseção da linha de visão dos Trabalhadores; o tabuleiro estar cheio e não ser possível mover um Trabalhador; a existência de cinco em linha de um tipos de peças.
 Assim, internamente, a verificação destas condições é feita de três formas distintas:
 \begin{itemize}
-	\item No caso de uma jogada feita pelo utilizador, após a colocação dos Trabalhadores no tabuleiro é verificado se é possível a execução de uma jogada, recorrendo ao predicado \textbf{isPiecePlayPossible(Board)}, que verifica se a interseção das linhas de visão dos dois trabalhadores não é uma lista vazia. Caso a lista seja vazia, a primeira declaração do predicado \textbf{gameLoop}, que controla o ciclo de jogo, falhará, realizando assim a segunda declaração, que declara vitorioso o adversário e termina o ciclo de jogo. No caso de uma jogada controlada automaticamente, caso a lista dos tabuleiros possíveis, correspondentes a uma jogada, seja vazia, é declarada a vitória do adversária, num processo semelhante ao executado para o jogador.
-	\item No início de cada jogada é verificado a se o tabuleiro se encontra totalmente preenchido, não sendo assim possível mexer \textit{workers} ou posicionar peças. Esta verificação é realizada através do predicado \textbf{boardIsNotFull(Board)}, que itera pelo tabuleiro até encontrar uma posição vazia. Caso não seja possível, a primeira declaração do ciclo de jogo falha e, à semelhança do ponto anterior, o jogador adversário é declarado vitorioso.
-	\item No final de cada jogada, é verificada a vitória desse jogador. Para tal, o predicado \textbf{decideNextStep} chama o predicado \textbf{gameIsWon(Side, Board)}, que, fazendo uso dos predicados \textbf{checkHorizontalWin(PieceSide, Board)}, \textbf{checkVerticalWin(PieceSide, Board)} e \textbf{checkDiagonalWin (PieceSide, Board)}, verifica se existem 5 peças em linha, significando assim a vitória do jogador atual. Caso nenhum destes predicados se verifique, o predicado \textbf{decideNextStep} volta a chamar o ciclo do jogo, par ao próximo jogador.
+	\item No caso de uma jogada feita pelo utilizador, após a colocação dos Trabalhadores no tabuleiro é verificado se é possível a execução de uma jogada, recorrendo ao predicado \textbf{isPiecePlayPossible(+Board)}, que verifica se a interseção das linhas de visão dos dois trabalhadores não é uma lista vazia. Caso a lista seja vazia, a primeira declaração do predicado \textbf{gameLoop/4}, que controla o ciclo de jogo, falhará, realizando assim a segunda declaração, que declara vitorioso o adversário e termina o ciclo de jogo. No caso de uma jogada controlada automaticamente, caso a lista dos tabuleiros possíveis, correspondentes a uma jogada, seja vazia, é declarada a vitória do adversária, num processo semelhante ao executado para o jogador.
+	\item No início de cada jogada é verificado a se o tabuleiro se encontra totalmente preenchido, não sendo assim possível mexer \textit{workers} ou posicionar peças. Esta verificação é realizada através do predicado \textbf{boardIsNotFull(+Board)}, que itera pelo tabuleiro até encontrar uma posição vazia. Caso não seja possível, a primeira declaração do ciclo de jogo falha e, à semelhança do ponto anterior, o jogador adversário é declarado vitorioso.
+	\item No final de cada jogada, é verificada a vitória desse jogador. Para tal, o predicado \textbf{decideNextStep/4} chama o predicado \textbf{gameIsWon(+Side, +Board)}, que, fazendo uso dos predicados \textbf{checkHorizontalWin(+PieceSide, +Board)}, \textbf{checkVerticalWin(+PieceSide, +Board)} e \textbf{checkDiagonalWin (+PieceSide, +Board)}, verifica se existem 5 peças em linha, significando assim a vitória do jogador atual. Caso nenhum destes predicados se verifique, o predicado \textbf{decideNextStep/4} volta a chamar o ciclo do jogo, par ao próximo jogador.
 \end{itemize}
 
 \newpage
