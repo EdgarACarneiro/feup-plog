@@ -388,9 +388,45 @@ Representação de um tabuleiro, usando o código mencionado:\newline
 
 \subsection{Avaliação do Tabuleiro} Avaliação do estado do jogo, que permitirá comparar a aplicação das diversas jogadas disponíveis. Exemplo: \textit{value(+Board, +Player, -Value)}.
 
+A avalliação do jogo pode ser conceptualmente divida em duas partes: a análise de sequências de peças, quer da própria cor, quer de peças adversárias; e o bloqueio de sequências de peças adversárias. As peças adversárias têm cotação negativa, enquanto as peças da mesma cor tem cotação positiva.
+
+Na primeira fase, de forma a valorizar a realização de sequências, cada peça terá valor associado igual ao cubo da posição na sequência que ocupa. Exemplificando, uma sequência de três peças na horizontal tira respetiva valorização de: (1\textasciicircum3) + (2\textasciicircum3) + (3\textasciicircum3), ou seja, 1 + 8 + 27; enquanto uma sequência de três peças opostas teria o valor de (-1) + (-8) + (-27). Resumindo, a análise de cada peça é feita através da formula:
+\begin{itemize}
+	\item \textbf{ NumSequência\textasciicircum3} - para peças da mesma cor;
+	\item \textbf{- (NumSequência\textasciicircum3)} - para peças adversárias;
+\end{itemize}
+Esta análise é feita nos quatro sentidos possíveis: horizontalmente, da esquerda para a direita; verticalmente, de cima para baixo; diagonalmente, com orientação ascendente; diagonalmente, com orientação descente.
+
+A segunda fase, surgiu como nessecidade de a peça não permitir a realização de sequências por parte do adversário. Se apenas se usasse a primeira fase de avaliação as peças nunca tentarima quebrar sequências inimigas mas sim realizar as suas sequências. Assim, para evitar que isso aconteça, um peça que quebre uma sequência inimiga, vale tanto como a sequência que quebra. Esta avaliação é feita analisando as peças adjacentes a cada peça da mesma cor, e, se a peça adjacente adjacente for inimiga, é analisa-se a peça seguinta nessa linha, sendo que no final é adicionado o valor da sequência adversária. Exemplificando, uma sequência de três peças inimigas , a adição de uma peça que quebra esse sequência teria o valor de 1 + 4 + 27. Resumindo, a análise do bloqueio de sequências adversárias é feita através da fórmula (para cada sequência quebrada):
+\begin{itemize}
+	\item \textbf{(NumSequênciaAdversária\textasciicircum3) * factorDefesa}
+\end{itemize}
+De destacar, que após vários testes o factor de Defesa foi definido para 1 sendo este o valor que maior equilíbrio dá entre `ataque' e `defesa'.
+
+A avaliação do tabuleiro é feita através da chamada do predicado:
+\begin{itemize}
+	\item \textbf{evaluateBoard(Side, Board, BoardValue)}
+\end{itemize}
+
+Que por sua vez usa os predicados:
+\begin{itemize}
+	\item \textbf{horizontalEvaluation(Side, Board, HorizontalValue)}
+	\item \textbf{verticalEvaluation(Side, Board, VerticalValue)}
+	\item \textbf{diagonalEvaluation(Side, Board, DiagonalValue)}
+	\item \textbf{defensiveEvaluation(Side, Board, DefensiveValue)}
+\end{itemize}
+
 \newpage
 
 \subsection{Final do Jogo} Verificação do fim do jogo, com identificação do vencedor. Exemplo: \textit{game\_over(+Board, -Winner)}.
+
+Existem três maneiras possíveis de terminação do jogo: a inexistência  de posições que sejam a interseção da linha de visão dos Trabalhadores; o tabuleiro estar cheio e não ser possível mover um Trabalhador; a existência de cinco em linha de um tipos de peças.
+Assim, internamente, a verificação destas condições é feita de três formas distintas:
+\begin{itemize}
+	\item No caso de uma jogada feita pelo utlizador, após a colocação dos Trabalhadores no tabuleiro é verificado se é possível a execução de uma jogada, recorrendo ao predicado \textbf{isPiecePlayPossible(Board)}, que verifica se a interseção das linhas de visão dos dois trabalhadores não é uma lista vazia. Caso a lista seja vazia, a primeira declaração do predicado \textbf{gameLoop}, que controla o ciclo de jogo, falhará, realizando assim a segunda declaração, que declara vitorioso o adversário e termina o ciclo de jogo. No caso de uma jogada controlada automaticamente, caso a lista dos tabuleiros possíveis, correspondentes a uma jogada, seja vazia, é declarada a vitória do adversária, num processo semelhante ao executado para o jogador.
+	\item No início de cada jogada é verificado a se o tabuleiro se encontra totalmente preenchido, não senod assim possível mexer Trbaalhadores ou  posicionar peças. Esta verificação é realizada através do predicado \textbf{boardIsNotFull(Board)}, que itera pelo tabuleiro até encontrar uma posição vazia. Caso não seja possível a priemira declaração do ciclo de jogo falha e, semelhante ao referido no ponto anterior, o jogador adversário é declarado vitorioso.
+	\item No final de cada jogada, é verificada a vitória desse jogador. Para tal, o predicado \textbf{decideNextStep} chama o predicado \textbf{gameIsWon(Side, Board)}, que, fazendo uso dos predicados \textbf{checkHorizontalWin(PieceSide, Board)}, \textbf{checkVerticalWin(PieceSide, Board)} e \textbf{checkDiagonalWin (PieceSide, Board)}, verifica se existem 5 peças em linha, significando assim a vitória do jogador atual. Caso nenhum destes predicados se verifique, o predicado \textbf{decideNextStep} volta a chamar o ciclo do jogo, par ao próximo jogador.
+\end{itemize}
 
 \newpage
 
