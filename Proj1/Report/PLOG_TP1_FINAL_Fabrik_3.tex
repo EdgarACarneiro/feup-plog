@@ -67,9 +67,9 @@ Edgar Carneiro - 201503748 \\
 
 Este trabalho tem como objetivo a modelação e implementação do jogo de tabuleiro \textit{Fabrik}, com uma representação na linha de comandos, e disponibilizando os modos de jogo \textit{jogador vs jogador}, \textit{jogador vs computador} e \textit{computador vs computador}. Tratando-se de um jogo de tabuleiro, foi necessário decidir um modelo apropriado para representar o estado do jogo, desenvolver predicados para verificar se determinada jogada é válida, e predicados para determinar quando o jogo termina. Foi também necessário implementar resilientes mecanismos de obtenção de \textit{input} do utilizador, e menus para interface com o utilizador.
 
-Relativamente à escolha automática de uma jogada por parte do computador, esta tem dois níveis: um mais fácil, em que a jogada é escolhida aleatóriamente; e um mais difícil, em que é identificada a melhor jogada que é possível efetuar tendo em conta o ocntexto atual (algoritmo ganancioso). Neste sentido, desenvolvemos vários predicados para a avaliação quantitativa de uma jogada e do estado do jogo, tendo sido alcançados os nossos objetivos de dificuldade de jogo contra o computador.
+Relativamente à escolha automática de uma jogada por parte do computador, esta tem dois níveis: um mais fácil, em que a jogada é escolhida aleatoriamente; e um mais difícil, em que é identificada a melhor jogada que é possível efetuar tendo em conta o contexto atual (algoritmo ganancioso). Neste sentido, desenvolvemos vários predicados para a avaliação quantitativa de uma jogada e do estado do jogo, tendo sido alcançados os nossos objetivos de dificuldade de jogo contra o computador.
 
-Recorrendo à excelente bibliografia indicada pelo professores, \cite{sterling_shapiro_warren_2010} e \cite{carlsson_fruhwirth_2016}, foi possível resolver todos os problemas que encontramos na implementação deste jogo, bem como uma aprendizagem contínua dos conceitos relacionados com este paradigma de programação.
+Recorrendo à excelente bibliografia indicada pelos professores, \cite{sterling_shapiro_warren_2010} e \cite{carlsson_fruhwirth_2016}, foi possível resolver todos os problemas que encontramos na implementação deste jogo, bem como uma aprendizagem contínua dos conceitos relacionados com este paradigma de programação.
 
 Para finalizar, achamos que o trabalho apresentado representa uma eficiente, completa e compreensiva modelação do jogo \textit{Fabrik} e dos seus conceitos, e temos orgulho no resultado final.
 
@@ -106,7 +106,7 @@ Este relatório está dividido em várias secções, sendo a presente a primeira
 \section{O Jogo \textit{Fabrik}}
 
 \subsection{História}
-O jogo - \textit{Fabrik} - foi recentemente desenvolvido por Dieter Stein, em Agosto de 2017, como parte de um estudo para o desenvolvimento de um novo jogo, Urbino.
+O jogo - \textit{Fabrik} - foi recentemente desenvolvido por Dieter Stein, em agosto de 2017, como parte de um estudo para o desenvolvimento de um novo jogo, Urbino.
 
 \subsection{Material}
 \begin{itemize}
@@ -140,7 +140,7 @@ O jogo procede por turnos, sendo que em cada turno um jogador pode, se assim opt
 
 No caso especial em que os dois trabalhadores se encontram sobre uma mesma linha ortogonal ou diagonal, apenas os espaços entre eles são considerados pontos de interseção (se estiverem vazios), ao invés da totalidade dessa linha.
 
-Ganha o jogo o jogador que consiga criar uma linha de pelo menos 5 pedras da sua cor, ortogonalmente ou diagonalmente. Um jogador ganha também o jogo se o seu adversário não conseguir posicionar nenhum dos trabalhadores de forma a poder colocar uma pedra sua no tabuleiro.
+Ganha o jogo o jogador que consiga criar uma linha de pelo menos 5 pedras da sua cor, ortogonal ou diagonalmente. Um jogador ganha também o jogo se o seu adversário não conseguir posicionar nenhum dos trabalhadores de forma a poder colocar uma pedra sua no tabuleiro.
 
 \begin{figure}[h!]
 \begin{center}
@@ -164,8 +164,7 @@ Descrever o projeto e implementação da lógica do jogo em Prolog, incluindo a 
 
 \subsection{Representação do Estado do Jogo}
 
-A representação dos estados de jogo é feita com recurso a uma lista de listas, de forma a simular o uso de uma Matriz. Seguem de seguida, a representaçao de diferentes estados de jogo:\newline
-
+A representação dos estados de jogo é feita com recurso a uma lista de listas, de forma a simular o uso de uma Matriz. Seguem de seguida a representação de diferentes estados de jogo:\newline
 
 
 Representação do \textbf{estado inicial}:
@@ -397,7 +396,7 @@ Representação de um tabuleiro, usando o código mencionado:\newline
 
 \subsection{Avaliação do Tabuleiro} Avaliação do estado do jogo, que permitirá comparar a aplicação das diversas jogadas disponíveis. Exemplo: \textit{value(+Board, +Player, -Value)}.
 
-A avalliação do jogo pode ser conceptualmente divida em duas partes: a análise de sequências de peças, quer da própria cor, quer de peças adversárias; e o bloqueio de sequências de peças adversárias. As peças adversárias têm cotação negativa, enquanto as peças da mesma cor tem cotação positiva.
+A avaliação do jogo pode ser conceptualmente divida em duas partes: a análise de sequências de peças, quer da própria cor, quer de peças adversárias; e o bloqueio de sequências de peças adversárias. As peças adversárias têm cotação negativa, enquanto as peças da mesma cor tem cotação positiva.
 
 Na primeira fase, de forma a valorizar a realização de sequências, cada peça terá valor associado igual ao cubo da posição na sequência que ocupa. Exemplificando, uma sequência de três peças na horizontal tira respetiva valorização de: (1\textasciicircum3) + (2\textasciicircum3) + (3\textasciicircum3), ou seja, 1 + 8 + 27; enquanto uma sequência de três peças opostas teria o valor de (-1) + (-8) + (-27). Resumindo, a análise de cada peça é feita através da formula:
 \begin{itemize}
@@ -406,7 +405,7 @@ Na primeira fase, de forma a valorizar a realização de sequências, cada peça
 \end{itemize}
 Esta análise é feita nos quatro sentidos possíveis: horizontalmente, da esquerda para a direita; verticalmente, de cima para baixo; diagonalmente, com orientação ascendente; diagonalmente, com orientação descente.
 
-A segunda fase, surgiu como nessecidade de a peça não permitir a realização de sequências por parte do adversário. Se apenas se usasse a primeira fase de avaliação as peças nunca tentarima quebrar sequências inimigas mas sim realizar as suas sequências. Assim, para evitar que isso aconteça, um peça que quebre uma sequência inimiga, vale tanto como a sequência que quebra. Esta avaliação é feita analisando as peças adjacentes a cada peça da mesma cor, e, se a peça adjacente adjacente for inimiga, é analisa-se a peça seguinta nessa linha, sendo que no final é adicionado o valor da sequência adversária. Exemplificando, uma sequência de três peças inimigas , a adição de uma peça que quebra esse sequência teria o valor de 1 + 4 + 27. Resumindo, a análise do bloqueio de sequências adversárias é feita através da fórmula (para cada sequência quebrada):
+A segunda fase, surgiu como necessidade de a peça não permitir a realização de sequências por parte do adversário. Se apenas se usasse a primeira fase de avaliação as peças nunca tentariam quebrar sequências inimigas, mas sim realizar as suas sequências. Assim, para evitar que isso aconteça, uma peça que quebre uma sequência inimiga, vale tanto como a sequência que quebra. Esta avaliação é feita analisando as peças adjacentes a cada peça da mesma cor, e, se a peça adjacente for inimiga, analisa-se a peça seguinte nessa linha, sendo que no final é adicionado o valor da sequência adversária. Exemplificando, uma sequência de três peças inimigas , a adição de uma peça que quebra esse sequência teria o valor de 1 + 4 + 27. Resumindo, a análise do bloqueio de sequências adversárias é feita através da fórmula (para cada sequência quebrada):
 \begin{itemize}
 	\item \textbf{(NumSequênciaAdversária\textasciicircum3) * factorDefesa}
 \end{itemize}
@@ -432,8 +431,8 @@ Que por sua vez usa os predicados:
 Existem três maneiras possíveis de terminação do jogo: a inexistência  de posições que sejam a interseção da linha de visão dos Trabalhadores; o tabuleiro estar cheio e não ser possível mover um Trabalhador; a existência de cinco em linha de um tipos de peças.
 Assim, internamente, a verificação destas condições é feita de três formas distintas:
 \begin{itemize}
-	\item No caso de uma jogada feita pelo utlizador, após a colocação dos Trabalhadores no tabuleiro é verificado se é possível a execução de uma jogada, recorrendo ao predicado \textbf{isPiecePlayPossible(Board)}, que verifica se a interseção das linhas de visão dos dois trabalhadores não é uma lista vazia. Caso a lista seja vazia, a primeira declaração do predicado \textbf{gameLoop}, que controla o ciclo de jogo, falhará, realizando assim a segunda declaração, que declara vitorioso o adversário e termina o ciclo de jogo. No caso de uma jogada controlada automaticamente, caso a lista dos tabuleiros possíveis, correspondentes a uma jogada, seja vazia, é declarada a vitória do adversária, num processo semelhante ao executado para o jogador.
-	\item No início de cada jogada é verificado a se o tabuleiro se encontra totalmente preenchido, não senod assim possível mexer Trbaalhadores ou  posicionar peças. Esta verificação é realizada através do predicado \textbf{boardIsNotFull(Board)}, que itera pelo tabuleiro até encontrar uma posição vazia. Caso não seja possível a priemira declaração do ciclo de jogo falha e, semelhante ao referido no ponto anterior, o jogador adversário é declarado vitorioso.
+	\item No caso de uma jogada feita pelo utilizador, após a colocação dos Trabalhadores no tabuleiro é verificado se é possível a execução de uma jogada, recorrendo ao predicado \textbf{isPiecePlayPossible(Board)}, que verifica se a interseção das linhas de visão dos dois trabalhadores não é uma lista vazia. Caso a lista seja vazia, a primeira declaração do predicado \textbf{gameLoop}, que controla o ciclo de jogo, falhará, realizando assim a segunda declaração, que declara vitorioso o adversário e termina o ciclo de jogo. No caso de uma jogada controlada automaticamente, caso a lista dos tabuleiros possíveis, correspondentes a uma jogada, seja vazia, é declarada a vitória do adversária, num processo semelhante ao executado para o jogador.
+	\item No início de cada jogada é verificado a se o tabuleiro se encontra totalmente preenchido, não sendo assim possível mexer \textit{workers} ou posicionar peças. Esta verificação é realizada através do predicado \textbf{boardIsNotFull(Board)}, que itera pelo tabuleiro até encontrar uma posição vazia. Caso não seja possível, a primeira declaração do ciclo de jogo falha e, à semelhança do ponto anterior, o jogador adversário é declarado vitorioso.
 	\item No final de cada jogada, é verificada a vitória desse jogador. Para tal, o predicado \textbf{decideNextStep} chama o predicado \textbf{gameIsWon(Side, Board)}, que, fazendo uso dos predicados \textbf{checkHorizontalWin(PieceSide, Board)}, \textbf{checkVerticalWin(PieceSide, Board)} e \textbf{checkDiagonalWin (PieceSide, Board)}, verifica se existem 5 peças em linha, significando assim a vitória do jogador atual. Caso nenhum destes predicados se verifique, o predicado \textbf{decideNextStep} volta a chamar o ciclo do jogo, par ao próximo jogador.
 \end{itemize}
 
