@@ -129,3 +129,17 @@ boardE2([
 %V = 39
 %boardE2(B), defensiveEvaluation(white, B, V).
 %V = 27
+
+fullboard([
+      [black, black, white, white, black, black, white, white, black],
+      [white, white, black, black, white, white, black, black, white],
+      [black, black, white, white, black, black, white, white, black],
+      [white, white, black, black, white, worker, black, black, white],
+      [black, black, white, white, none, black, white, white, black],
+      [white, white, black, worker, white, white, black, black, white],
+      [black, black, white, white, black, black, white, white, black],
+      [white, white, black, black, white, white, black, black, white],
+      [black, black, white, white, black, black, white, white, black]
+]).
+%fullboard(B), gameLoop(humanPlay, humanPlay, black, B).
+%fullboard(B), gameLoop(getRandomPlay, getRandomPlay, black, B).
