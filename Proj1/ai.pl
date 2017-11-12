@@ -60,7 +60,9 @@ genNewBoards(Side, Board, [Intersec | OtherIntersec], FoundBoards, AllBoards) :-
 % Returns all the possible resulting boards, taking into account the move worker play and the set piece play
 getPossibleBoards(Side, Board, PossibleBoards) :-
 	getAllWorkerPermutations(Board, WorkerBoards), !,
-	getPieceBoards(Side, WorkerBoards, PossibleBoards).
+	getPieceBoards(Side, WorkerBoards, PossibleBoards),
+	length(PossibleBoards, Size),
+	Size > 0. %If no board is created, game is Over
 
 
 % Evaluates a board and returns the correspondent Value

@@ -90,6 +90,6 @@ aiMenuHandler(AI):-
         aiMenuChoice(Choice, AI), !.
 aiMenuChoice(1, 'getRandomPlay').
 aiMenuChoice(2, 'getGreedyPlay').
-aiMenuChoice(_, _):-
+aiMenuChoice(_, AI):-
 	unknownInput,
-	aiMenuHandler, !.
+	aiMenuHandler(AI), !.
