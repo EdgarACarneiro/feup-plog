@@ -65,7 +65,7 @@ Edgar Carneiro - 201503748 \\
 
 \section*{Resumo}
 
-Este trabalho tem como objetivo a modelação e implementação do jogo de tabuleiro \textit{Fabrik}, com uma representação na linha de comandos, assim como os modos de jogo \textit{jogador vs jogador}, \textit{jogador vs computador} e \textit{computador vs computador}. Tratando-se de um jogo de tabuleiro, foi necessário decidir um modelo apropriado para representar o estado do jogo, desenvolver predicados para verificar se determinada jogada é válida, e predicados para determinar quando o jogo termina. Foi também necessário implementar resilientes mecanismos de obtenção de \textit{input} do utilizador, e menus para interface com o utilizador.
+Este trabalho tem como objetivo a modelação e implementação do jogo de tabuleiro \textit{Fabrik}, com uma representação na linha de comandos, e disponibilizando os modos de jogo \textit{jogador vs jogador}, \textit{jogador vs computador} e \textit{computador vs computador}. Tratando-se de um jogo de tabuleiro, foi necessário decidir um modelo apropriado para representar o estado do jogo, desenvolver predicados para verificar se determinada jogada é válida, e predicados para determinar quando o jogo termina. Foi também necessário implementar resilientes mecanismos de obtenção de \textit{input} do utilizador, e menus para interface com o utilizador.
 
 Relativamente à escolha automática de uma jogada por parte do computador, esta tem dois níveis: um mais fácil, em que a jogada é escolhida aleatóriamente; e um mais difícil, em que é identificada a melhor jogada que é possível efetuar tendo em conta o ocntexto atual (algoritmo ganancioso). Neste sentido, desenvolvemos vários predicados para a avaliação quantitativa de uma jogada e do estado do jogo, tendo sido alcançados os nossos objetivos de dificuldade de jogo contra o computador.
 
@@ -452,7 +452,17 @@ Descrever o módulo de interface com o utilizador em modo de texto.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusões}
-Que conclui deste projecto? Como poderia melhorar o trabalho desenvolvido?
+O presente trabalho exigiu um grande empenho por parte de ambos os elementos do grupo, tendo, no entanto, sido uma experiência recompensadora.
+
+Consideramos que o nosso conhecimento de programação em lógica foi amplamente aumentado, tendo sido alcançado tudo o que nos propusemos a fazer no tempo requerido, e muitas vezes ultrapassado por termos encontrado soluções mais interessantes.
+
+As maiores dificuldades encontradas no decorrer do desenvolvimento foram relacionadas com a verificação das jogadas válidas (pois o jogo impõe múltiplas restrições a esta ação), assim como na elaboração da função que avalia as jogadas possíveis. No entanto, todos os problemas foram eventualmente ultrapassados, e estamos contentes com as soluções encontradas.
+
+Achamos importante indicar que próximo do fim do desenvolvimento tentamos aplicar o algoritmo \textit{Minimax} para a tomada de decisão sobre a melhor jogada a escolher, no entanto tornou-se eventualmente claro que, devido às custosas verificações de validade de jogadas e de fim de jogo, esta alteração implicaria um grande tempo de espera para cada jogada do computador, tendo no fim sido escolhido um algoritmo ganancioso para a referida tomada de decisão.
+
+Referir também que em alguns casos decidimos beneficiar legibilidade em detrimento de performance, privilegiando predicados curtos e com uso de funções \textit{standard}, mantendo a elegância de código permitida em linguagens de alto nível como o \textit{PROLOG}.
+
+Em suma, apesar de \textit{PROLOG} se pautar por um paradigma diferente do que estamos habituados, rápidamente nos habituamos e aprendemos a apreciar as facilidades e dificuldades que este apresenta, tendo culminado num trabalho no qual nos orgulhamos.
 
 
 \clearpage
