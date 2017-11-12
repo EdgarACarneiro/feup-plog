@@ -21,11 +21,11 @@ initGame(Player1, Player2) :-
 	gameLoop(Player1, Player2, Side, B2).
 
 gameLoop(Player1Function, Player2Function, black, Board) :-
-	call(Player1Function, black, Board, NewBoard),
+	call(Player1Function, black, Board, NewBoard), printBoard(NewBoard),
 	decideNextStep(Player1Function, Player2Function, black, NewBoard), !.
 
 gameLoop(Player1Function, Player2Function, white, Board) :-
-	call(Player2Function, white, Board, NewBoard),
+	call(Player2Function, white, Board, NewBoard), printBoard(NewBoard),
 	decideNextStep(Player1Function, Player2Function, white, NewBoard), !.
 
 decideNextStep(_Player1Function, _Player2Function, Side, Board) :-
@@ -41,25 +41,21 @@ decideNextStep(Player1Function, Player2Function, Side, Board) :-
 userFunction(Side, Board, NewBoard) :-
 	workerUpdate(Side, Board, TempBoard),
 	printBoard(TempBoard),
-	isPiecePlayPossible(Board), !,
-	pieceInput(Side, Side, TempBoard, NewBoard),
-	printBoard(NewBoard), !.
+	isPiecePlayPossible(TempBoard), !,
+	pieceInput(Side, Side, TempBoard, NewBoard), !.
 userFunction(Side, _, _) :-
         changePlayer(Side, NewSide),
 	wonMsg(NewSide), % Side loses if no play is possible
 	getEnter, !, fail.
 
-aiFunction(Side, Board, NewBoard) :-
-	getGreedyPlay(Side, Board, NewBoard),
-	printBoard(NewBoard).%, getEnter, !.
-
 setFirstWorker('userFunction', Side, Board, NewBoard) :-
 	pieceInput(worker, Side, Board, NewBoard).
-setFirstWorker('aiFunction', _Side, Board, NewBoard) :-
+%For AI Functions
+setFirstWorker(_, _Side, Board, NewBoard) :-
         boardSize(Size),
         random(0, Size, Row), random(0, Size, Col),
         setPiece(worker, Row, Col, Board, NewBoard).
 
 chooseStartingPlayer('userFunction', Side) :-
         getFirstPlayer(Side), !.
-chooseStartingPlayer('aiFunction', white). % always white
+chooseStartingPlayer(_, white). % always white - For AI functions 

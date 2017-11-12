@@ -92,7 +92,7 @@ workerUpdateMsg:-
         write('Do you wish to move a worker?'), nl,
         write('\t1. Yes'), nl,
         write('\t2. No'), nl, nl,
-        write('Choose an option:'), nl. 
+        write('Choose an option:'), nl.
 
 %Asks the User for worker's current and new positions and moves it
 moveWorkerInput(Side, Board, UpdatedBoard):-

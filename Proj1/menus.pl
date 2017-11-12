@@ -15,6 +15,13 @@ playMenu:-
 	write('\t 4. Back'), nl, nl,
 	write('Choose an option:'), nl.
 
+aiMenu:-
+	printFabrikTitle,
+        write('Choose the AI difficulty:'), nl,
+        write('\t1. Easy AI'), nl,
+        write('\t2. Smart AI'), nl, nl,
+        write('Choose an option: '), nl.
+
 rules:-
 	printFabrikTitle,
 	write('RULES: '), nl,
@@ -38,11 +45,11 @@ rules:-
 	write('\t\t\t\t   Source: https://spielstein.com/games/fabrik/rules'), nl, nl,
 	getEnter.
 
+%User choose between Playing, Exiting or checking the rules
 mainMenuHandler:-
 	mainMenu,
 	getInt(Choice),
 	mainMenuChoice(Choice), !.
-
 mainMenuChoice(1):-
 	playMenuHandler, !.
 mainMenuChoice(2):-
@@ -53,22 +60,36 @@ mainMenuChoice(_):-
 	unknownInput,
 	mainMenuHandler, !.
 
+%User chooses between PvP, PvAI, AIvAI
 playMenuHandler:-
 	playMenu,
 	getInt(Choice),
 	playMenuChoice(Choice), !.
-
 playMenuChoice(1):-
 	initGame(userFunction, userFunction), !,
 	mainMenuHandler, !.
 playMenuChoice(2):-
-        initGame(userFunction, aiFunction), !,
+	aiMenuHandler(AI),
+        initGame(userFunction, AI), !,
         mainMenuHandler, !.
 playMenuChoice(3):-
-        initGame(aiFunction, aiFunction), !,
+	aiMenuHandler(AI1),
+	aiMenuHandler(AI2),
+        initGame(AI1, AI2), !,
         mainMenuHandler, !.
 playMenuChoice(4):-
 	mainMenuHandler, !.
 playMenuChoice(_):-
 	unknownInput,
 	playMenuHandler, !.
+
+%User chooses the AI Difficulty
+aiMenuHandler(AI):-
+        aiMenu,
+        getInt(Choice),
+        aiMenuChoice(Choice, AI), !.
+aiMenuChoice(1, 'getRandomPlay').
+aiMenuChoice(2, 'getGreedyPlay').
+aiMenuChoice(_, _):-
+	unknownInput,
+	aiMenuHandler, !.
