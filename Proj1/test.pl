@@ -3,10 +3,10 @@
 
 board1([
       [none, none, none, none, none, none, none, worker, none],
-      [white, white, white, none, none, none, none, none, none],
+      [white, black, white, none, none, none, none, none, none],
       [none, none, none, none, none, none, none, none, none],
       [none, none, white, white, white, white, none, none, none],
-      [none, none, white, none, white, none, worker, none, none],
+      [none, none, black, none, black, none, none, none, none],
       [none, none, black, none, none, none, none, none, none],
       [none, none, white, worker, none, none, none, none, none],
       [none, none, none, none, none, none, none, none, none],
@@ -67,12 +67,12 @@ board5([
 
 board6([
       [none, none, none, none, none, none, none, none, none],
-      [none, none, none, none, none, none, none, none, none],
+      [none, none, black, none, none, none, none, none, none],
       [none, none, none, none, white, none, none, none, none],
-      [none, none, none, white, none, none, none, none, none],
-      [none, none, white, none, none, none, black, none, none],
+      [none, none, none, worker, none, none, none, none, none],
+      [none, none, none, none, none, none, black, none, none],
       [none, white, none, none, none, black, none, none, none],
-      [white, none, none, none, black, none, none, none, none],
+      [white, none, none, none, worker, none, none, none, none],
       [none, none, none, black, none, none, none, none, none],
       [none, none, black, none, none, none, none, none, none]
 ]).
