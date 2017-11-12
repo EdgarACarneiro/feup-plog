@@ -30,7 +30,7 @@ gameLoop(Player1Function, Player2Function, white, Board) :-
 
 decideNextStep(_Player1Function, _Player2Function, Side, Board) :-
 	gameIsWon(Side, Board), !,
-	%destroyRowColFacts, TODO
+	destroyRowColFacts, !,
 	wonMsg(Side),
 	getEnter, !.
 decideNextStep(Player1Function, Player2Function, Side, Board) :-
@@ -51,7 +51,7 @@ userFunction(Side, _, _) :-
 
 aiFunction(Side, Board, NewBoard) :-
 	getBestPlay(Side, Board, NewBoard),
-	printBoard(NewBoard).
+	printBoard(NewBoard), getEnter, !.
 
 setFirstWorker('userFunction', Side, Board, NewBoard) :-
 	pieceInput(worker, Side, Board, NewBoard).

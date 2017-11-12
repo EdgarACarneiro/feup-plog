@@ -71,4 +71,4 @@ playMenuChoice(4):-
 	mainMenuHandler, !.
 playMenuChoice(_):-
 	unknownInput,
-	mainMenuHandler, !.
+	playMenuHandler, !.

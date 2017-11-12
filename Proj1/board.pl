@@ -164,7 +164,7 @@ checkDiagWinAux(Side, Board, Col, BoardSize):-
 %Iterates through the diagonal line, starting at [Row, Col], with direction Vector [RowInc, ColInc], checking for Winning Streak
 %Found N in-a-row, won game!
 checkDiagLineWin(_Side, _Board, _Row, _Col, _RowInc, _ColInc, Count):-
-        winningStreakN(Count), !, write('I did it'), nl, !.
+        winningStreakN(Count), !.
 checkDiagLineWin(Side, Board, Row, Col, RowInc, ColInc, Count):-
         getElement(Board, Row, Col, Side),
         NewRow is (Row + RowInc), NewCol is (Col + ColInc),

@@ -5,6 +5,10 @@
 % 3 -> A third of Attack factor,  and so on..
 defenseFactor(2).
 
+%Destroy the board facts generated for every game
+destroyRowColFacts:-
+	retractall(validCoord(_)). 
+
 % Possible values for Row and Col positions
 genRowColFacts:-
 	boardSize(N),
