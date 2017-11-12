@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.5.22)  12 NOV 2017 20:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.5.22)  12 NOV 2017 21:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -539,33 +539,38 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 67.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 67.
- [2]
-(./PLOG_TP1_FINAL_Fabrik_3.toc)
+
+Overfull \hbox (11.33395pt too wide) in paragraph at lines 71--72
+\OT1/cmr/m/n/10 dor, esta tem dois n^^S^^Pveis: um mais f^^Sacil, em que a jo-g
+ada ^^Se es-co-lhida aleat^^Soriamente;
+ []
+
+[2] (./PLOG_TP1_FINAL_Fabrik_3.toc)
 \tf@toc=\write3
 \openout3 = `PLOG_TP1_FINAL_Fabrik_3.toc'.
 
  [3] [4]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 100.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 104.
 
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 100.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 104.
 
 <images/fabrik_empty_board.png, id=25, 88.40367pt x 88.40367pt>
 File: images/fabrik_empty_board.png Graphic file (type png)
 
 <use images/fabrik_empty_board.png>
-Package pdftex.def Info: images/fabrik_empty_board.png used on input line 107.
+Package pdftex.def Info: images/fabrik_empty_board.png used on input line 111.
 (pdftex.def)             Requested size: 85.36295pt x 85.36295pt.
 
 <images/fabrik_intersection.png, id=26, 88.40367pt x 88.40367pt>
 File: images/fabrik_intersection.png Graphic file (type png)
 
 <use images/fabrik_intersection.png>
-Package pdftex.def Info: images/fabrik_intersection.png used on input line 122.
+Package pdftex.def Info: images/fabrik_intersection.png used on input line 126.
 
 (pdftex.def)             Requested size: 85.36295pt x 85.36295pt.
  [5 <./images/fabrik_empty_board.png> <./images/fabrik_intersection.png>]
@@ -573,10 +578,10 @@ Package pdftex.def Info: images/fabrik_intersection.png used on input line 122.
 File: images/fabrik_full_board.png Graphic file (type png)
 
 <use images/fabrik_full_board.png>
-Package pdftex.def Info: images/fabrik_full_board.png used on input line 134.
+Package pdftex.def Info: images/fabrik_full_board.png used on input line 138.
 (pdftex.def)             Requested size: 85.36295pt x 85.36295pt.
  [6 <./images/fabrik_full_board.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 154--155
+Underfull \hbox (badness 10000) in paragraph at lines 158--159
 
  []
 
@@ -584,14 +589,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 154--155
 File: images/self_empty_board.png Graphic file (type png)
 
 <use images/self_empty_board.png>
-Package pdftex.def Info: images/self_empty_board.png used on input line 180.
+Package pdftex.def Info: images/self_empty_board.png used on input line 184.
 (pdftex.def)             Requested size: 159.3382pt x 168.69397pt.
 File: images/fabrik_empty_board.png Graphic file (type png)
  <use images/fabrik_empty_board.png>
-Package pdftex.def Info: images/fabrik_empty_board.png used on input line 187.
+Package pdftex.def Info: images/fabrik_empty_board.png used on input line 191.
 (pdftex.def)             Requested size: 159.3382pt x 159.36118pt.
  [7 <./images/self_empty_board.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 195--196
+Underfull \hbox (badness 10000) in paragraph at lines 199--200
 
  []
 
@@ -599,12 +604,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 195--196
 File: images/self_semi_board.png Graphic file (type png)
 
 <use images/self_semi_board.png>
-Package pdftex.def Info: images/self_semi_board.png used on input line 215.
+Package pdftex.def Info: images/self_semi_board.png used on input line 219.
 (pdftex.def)             Requested size: 170.71317pt x 170.7119pt.
  [8
 
  <./images/self_semi_board.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 222--223
+Underfull \hbox (badness 10000) in paragraph at lines 226--227
 
  []
 
@@ -612,31 +617,31 @@ Underfull \hbox (badness 10000) in paragraph at lines 222--223
 File: images/self_full_board.png Graphic file (type png)
 
 <use images/self_full_board.png>
-Package pdftex.def Info: images/self_full_board.png used on input line 244.
+Package pdftex.def Info: images/self_full_board.png used on input line 248.
 (pdftex.def)             Requested size: 159.3382pt x 171.94992pt.
 File: images/fabrik_full_board.png Graphic file (type png)
  <use images/fabrik_full_board.png>
-Package pdftex.def Info: images/fabrik_full_board.png used on input line 251.
+Package pdftex.def Info: images/fabrik_full_board.png used on input line 255.
 (pdftex.def)             Requested size: 159.3382pt x 159.36118pt.
  [9
 
  <./images/self_full_board.png>] [10
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 365--366
+Underfull \hbox (badness 10000) in paragraph at lines 369--370
 
  []
 
 File: images/self_semi_board.png Graphic file (type png)
 <use images/self_semi_board.png>
-Package pdftex.def Info: images/self_semi_board.png used on input line 369.
+Package pdftex.def Info: images/self_semi_board.png used on input line 373.
 (pdftex.def)             Requested size: 113.80878pt x 113.80524pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [11] [12] [13] [14]
-Overfull \hbox (48.74295pt too wide) in paragraph at lines 389--390
+Overfull \hbox (48.74295pt too wide) in paragraph at lines 393--394
 []\OT1/cmr/m/n/10 Verifica^^Xc~ao do fim do jogo, com iden-ti-fica^^Xc~ao do ve
 n-ce-dor. Exem-plo: \OT1/cmr/m/it/10 game[]over(+Board,
  []
@@ -644,11 +649,7 @@ n-ce-dor. Exem-plo: \OT1/cmr/m/it/10 game[]over(+Board,
 [15] [16] [17] [18] (./PLOG_TP1_FINAL_Fabrik_3.bbl) [19
 
 ] [20]
-(./PLOG_TP1_FINAL_Fabrik_3.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+(./PLOG_TP1_FINAL_Fabrik_3.aux) ) 
 Here is how much of TeX's memory you used:
  4311 strings out of 493014
  57879 string characters out of 6133351
@@ -656,17 +657,18 @@ Here is how much of TeX's memory you used:
  7781 multiletter control sequences out of 15000+600000
  10031 words of font info for 35 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 38i,8n,43p,460b,1676s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
-></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
-</usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb
-></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><
-/usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></u
-sr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/
-local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/l
-ocal/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/lo
-cal/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on PLOG_TP1_FINAL_Fabrik_3.pdf (20 pages, 345098 bytes).
+ 38i,8n,43p,676b,1676s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2016/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmbxti10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmr12.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmr7.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmti10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmtt9.pfb>
+Output written on PLOG_TP1_FINAL_Fabrik_3.pdf (20 pages, 345879 bytes).
 PDF statistics:
  120 PDF objects out of 1000 (max. 8388607)
  74 compressed objects within 1 object stream

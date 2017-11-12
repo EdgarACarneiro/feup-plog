@@ -66,11 +66,13 @@ Edgar Carneiro - 201503748 \\
 \section*{Resumo}
 Este trabalho foi desenvolvido no âmbito da unidade curricular de Programação em Lógica, integrada no 3º ano do Mestrado Integrado em Engenharia Informática e Computação, tendo como objetivo aprofundar os conhecimentos adquiridos nas aulas teóricas e práticas desta unidade curricular, bem como a abordagem de problemas mais práticos com recurso à linguagem \textit{PROLOG}.
 
-Assim, propusemo-nos a implementar o jogo \textit{Fabrik}, com uma representação na linha de comandos, bem como modos de jogo \textbf{jogador vs jogador}, \textbf{jogador vs computador} e \textbf{computador vs computador}. Para uma completa e compreensiva implementação...
+Assim, propusemo-nos a implementar o jogo de tabuleiro \textit{Fabrik}, com uma representação na linha de comandos, assim como os modos de jogo \textit{jogador vs jogador}, \textit{jogador vs computador} e \textit{computador vs computador}. Tratando-se de um jogo de tabuleiro, foi necessário decidir um modelo apropriado para representar o estado do jogo, desenvolver predicados para verificar se determinada jogada é válida, e predicados para determinar quando o jogo termina. Foi também necessário implementar resilientes mecanismos de obtenção de \textit{input} do utilizador, e menus para interface com o utilizador.
+
+Relativamente à escolha automática de uma jogada por parte do computador, esta tem dois níveis: um mais fácil, em que a jogada é escolhida aleatóriamente; e um mais difícil, em que é identificada a melhor jogada que é possível efetuar tendo em conta o ocntexto atual (algoritmo ganancioso). Neste sentido, desenvolvemos vários predicados para a avaliação quantitativa de uma jogada e do estado do jogo, tendo sido alcançados os nossos objetivos de dificuldade de jogo contra o computador.
 
 Recorrendo à excelente bibliografia indicada pelo professores, \cite{sterling_shapiro_warren_2010} e \cite{carlsson_fruhwirth_2016}, foi possível resolver todos os problemas que encontramos na implementação deste jogo, bem como uma aprendizagem contínua dos conceitos relacionados com este paradigma de programação.
 
-Resumo sucinto do trabalho com 150 a 250 palavras (problema abordado, objetivo, como foi o problema resolvido/abordado, principais resultados e conclusões).
+Para finalizar, achamos que o trabalho apresentado representa uma completa e compreensiva modelação do jogo \textit{Fabrik} e dos seus conceitos, e temos orgulho no resultado final.
 
 \newpage
 
