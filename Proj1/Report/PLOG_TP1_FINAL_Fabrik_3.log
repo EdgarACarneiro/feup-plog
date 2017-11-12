@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.5.22)  12 NOV 2017 22:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.5.22)  12 NOV 2017 22:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -540,24 +540,16 @@ Overfull \hbox (11.33395pt too wide) in paragraph at lines 70--71
 ada ^^Se es-co-lhida aleat^^Soriamente;
  []
 
-
-LaTeX Warning: Citation `sterling_shapiro_warren_2010' on page 2 undefined on i
-nput line 72.
-
-
-LaTeX Warning: Citation `carlsson_fruhwirth_2016' on page 2 undefined on input 
-line 72.
-
-[2] (./PLOG_TP1_FINAL_Fabrik_3.toc)
+[2] (./PLOG_TP1_FINAL_Fabrik_3.toc
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 4.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 4.
+)
 \tf@toc=\write3
 \openout3 = `PLOG_TP1_FINAL_Fabrik_3.toc'.
 
  [3]
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 91.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 91.
-
 Overfull \hbox (1.33394pt too wide) in paragraph at lines 98--99
 \OT1/cmr/m/n/10 menta^^Xc~ao, desde a re-pre-senta^^Xc~ao vi-sual do ta-bu-leir
 o ao al-go-ritmo de c^^Salculo
@@ -572,18 +564,14 @@ File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 113.
 
-<images/fabrik_empty_board.png, id=24, 88.40367pt x 88.40367pt>
+<images/fabrik_empty_board.png, id=25, 88.40367pt x 88.40367pt>
 File: images/fabrik_empty_board.png Graphic file (type png)
 
 <use images/fabrik_empty_board.png>
 Package pdftex.def Info: images/fabrik_empty_board.png used on input line 120.
 (pdftex.def)             Requested size: 85.36295pt x 85.36295pt.
 
-
-LaTeX Warning: Citation `games_and_puzzles_by_dieter_stein' on page 5 undefined
- on input line 127.
-
-<images/fabrik_intersection.png, id=25, 88.40367pt x 88.40367pt>
+<images/fabrik_intersection.png, id=26, 88.40367pt x 88.40367pt>
 File: images/fabrik_intersection.png Graphic file (type png)
 
 <use images/fabrik_intersection.png>
@@ -658,40 +646,46 @@ Package pdftex.def Info: images/self_semi_board.png used on input line 382.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [11] [12] [13] [14]
-Overfull \hbox (48.74295pt too wide) in paragraph at lines 402--403
+Overfull \hbox (48.74295pt too wide) in paragraph at lines 430--431
 []\OT1/cmr/m/n/10 Verifica^^Xc~ao do fim do jogo, com iden-ti-fica^^Xc~ao do ve
 n-ce-dor. Exem-plo: \OT1/cmr/m/it/10 game[]over(+Board,
+ []
+
+
+Overfull \hbox (1.31877pt too wide) in paragraph at lines 437--438
+\OT1/cmr/bx/n/10 ard)\OT1/cmr/m/n/10 , que, fa-zendo uso dos pre-di-ca-dos \OT1
+/cmr/bx/n/10 checkHo-ri-zon-talWin(PieceSide,
+ []
+
+
+Overfull \hbox (3.9275pt too wide) in paragraph at lines 437--438
+\OT1/cmr/bx/n/10 Bo-ard)\OT1/cmr/m/n/10 , \OT1/cmr/bx/n/10 check-Ver-ti-calWin(
+PieceSide, Bo-ard) \OT1/cmr/m/n/10 e \OT1/cmr/bx/n/10 check-Di-a-go-nalWin
  []
 
 [15] [16] [17] [18] (./PLOG_TP1_FINAL_Fabrik_3.bbl) [19
 
 ] [20]
-(./PLOG_TP1_FINAL_Fabrik_3.aux)
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+(./PLOG_TP1_FINAL_Fabrik_3.aux) ) 
 Here is how much of TeX's memory you used:
- 4310 strings out of 493014
- 57863 string characters out of 6133351
+ 4313 strings out of 493014
+ 57912 string characters out of 6133351
  175000 words of memory out of 5000000
- 7780 multiletter control sequences out of 15000+600000
- 9672 words of font info for 34 fonts, out of 8000000 for 9000
+ 7783 multiletter control sequences out of 15000+600000
+ 10031 words of font info for 35 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 38i,8n,43p,706b,1676s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
-></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
-</usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb
-></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><
-/usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></u
-sr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/
-local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/l
-ocal/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/lo
-cal/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on PLOG_TP1_FINAL_Fabrik_3.pdf (20 pages, 342270 bytes).
+ 38i,8n,43p,934b,1676s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2016/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmbxti10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmr12.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmr7.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmti10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmtt9.pfb>
+Output written on PLOG_TP1_FINAL_Fabrik_3.pdf (20 pages, 356667 bytes).
 PDF statistics:
  120 PDF objects out of 1000 (max. 8388607)
  74 compressed objects within 1 object stream

@@ -1,8 +1,5 @@
 \begin{thebibliography}{1}
 
-\bibitem{games_and_puzzles_by_dieter_stein}
-D.~Stein, ``Fabrik a 'worker placement' abstract.''
-
 \bibitem{sterling_shapiro_warren_2010}
 L.~Sterling, E.~Y. Shapiro, and D.~H.~D. Warren, {\em The Art of Prolog:
   Advanced Programming Techniques}.
@@ -11,5 +8,8 @@ L.~Sterling, E.~Y. Shapiro, and D.~H.~D. Warren, {\em The Art of Prolog:
 \bibitem{carlsson_fruhwirth_2016}
 M.~Carlsson and T.~Frühwirth, {\em SICStus Prolog User’s Manual}.
 \newblock SICS Swedish ICT AB, 4.3.5~ed., 2016.
+
+\bibitem{games_and_puzzles_by_dieter_stein}
+D.~Stein, ``Fabrik a 'worker placement' abstract.''
 
 \end{thebibliography}
