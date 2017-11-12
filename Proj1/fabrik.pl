@@ -50,7 +50,7 @@ userFunction(Side, _, _) :-
 	getEnter, !, fail.
 
 aiFunction(Side, Board, NewBoard) :-
-	getBestPlay(Side, Board, NewBoard),
+	getGreedyPlay(Side, Board, NewBoard),
 	printBoard(NewBoard), getEnter, !.
 
 setFirstWorker('userFunction', Side, Board, NewBoard) :-

@@ -1,3 +1,4 @@
+:- use_module(library(random)).
 :- dynamic(validCoord/1).
 
 % Defense factor in AI evaluation function
@@ -186,8 +187,16 @@ evaluateAllBoards(Side, [FirstBoard | OtherBoards], Result) :-
 	append([FirstResult-FirstBoard], TmpResult, Result).
 evaluateAllBoards(_, [], []).
 
-getBestPlay(Side, CurrentBoard, Play) :-
+getGreedyPlay(Side, CurrentBoard, Play) :-
 	getPossibleBoards(Side, CurrentBoard, PossibleBoards),
 	evaluateAllBoards(Side, PossibleBoards, GradedBoards),
 	keysort(GradedBoards, Plays),
-	last(Plays, Grade-Play).
+	last(Plays, _Grade-Play).
+
+getRandomPlay(Side, CurrentBoard, Play) :-
+	getPossibleBoards(Side, CurrentBoard, PossibleBoards),
+	length(PossibleBoards, Len),
+	Len1 is Len - 1,
+	random(0, Len1, Idx),
+	nth0(Idx, PossibleBoards, Play).
+	
