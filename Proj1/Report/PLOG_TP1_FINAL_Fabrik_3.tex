@@ -386,25 +386,25 @@ Representação de um tabuleiro, usando o código mencionado:\newline
 
 \newpage
 
-\subsection{Lista de Jogadas Válidas} Obtenção de uma lista de jogadas possíveis. Exemplo: \textit{valid\_moves(+Board, -ListOfMoves)}.
+\subsection{Lista de Jogadas Válidas}
 
 A obtenção da lista de jogadas é feita através do predicado \textbf{getIntersections (Board, Row1, Col1, Row2, Col2, Positions)}, que dadas as posições dos dois Trabalhadores calcula as interseções das suas linhas de visão. O cálculo das linhas de visão de um trabalhador é feito através do predicado \textbf{positionsInSight (Board, Row1, Col1, Pos1)}. Este predicado, calcula o campo de visão de um Trabalhador analisando todas as direções desda posição do Trabalhador até encontrar uma posição que não se encontra vazia.
 
 \newpage
 
-\subsection{Execução de Jogadas} Validação e execução de uma jogada num tabuleiro, obtendo o novo estado do jogo. Exemplo: \textit{move(+Move, +Board, -NewBoard)}.
+\subsection{Execução de Jogadas}
 
-No início do jogo, são colocados os dois Trabalhadores nas posições iniciais, usando o predicado \textbf{setPiece(Piece, Row, Col, Board, NewBoard)}. Este predicado coloca os Trabalhadores na posição dada desde que esta posição esteja vazia. A validade de uma jogada é sempre avaliada usando o predicado \textbf{isValidPlay (PieceType, Row, Col, Board)}.
+No início do jogo, são colocados os dois Trabalhadores nas posições iniciais, usando o predicado \textbf{setPiece(+Piece, +Row, +Col, +Board, -NewBoard)}. Este predicado coloca os Trabalhadores na posição dada desde que esta posição esteja vazia. A validade de uma jogada é sempre avaliada usando o predicado \textbf{isValidPlay (+PieceType, +Row, +Col, +Board)}.
 
 No decorrer do jogo, cada jogada pode ser divida em duas partes distintas:  a movimentação, se o jogador assim o desejar, de um dos Trabalhadores e a colocação de uma peça no tabuleiro. Analizemos cada um destes processos em distinto:
 \begin{itemize}
-	\item A movimentação de um Trabalhador é feita através do predicado \textbf{moveWorker/6} que recebendo a posição tual do Trabalhador, a nova posição do Trabalhador e o tabuleiro, verifica que a nova posição se encontra vazia e move o Trabalhador para essa posição, devolvendo o tabuleiro atualizado. A movimentação da peça é feita através da colocação de uma célula vazia na posição anterior e a colocação do Trabalhador na nova posição, usando para ambas as ações o predicado \textbf {setPiece(Piece, Row, Col, Board, NewBoard)}.
-	\item A colocação de uma nova peça no tabuleiro é feita através do predicado \textbf{pieceInput/4}, que por sua vez faz uso do predicado \textbf{setPiece(Piece, Row, Col, Board, NewBoard)}. Este predicado recebe um tipo de peça e coloca-a no tabuleiro, após verificar que a jogada é válida. No caso das peças serem pretas ou brancas, a validade da jogada passa pela posição indicada estar vazia e pela posição ser uma interseção das linhas de visão dos Trabalhadores.
+	\item A movimentação de um Trabalhador é feita através do predicado \textbf{moveWorker/6} que recebendo a posição tual do Trabalhador, a nova posição do Trabalhador e o tabuleiro, verifica que a nova posição se encontra vazia e move o Trabalhador para essa posição, devolvendo o tabuleiro atualizado. A movimentação da peça é feita através da colocação de uma célula vazia na posição anterior e a colocação do Trabalhador na nova posição, usando para ambas as ações o predicado \textbf {setPiece(+Piece, +Row, +Col, +Board, -NewBoard)}.
+	\item A colocação de uma nova peça no tabuleiro é feita através do predicado \textbf{pieceInput/4}, que por sua vez faz uso do predicado \textbf{setPiece(+Piece, +Row, +Col, +Board, -NewBoard)}. Este predicado recebe um tipo de peça e coloca-a no tabuleiro, após verificar que a jogada é válida. No caso das peças serem pretas ou brancas, a validade da jogada passa pela posição indicada estar vazia e pela posição ser uma interseção das linhas de visão dos Trabalhadores.
 \end {itemize}
 
 \newpage
 
-\subsection{Avaliação do Tabuleiro} Avaliação do estado do jogo, que permitirá comparar a aplicação das diversas jogadas disponíveis. Exemplo: \textit{value(+Board, +Player, -Value)}.
+\subsection{Avaliação do Tabuleiro}
 
 A avaliação do jogo pode ser conceptualmente divida em duas partes: a análise de sequências de peças, quer da própria cor, quer de peças adversárias; e o bloqueio de sequências de peças adversárias. As peças adversárias têm cotação negativa, enquanto as peças da mesma cor tem cotação positiva.
 
