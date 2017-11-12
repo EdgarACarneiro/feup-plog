@@ -15,4 +15,4 @@
 \contentsline {section}{\numberline {4}Interface com o Utilizador}{17}
 \contentsline {section}{\numberline {5}Conclus\IeC {\~o}es}{18}
 \contentsline {section}{Bibliografia}{19}
-\contentsline {section}{\numberline {A}Nome do Anexo}{20}
+\contentsline {section}{\numberline {A}C\IeC {\'o}digo Comentado}{20}
