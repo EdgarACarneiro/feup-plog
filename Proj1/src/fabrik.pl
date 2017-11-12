@@ -26,7 +26,6 @@ initGame(_, _):-
 
 %game Loop for Player 1
 gameLoop(Player1Function, Player2Function, black, Board) :-
-	boardIsNotFull(Board),
 	call(Player1Function, black, Board, NewBoard), printBoard(NewBoard),
 	decideNextStep(Player1Function, Player2Function, black, NewBoard), !.
 %Player 1 could not place a piece, so he lost
@@ -34,7 +33,6 @@ gameLoop(_Player1Function, _Player2Function, black, _Board) :- victory(white), !
 
 %game Loop for Player 2
 gameLoop(Player1Function, Player2Function, white, Board) :-
-	boardIsNotFull(Board),
 	call(Player2Function, white, Board, NewBoard), printBoard(NewBoard),
 	decideNextStep(Player1Function, Player2Function, white, NewBoard), !.
 %Player 2 could not place a piece, so he lost
@@ -47,6 +45,7 @@ decideNextStep(_Player1Function, _Player2Function, Side, Board) :-
 	victory(Side).
 decideNextStep(Player1Function, Player2Function, Side, Board) :-
 	changePlayer(Side, NewSide), !,
+	boardIsNotFull(Board), !,
 	gameLoop(Player1Function, Player2Function, NewSide, Board).
 
 %End game with victory of Side
