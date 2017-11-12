@@ -66,11 +66,11 @@ playMenuHandler:-
 	getInt(Choice),
 	playMenuChoice(Choice), !.
 playMenuChoice(1):-
-	initGame(userFunction, userFunction), !,
+	initGame(humanPlay, humanPlay), !,
 	mainMenuHandler, !.
 playMenuChoice(2):-
 	aiMenuHandler(AI),
-        initGame(userFunction, AI), !,
+        initGame(humanPlay, AI), !,
         mainMenuHandler, !.
 playMenuChoice(3):-
 	aiMenuHandler(AI1),

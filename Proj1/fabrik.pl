@@ -11,20 +11,24 @@
 fabrik:-
 	mainMenuHandler.
 
+%Game Initialization - set Workers and choose who starts
 initGame(Player1, Player2) :-
 	genRowColFacts,
 	boardSize(N), !,
 	createBoard(B0, N), printBoard(B0),
 	setFirstWorker(Player1, black, B0, B1), printBoard(B1),
 	setFirstWorker(Player2, black, B1, B2), printBoard(B2),
-	chooseStartingPlayer(Player1, Side), printBoard(B2),
+	chooseStartingPlayer(Player1, Side), printBoard(B2), !,
 	gameLoop(Player1, Player2, Side, B2).
+%If somehting failed on initGame, return to Play Menu
+initGame(_, _):-
+	playMenuHandler.
 
-gameLoop(Player1Function, Player2Function, black, Board) :-
+gameLoop(Player1Function, Player2Function, black, Board) :- !,
 	call(Player1Function, black, Board, NewBoard), printBoard(NewBoard),
 	decideNextStep(Player1Function, Player2Function, black, NewBoard), !.
 
-gameLoop(Player1Function, Player2Function, white, Board) :-
+gameLoop(Player1Function, Player2Function, white, Board) :- !,
 	call(Player2Function, white, Board, NewBoard), printBoard(NewBoard),
 	decideNextStep(Player1Function, Player2Function, white, NewBoard), !.
 
@@ -37,18 +41,19 @@ decideNextStep(Player1Function, Player2Function, Side, Board) :-
 	changePlayer(Side, NewSide), !,
 	gameLoop(Player1Function, Player2Function, NewSide, Board).
 
-
-userFunction(Side, Board, NewBoard) :-
+%Executes a human Play, getting worker input and piece input
+humanPlay(Side, Board, NewBoard) :-
 	workerUpdate(Side, Board, TempBoard),
 	printBoard(TempBoard),
 	isPiecePlayPossible(TempBoard), !,
 	pieceInput(Side, Side, TempBoard, NewBoard), !.
-userFunction(Side, _, _) :-
+humanPlay(Side, _, _) :-
         changePlayer(Side, NewSide),
 	wonMsg(NewSide), % Side loses if no play is possible
 	getEnter, !, fail.
 
-setFirstWorker('userFunction', Side, Board, NewBoard) :-
+%Setting the First Workers on the Board - Game beggining
+setFirstWorker('humanPlay', Side, Board, NewBoard) :-
 	pieceInput(worker, Side, Board, NewBoard).
 %For AI Functions
 setFirstWorker(_, _Side, Board, NewBoard) :-
@@ -56,6 +61,7 @@ setFirstWorker(_, _Side, Board, NewBoard) :-
         random(0, Size, Row), random(0, Size, Col),
         setPiece(worker, Row, Col, Board, NewBoard).
 
-chooseStartingPlayer('userFunction', Side) :-
+%Choose the Player that starts putting pieces on the board
+chooseStartingPlayer('humanPlay', Side) :-
         getFirstPlayer(Side), !.
 chooseStartingPlayer(_, white). % always white - For AI functions 
