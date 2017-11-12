@@ -388,6 +388,8 @@ Representação de um tabuleiro, usando o código mencionado:\newline
 
 \subsection{Lista de Jogadas Válidas} Obtenção de uma lista de jogadas possíveis. Exemplo: \textit{valid\_moves(+Board, -ListOfMoves)}.
 
+A obtenção da lista de jogadas é feita através do predicado \textbf{getIntersections (Board, Row1, Col1, Row2, Col2, Positions)}, que dadas as posições dos dois Trabalhadores calcula as interseções das suas linhas de visão. O cálculo das linhas de visão de um trabalhador é feito através do predicado \textbf{positionsInSight (Board, Row1, Col1, Pos1)}. Este predicado, calcula o campo de visão de um Trabalhador analisando todas as direções desda posição do Trabalhador até encontrar uma posição que não se encontra vazia.
+
 \newpage
 
 \subsection{Execução de Jogadas} Validação e execução de uma jogada num tabuleiro, obtendo o novo estado do jogo. Exemplo: \textit{move(+Move, +Board, -NewBoard)}.
