@@ -450,7 +450,7 @@ Assim, internamente, a verificação destas condições é feita de três formas
 Para este projeto desenvolvemos dois bots:  um \textbf {Random bot}, que realiza uma jogada aleatória e uma \textbf{Greedy Bot} que realiza uma jogada de forma a obter o tabuleiro que ele considera ser o mais vantajoso. Explicando melhor como cada um dos bots funcionam temos:
 \begin{itemize}
  	\item \textbf{\textit{Random Bot}}: Este bot obtém a jogada que deve escolher através do predicado \textbf{getRandomPlay (+Side, +CurrentBoard, -Play)}. Este predicado, escolhe aleatoriamente um dos tabuleiros de entre todos os tabuleiros que é possível obter através do movimento de Trabalhor seguido da colocação de uma peça. Todos os tabuleiros possíveis gerar encontrm-se guardados numa lista, que é computada no predicado \textbf{getPossibleBoards(+Side, +CurrentBoard, -PossibleBoards)}.
-	\item\textbf{\textit{Greedy Bot}}: Tal como o bot aleatório este bot obtem a lista de todos os tabuleiros mas apenas escolhe aquele que considera ser mais vantajoso, através do predicado \textbf{evaluateAllBoards(+Side, +PossibleBoards, -GradedBoards)} que aplicação a função de avaliação já descrita a todos os tabuleiros, sendo que depois escolhe aquele que tem maior valor, atrvés de um \textbf{keysor}.
+	\item\textbf{\textit{Greedy Bot}}: Tal como o bot aleatório este bot obtem a lista de todos os tabuleiros mas apenas escolhe aquele que considera ser mais vantajoso, através do predicado \textbf{evaluateAllBoards(+Side, +PossibleBoards, -GradedBoards)} que aplicação a função de avaliação já descrita a todos os tabuleiros, sendo que depois escolhe aquele que tem maior valor, através de um \textbf{keysort}.
 \end{itemize}
 
 \newpage
