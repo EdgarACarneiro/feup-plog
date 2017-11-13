@@ -23,12 +23,12 @@ moves([s(X0,Y0)|T],Xs) :-
 salta_degraus(1).
 salta_degraus(2).
 
-casa_degraus(Degraus, L) :-
+casa_degraus(Degraus, [X | L]) :-
     salta_degraus(X),
     NDegraus is Degraus - X,
     NDegraus >= 0,
-    casa_degraus(NDegraus, [X | L]).
-casa_degraus(Degraus, _, _) :-
+    casa_degraus(NDegraus, L).
+casa_degraus(Degraus, []) :-
     Degraus =< 0.
 
 jogo_escadas(Degraus, N, L) :-
