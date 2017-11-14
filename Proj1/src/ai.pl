@@ -192,8 +192,7 @@ evaluateAllBoards(_, [], []).
 getGreedyPlay(Side, CurrentBoard, Play) :-
 	getPossibleBoards(Side, CurrentBoard, PossibleBoards),
 	evaluateAllBoards(Side, PossibleBoards, GradedBoards),
-	keysort(GradedBoards, Plays),
-	last(Plays, _Grade-Play).
+	max_member(_Grade-Play, GradedBoards).
 
 getRandomPlay(Side, CurrentBoard, Play) :-
 	getPossibleBoards(Side, CurrentBoard, PossibleBoards),
