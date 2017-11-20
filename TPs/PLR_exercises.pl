@@ -44,3 +44,18 @@ magic3(Vars) :-
         
         labeling([], Vars).
   
+  
+%Ex8
+putoMercearia(L):-
+        %Valores todos em centimos
+        L=[PArroz, PBat, PEspar, PAtum],
+        domain(L, 0, 711),
+        
+        %Falta adcionar a restrição do preço de 2 ser multiplo de 10 -> proxima aula
+        PArroz + PBat + PEspar + PAtum #= 711,
+        PArroz * PBat * PEspar * PAtum #= 711000000,
+        PBat #> PAtum,
+        PAtum #> PArroz,
+        PEspar #< PArroz,
+        
+        labeling([], L).
