@@ -1,2 +1,2 @@
-skyscrapers :-
+skyscraper :-
   write("Hello World!"), nl.
