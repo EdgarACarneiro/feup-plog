@@ -118,11 +118,12 @@ putoMercearia(L):-
 % Tamanhos:     Small - 1 ; Medium - 2 ; Large - 3 ; XLarge - 4.
 
 filaDeCarros(LColors, LSize) :-
-        % All variables
+        % Variables
         length(LColors, 4),
         length(LSize, 4),
         domain(LColors, 1, 4),
         domain(LSize, 1, 4),
+        
         
         % Restrictions
         all_distinct(LColors),
@@ -148,6 +149,8 @@ filaDeCarros(LColors, LSize) :-
         element(IdxAmarelo, LColors, 3),
         element(IdxPreto, LColors, 4),
         IdxAmarelo #> IdxPreto,
-          
+        
+        % Find Solutions - Labeling should be executed only once, to prevent unnecessary backtracking
         append(LColors, LSize, LAnswer),
         labeling([], LAnswer).
+
