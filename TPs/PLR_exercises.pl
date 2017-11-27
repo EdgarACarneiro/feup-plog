@@ -65,7 +65,7 @@ restrainColumns(_Board, _N). % TODO
 restrainDiagonals(_Board, _N). % TODO
 
 
-% IPLR 4 Problema dos Criptogramas
+% IPLR 4. Problema dos Criptogramas
 puzzle(W1, W2, W3, D1, D2, D3) :-
         Vars = [D1, D2, D3],
         length(W1, Len), length(D1, Len),
@@ -82,8 +82,7 @@ puzzle(W1, W2, W3, D1, D2, D3) :-
 restrainSum([], [], []).   
 restrainSum([X1 | L1], [X2 | L2], [X3 | L3]) :-
         X3 #= X1 + X2,
-        restrainSum(L1, L2, L3).
-              
+        restrainSum(L1, L2, L3).   
 
 % IPLR 7. Peru Assado
 costOfTurkey(Cost) :-
@@ -96,7 +95,7 @@ costOfTurkey(Cost) :-
         labeling([], Vars).
   
   
-%Ex8
+% IPLR 8. O Puto na Mercearia
 putoMercearia(L):-
         %Valores todos em centimos
         L=[PArroz, PBat, PEspar, PAtum],
@@ -110,3 +109,45 @@ putoMercearia(L):-
         PEspar #< PArroz,
         
         labeling([], L).
+
+
+%% PLS Exercises
+
+% PLS 5. A Fila de Carros
+% Cores:        Azul - 1 ; Verde - 2 ; Amarelo - 3 ; Preto - 4.
+% Tamanhos:     Small - 1 ; Medium - 2 ; Large - 3 ; XLarge - 4.
+
+filaDeCarros(LColors, LSize) :-
+        % All variables
+        length(LColors, 4),
+        length(LSize, 4),
+        domain(LColors, 1, 4),
+        domain(LSize, 1, 4),
+        
+        % Restrictions
+        all_distinct(LColors),
+        all_distinct(LSize),
+
+        % Carro imediatamente antes do azul menor que o que esta imediatamente depois 
+        element(IdxAzul, LColors, 1),
+        IdxAzul in 2..3,
+        IdxA1 #= IdxAzul - 1,
+        IdxA2 #= IdxAzul + 1,
+        element(IdxA1, LSize, SMenor),
+        element(IdxA2, LSize, SMaior),
+        SMenor #< SMaior,
+        
+        % Carro verde menor de todos
+        element(IdxVerde, LColors, 2),
+        element(IdxVerde, LSize, 1),
+                
+        % Verde depois do azul
+        IdxVerde #> IdxAzul,
+        
+        % Amarelo depois do preto
+        element(IdxAmarelo, LColors, 3),
+        element(IdxPreto, LColors, 4),
+        IdxAmarelo #> IdxPreto,
+          
+        append(LColors, LSize, LAnswer),
+        labeling([], LAnswer).
