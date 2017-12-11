@@ -59,3 +59,40 @@ filaDe12Carros(Cores) :-
 
         % Labeling
         labeling([], Cores).
+
+
+% Consumo de eletrodomesticos
+% Duracao de cada; Consumo de cada; Consumo maximo
+% Tasks is [task(S1, 16, E1, 2, 1), task(S2, 6, E2, 9, 2), task(S3, 13, E3, 3, 3), task(S4, 7, E4, 7, 4), task(S5, 5, E5, 10, 5), task(S6, 18, E6, 1, 6), task(S7, 4, E7, 11, 7)].
+eletrodomesticos(Tasks, Max) :-
+        endings(LEnds, Tasks),
+        starts(LStarts, Tasks),
+        domain(LEnds, 1, 60),
+        domain(LStarts, 0, 50),
+
+        /* 
+        endingsDomain(Tasks, 1, 60, LEnds),
+        startsDomain(Tasks, 1, 50, _),
+        */
+        cumulative(Tasks, [limit(Max)]),
+        maximum(MaxEnd, LEnds),
+        
+        labeling([minimize(MaxEnd)], LEnds).
+
+endingsDomain([], _, _, []).
+endingsDomain([task(_, _, End, _, _) | Rest], Min, Max, [End | RestEnds]) :-
+        End #> Min, End #< Max,
+        endingsDomain(Rest, Min, Max, RestEnds).
+
+startsDomain([], _, _, []).
+startsDomain([task(Start, _, _, _, _) | Rest], Min, Max, [Start | RestStarts]) :-
+        Start #> Min, Start #< Max,
+        endingsDomain(Rest, Min, Max, RestStarts).
+
+endings([End | LEnds], [task(_, _, End, _, _) | LTasks]) :-
+        endings(LEnds, LTasks).
+endings([], _).
+
+starts([Start | LStarts], [task(Start, _, _, _, _) | LTasks]) :-
+        endings(LStarts, LTasks).
+stsarts([], _).

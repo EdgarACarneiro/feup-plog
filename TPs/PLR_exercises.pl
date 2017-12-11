@@ -154,3 +154,23 @@ filaDeCarros(LColors, LSize) :-
         append(LColors, LSize, LAnswer),
         labeling([], LAnswer).
 
+
+%% Programacao em Logica Com Restricoes - Problemas de Optimizacao
+% PLOP 2: O Carteiro Preguicoso
+timeTaken([_El], 0).
+timeTaken([First, Second | Rest], Time) :-
+        Time #= T2 + abs(Second - First),
+        timeTaken([Second | Rest], T2).
+        
+carteiroPreguicoso(Path, Time) :-
+        length(Path, 10),
+        domain(Path, 1, 10),
+        all_distinct(Path),
+        element(10, Path, 6),
+        
+        timeTaken(Path, Time),
+        
+        labeling([maximize(Time)], Path).
+        
+        
+        
