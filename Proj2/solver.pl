@@ -30,15 +30,11 @@ restrictBoardDomain([Row | Board], N) :-
  */
 applyLeftToRight(Num, Row) :-
   applyLeftToRight(Num, Row, 0).
-applyLeftToRight(0, _, _) :- !.
+applyLeftToRight(0, [], _) :- !.
 applyLeftToRight(Num, [El | Row], Max) :-
-  El #> Max #<=> Flag,
-  nextLeftToRight(Num, Row, Max, El, Flag).
-nextLeftToRight(Num, Row, Max, _, 0) :-
-  applyLeftToRight(Num, Row, Max).
-nextLeftToRight(Num, Row, _, El, 1) :-
-  NewNum is Num - 1,
-  applyLeftToRight(NewNum, Row, El).
+  (El #> Max #/\ NewMax #= El #/\ NewNum #= Num - 1) #\/
+  (El #=< Max #/\ NewMax #= Max #/\ NewNum #= Num),
+  applyLeftToRight(NewNum, Row, NewMax).
 
 applyAllLeftToRight([], []).
 applyAllLeftToRight([0 | Ls], [_ | Rows]) :-
@@ -46,6 +42,25 @@ applyAllLeftToRight([0 | Ls], [_ | Rows]) :-
 applyAllLeftToRight([L1 | Ls], [Row1 | Rows]) :-
   applyLeftToRight(L1, Row1),
   applyAllLeftToRight(Ls, Rows).
+
+
+%% RIGHT TO LEFT
+applyRightToLeft(Num, Row) :-
+  applyRightToLeft(Num, Row, 0).
+applyRightToLeft(0, [], _) :- !.
+applyRightToLeft(Num, Row, Max) :-
+  append(LeftRow, [El], Row),
+  (El #> Max #/\ NewMax #= El #/\ NewNum #= Num - 1) #\/
+  (El #=< Max #/\ NewMax #= Max #/\ NewNum #= Num),
+  applyRightToLeft(NewNum, LeftRow, NewMax).
+
+applyAllRightToLeft([], []).
+applyAllRightToLeft([0 | Ls], [_ | Rows]) :-
+  applyAllRightToLeft(Ls, Rows).
+applyAllRightToLeft([L1 | Ls], [Row1 | Rows]) :-
+  applyRightToLeft(L1, Row1),
+  applyAllRightToLeft(Ls, Rows).
+
 
 /**
  *  +Sides -> a list of lists, each of which represents the restrictions on the side of the board (number of visible buildings).
@@ -55,7 +70,7 @@ applyAllLeftToRight([L1 | Ls], [Row1 | Rows]) :-
  *  -Board -> a list of lists (a matrix)
  */
 solveBoard(Sides, Board) :-
-  Sides = [Up, Left, _Down, _Right],
+  Sides = [Up, Left, _Down, Right],
 
   validateInput(Sides),
   length(Up, N),
@@ -66,6 +81,7 @@ solveBoard(Sides, Board) :-
 
   % For every ROW in the board, restrict according to Left/Right lists
   applyAllLeftToRight(Left, Board),
+  applyAllRightToLeft(Right, Board),
 
   % For every COL in the board, restrict according to Up/Down lists
 

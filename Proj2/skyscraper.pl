@@ -1,5 +1,6 @@
 :- include('solver.pl').
 
+% fd_statistics(backtracks, B).
 
 skyscraper :-
   write('Skyscraper!'), nl,
