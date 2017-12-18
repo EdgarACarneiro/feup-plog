@@ -91,6 +91,19 @@ applyAllTopRestrictions([N | NList], Board, Count) :-
   applyAllTopRestrictions(NList, Board, NewCount).
 applyAllTopRestrictions([], _, _).
 
+%% BOTTOM to TOP
+applyAllBotRestrictions(Restrictions, Board) :-
+  applyAllBotRestrictions(Restrictions, Board, 1).
+applyAllBotRestrictions([0 | NList], Board, Count) :-
+  NewCount is Count + 1,
+  applyAllBotRestrictions(NList, Board, NewCount).
+applyAllBotRestrictions([N | NList], Board, Count) :-
+  getBoardCol(Board, Count, Col),
+  applyRightToLeft(N, Col),
+  NewCount is Count + 1,
+  applyAllBotRestrictions(NList, Board, NewCount).
+applyAllBotRestrictions([], _, _).
+
 
 %% TODO generalize all applyXToY functions with a getElement(Side, Row, Element, RestOfRow) in which Side is one of [top, left, bottom, right]
 %% Need to generalize applyAllXToY at the same time, or at least make it compatible with changes
@@ -103,7 +116,7 @@ applyAllTopRestrictions([], _, _).
  *  -Board -> a list of lists (a matrix)
  */
 solveBoard(Sides, Board) :-
-  Sides = [Top, Left, _Bottom, Right],
+  Sides = [Top, Left, Bottom, Right],
 
   validateInput(Sides),
   length(Top, N),
@@ -117,7 +130,7 @@ solveBoard(Sides, Board) :-
   applyAllLeftRestrictions(Left, Board),
   applyAllRightRestrictions(Right, Board),
   applyAllTopRestrictions(Top, Board),
-
+  applyAllBotRestrictions(Bottom, Board),
 
   % Other restrictions ?
 
