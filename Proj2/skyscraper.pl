@@ -1,7 +1,7 @@
 :- include('solver.pl').
 
 % fd_statistics(backtracks, B).
-% testRestrictions(R), solveBoard(R, B).
+% testRestrictions(R), solveBoard(R, B), printBoard(B).
 
 skyscraper :-
   write('Skyscraper!'), nl,

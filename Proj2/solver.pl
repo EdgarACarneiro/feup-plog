@@ -30,8 +30,9 @@ restrictBoardDomain([Row | Board], N) :-
  */
 applyLeft(Num, Row) :-
   applyLeft(Num, Row, 0).
-applyLeft(0, [], _) :- !.
+applyLeft(0, [], _).
 applyLeft(Num, [El | Row], Max) :-
+  NewNum #>= 0,
   (El #> Max #/\ NewMax #= El #/\ NewNum #= Num - 1) #\/
   (El #=< Max #/\ NewMax #= Max #/\ NewNum #= Num),
   applyLeft(NewNum, Row, NewMax).
@@ -47,9 +48,10 @@ applyAllLeftRestrictions([L1 | Ls], [Row1 | Rows]) :-
 %% RIGHT to LEFT
 applyRight(Num, Row) :-
   applyRight(Num, Row, 0).
-applyRight(0, [], _) :- !.
+applyRight(0, [], _).
 applyRight(Num, Row, Max) :-
   append(LeftRow, [El], Row),
+  NewNum #>= 0,
   (El #> Max #/\ NewMax #= El #/\ NewNum #= Num - 1) #\/
   (El #=< Max #/\ NewMax #= Max #/\ NewNum #= Num),
   applyRight(NewNum, LeftRow, NewMax).
@@ -62,26 +64,19 @@ applyAllRightRestrictions([L1 | Ls], [Row1 | Rows]) :-
   applyAllRightRestrictions(Ls, Rows).
 
 %% TOP to BOTTOM
-applyTop(Num, Row) :-
-  applyTop(Num, Row, 0).
-applyTop(0, [], _) :- !.
-applyTop(Num, Row, Max) :-
-  append(LeftRow, [El], Row),
-  (El #> Max #/\ NewMax #= El #/\ NewNum #= Num - 1) #\/
-  (El #=< Max #/\ NewMax #= Max #/\ NewNum #= Num),
-  applyTop(NewNum, LeftRow, NewMax).
-
 applyAllTopRestrictions(Restrictions, Board) :-
   applyAllTopRestrictions(Restrictions, Board, 1).
 applyAllTopRestrictions([0 | Ls], Board, N) :-
-  !, NewN is N + 1,
+  NewN is N + 1,
   applyAllTopRestrictions(Ls, Board, NewN).
 applyAllTopRestrictions([L1 | Ls], Board, N) :-
   getBoardCol(Board, N, Col),
-  applyTop(L1, Col),
+  applyLeft(L1, Col),
   NewN is N + 1,
   applyAllTopRestrictions(Ls, Board, NewN).
 applyAllTopRestrictions([], [], _).
+
+
 
 getBoardCol([], _, []).
 getBoardCol([Row | Board], N, [El | Col]) :-
@@ -111,6 +106,7 @@ solveBoard(Sides, Board) :-
   % Apply restrictions to board rows/columns
   applyAllLeftRestrictions(Left, Board),
   applyAllRightRestrictions(Right, Board),
+  applyAllTopRestrictions(Top, Board),
 
 
   % Other restrictions ?
