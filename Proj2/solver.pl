@@ -44,7 +44,7 @@ applyAllLeftToRight([L1 | Ls], [Row1 | Rows]) :-
   applyAllLeftToRight(Ls, Rows).
 
 
-%% RIGHT TO LEFT
+%% RIGHT to LEFT
 applyRightToLeft(Num, Row) :-
   applyRightToLeft(Num, Row, 0).
 applyRightToLeft(0, [], _) :- !.
@@ -61,6 +61,8 @@ applyAllRightToLeft([L1 | Ls], [Row1 | Rows]) :-
   applyRightToLeft(L1, Row1),
   applyAllRightToLeft(Ls, Rows).
 
+%% TODO generalize all applyXToY functions with a getElement(Side, Row, Element, RestOfRow) in which Side is one of [up, left, down, right]
+%% Need to generalize applyAllXToY at the same time, or at least make it compatible with changes
 
 /**
  *  +Sides -> a list of lists, each of which represents the restrictions on the side of the board (number of visible buildings).
