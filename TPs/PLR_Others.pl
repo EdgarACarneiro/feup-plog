@@ -8,10 +8,10 @@ count_eq(Val, [H | T], Cnt) :-
         Val #= H #<=> Bool,
         Cnt #= Cnt2 + Bool.
 
-all_distinct_3by3([_A, _B]).
-all_distinct_3by3([A,B,C|T]) :-
+alldistinct3by3([_A, _B]).
+alldistinct3by3([A,B,C|T]) :-
         all_distinct([A,B,C]),
-        all_distinct_3by3([B,C|T]).
+        alldistinct3by3([B,C|T]).
 
 listEquals([], []).
 listEquals([X1 | T1], [X2 | T2]) :-
@@ -52,7 +52,7 @@ filaDe12Carros(Cores) :-
         element(5, Cores, 1),
         
         % Subsequencias de 3 carros sao diferentes
-        all_distinct_3by3(Cores),
+        alldistinct3by3(Cores),
         
         % Sequencia especifica so ocorre uma vez
         numOcurrences(Cores, [2, 3, 4, 1], 1),

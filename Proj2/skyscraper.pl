@@ -30,9 +30,9 @@ applyLeftToRightRestrictions(Num, [El | Row], Max) :-
   Num > 0,
   El #> Max #<=> Flag,
   nextLRRestriction(Num, Row, Max, El, Flag).
-nextLRRestriction(Num, Row, Max, El, 0) :-
+nextLRRestriction(Num, Row, Max, _, 0) :-
   applyLeftToRightRestrictions(Num, Row, Max).
-nextLRRestriction(Num, Row, Max, El, 1) :-
+nextLRRestriction(Num, Row, _, El, 1) :-
   NewNum is Num - 1,
   applyLeftToRightRestrictions(NewNum, Row, El).
 
@@ -47,7 +47,7 @@ applyAllLRRestrictions([L1 | Ls], [Row1 | Rows]) :-
  *  -Board -> a list of lists (a matrix)
  */
 solveBoard(Sides, Board) :-
-  Sides = [Up, Left, Down, Right],
+  Sides = [Up, Left, _Down, _Right],
 
   validateInput(Sides),
   length(Up, N),
