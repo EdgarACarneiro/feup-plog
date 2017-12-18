@@ -25,28 +25,27 @@ restrictBoardDomain([Row | Board], N) :-
 
 
 /**
- * Apply left to right restrictions on a given Row.
+ * Apply LEFT to RIGHT restrictions.
  * +Num is the number of visible skyscrapers from LEFT to RIGHT in the given row.
  */
-applyLeftToRightRestrictions(Num, Row) :-
-  applyLeftToRightRestrictions(Num, Row, 0).
-applyLeftToRightRestrictions(0, _, _).
-applyLeftToRightRestrictions(Num, [El | Row], Max) :-
-  Num > 0,
+applyLeftToRight(Num, Row) :-
+  applyLeftToRight(Num, Row, 0).
+applyLeftToRight(0, _, _) :- !.
+applyLeftToRight(Num, [El | Row], Max) :-
   El #> Max #<=> Flag,
-  nextLRRestriction(Num, Row, Max, El, Flag).
-nextLRRestriction(Num, Row, Max, _, 0) :-
-  applyLeftToRightRestrictions(Num, Row, Max).
-nextLRRestriction(Num, Row, _, El, 1) :-
+  nextLeftToRight(Num, Row, Max, El, Flag).
+nextLeftToRight(Num, Row, Max, _, 0) :-
+  applyLeftToRight(Num, Row, Max).
+nextLeftToRight(Num, Row, _, El, 1) :-
   NewNum is Num - 1,
-  applyLeftToRightRestrictions(NewNum, Row, El).
+  applyLeftToRight(NewNum, Row, El).
 
-applyAllLRRestrictions([], []).
-applyAllLRRestrictions([0 | Ls], [_ | Rows]) :-
-  applyAllLRRestrictions(Ls, Rows).
-applyAllLRRestrictions([L1 | Ls], [Row1 | Rows]) :-
-  applyLeftToRightRestrictions(L1, Row1),
-  applyAllLRRestrictions(Ls, Rows).
+applyAllLeftToRight([], []).
+applyAllLeftToRight([0 | Ls], [_ | Rows]) :-
+  applyAllLeftToRight(Ls, Rows).
+applyAllLeftToRight([L1 | Ls], [Row1 | Rows]) :-
+  applyLeftToRight(L1, Row1),
+  applyAllLeftToRight(Ls, Rows).
 
 /**
  *  +Sides -> a list of lists, each of which represents the restrictions on the side of the board (number of visible buildings).
@@ -66,7 +65,7 @@ solveBoard(Sides, Board) :-
   restrictBoardDomain(Board, N),
 
   % For every ROW in the board, restrict according to Left/Right lists
-  applyAllLRRestrictions(Left, Board),
+  applyAllLeftToRight(Left, Board),
 
   % For every COL in the board, restrict according to Up/Down lists
 
