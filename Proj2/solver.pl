@@ -1,6 +1,9 @@
 :- use_module(library(clpfd)).
 :- use_module(library(lists)).
 
+/**
+ * Input validation
+ */
 all_equal([_]).
 all_equal([X, X | Rest]) :-
   all_equal([X | Rest]).
@@ -9,9 +12,15 @@ validateInput(Sides) :-
   maplist(length, Sides, Lengths),
   all_equal(Lengths).
 
+
+/**
+ * Domain restriction
+ */
 restrictBoardDomain([], _).
 restrictBoardDomain([Row | Board], N) :-
+  length(Row, N),
   domain(Row, 1, N),
+  all_distinct(Row),
   restrictBoardDomain(Board, N).
 
 
@@ -32,6 +41,9 @@ nextLRRestriction(Num, Row, _, El, 1) :-
   NewNum is Num - 1,
   applyLeftToRightRestrictions(NewNum, Row, El).
 
+applyAllLRRestrictions([], []).
+applyAllLRRestrictions([0 | Ls], [_ | Rows]) :-
+  applyAllLRRestrictions(Ls, Rows).
 applyAllLRRestrictions([L1 | Ls], [Row1 | Rows]) :-
   applyLeftToRightRestrictions(L1, Row1),
   applyAllLRRestrictions(Ls, Rows).
@@ -50,6 +62,7 @@ solveBoard(Sides, Board) :-
   length(Up, N),
 
   % Domain
+  length(Board, N),
   restrictBoardDomain(Board, N),
 
   % For every ROW in the board, restrict according to Left/Right lists

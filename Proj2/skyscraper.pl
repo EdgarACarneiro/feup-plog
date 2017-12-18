@@ -2,7 +2,7 @@
 
 
 skyscraper :-
-  write("Skyscraper!"), nl,
+  write('Skyscraper!'), nl,
   testRestrictions(R),
   solveBoard(R, B),
   printBoard(B).
@@ -13,7 +13,7 @@ printBoard([Row | Board]) :-
   printBoard(Board).
 printRow([]).
 printRow([El | Row]) :-
-  write(El), write(" "),
+  write(El), write(' '),
   printRow(Row).
 
 
