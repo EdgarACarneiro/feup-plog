@@ -12,7 +12,6 @@ validateInput(Sides) :-
   maplist(length, Sides, Lengths),
   all_equal(Lengths).
 
-
 /**
  * Domain restriction
  */
@@ -39,29 +38,34 @@ getBoardCol([Row | Board], N, [El | Col]) :-
   getBoardCol(Board, N, Col).
 
 
-/**
- * Apply LEFT to RIGHT restrictions.
- * +Num is the number of visible skyscrapers from LEFT to RIGHT in the given row.
- */
+%% Gets the FIRST element of a given row
+getFirstElement([Element | RemainderRow], Element, RemainderRow).
+
+%% Gets the LAST element of a given row
+getLastElement(Row, Element, RemainderRow) :-
+  append(RemainderRow, [Element], Row).
+
+
+%% LEFT to RIGHT
 applyLeftToRight(Num, Row) :-
-  applyLeftToRight(Num, Row, 0).
-applyLeftToRight(0, [], _).
-applyLeftToRight(Num, [El | Row], Max) :-
-  NewNum #>= 0,
-  (El #> Max #/\ NewMax #= El #/\ NewNum #= Num - 1) #\/
-  (El #=< Max #/\ NewMax #= Max #/\ NewNum #= Num),
-  applyLeftToRight(NewNum, Row, NewMax).
+  applyToRow(Num, Row, 0, getFirstElement).
 
 %% RIGHT to LEFT
 applyRightToLeft(Num, Row) :-
-  applyRightToLeft(Num, Row, 0).
-applyRightToLeft(0, [], _).
-applyRightToLeft(Num, Row, Max) :-
-  append(LeftRow, [El], Row),
+  applyToRow(Num, Row, 0, getLastElement).
+
+/**
+ * Apply restrictions to Row.
+ * +Predicate Order in which elements are analyzed - fetches an element.
+ * +Num is the number of visible skyscrapers according to the above order.
+ */
+applyToRow(Num, Row, Max, GetElement) :-
+  call(GetElement, Row, El, RemainderRow),
   NewNum #>= 0,
   (El #> Max #/\ NewMax #= El #/\ NewNum #= Num - 1) #\/
   (El #=< Max #/\ NewMax #= Max #/\ NewNum #= Num),
-  applyRightToLeft(NewNum, LeftRow, NewMax).
+  applyToRow(NewNum, RemainderRow, NewMax, GetElement).
+applyToRow(0, [], _, _).
 
 /**
  * Applies restrictions Horizontally along the board
@@ -77,7 +81,8 @@ applyAllHorizontalRestrictions([], [], _).
 /**
  * Applies restrictions Vertically along the board
  * +Predicate is the predicate used to apply restrictions on the fetched Column.
- */applyAllVerticalRestrictions(Restrictions, Board, Predicate) :-
+ */
+applyAllVerticalRestrictions(Restrictions, Board, Predicate) :-
   applyAllVerticalRestrictions(Restrictions, Board, Predicate, 1).
 applyAllVerticalRestrictions([0 | Rest], Board, Predicate, Count) :-
   NewCount is Count + 1,
