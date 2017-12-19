@@ -91,6 +91,7 @@ applyAllTopRestrictions([N | NList], Board, Count) :-
   applyAllTopRestrictions(NList, Board, NewCount).
 applyAllTopRestrictions([], _, _).
 
+
 %% BOTTOM to TOP
 applyAllBotRestrictions(Restrictions, Board) :-
   applyAllBotRestrictions(Restrictions, Board, 1).
