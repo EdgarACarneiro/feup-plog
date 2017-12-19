@@ -52,14 +52,6 @@ applyLeftToRight(Num, [El | Row], Max) :-
   (El #=< Max #/\ NewMax #= Max #/\ NewNum #= Num),
   applyLeftToRight(NewNum, Row, NewMax).
 
-applyAllLeftRestrictions([], []).
-applyAllLeftRestrictions([0 | NList], [_ | Rows]) :-
-  applyAllLeftRestrictions(NList, Rows).
-applyAllLeftRestrictions([N | NList], [Row1 | Rows]) :-
-  applyLeftToRight(N, Row1),
-  applyAllLeftRestrictions(NList, Rows).
-
-
 %% RIGHT to LEFT
 applyRightToLeft(Num, Row) :-
   applyRightToLeft(Num, Row, 0).
@@ -71,43 +63,32 @@ applyRightToLeft(Num, Row, Max) :-
   (El #=< Max #/\ NewMax #= Max #/\ NewNum #= Num),
   applyRightToLeft(NewNum, LeftRow, NewMax).
 
-applyAllRightRestrictions([], []).
-applyAllRightRestrictions([0 | NList], [_ | Rows]) :-
-  applyAllRightRestrictions(NList, Rows).
-applyAllRightRestrictions([N | NList], [Row1 | Rows]) :-
-  applyRightToLeft(N, Row1),
-  applyAllRightRestrictions(NList, Rows).
+/**
+ * Applies restrictions Horizontally along the board
+ * +Predicate is the predicate used to apply restrictions on the fetched Row.
+ */
+applyAllHorizontalRestrictions([0 | Rest], [_ | Rows], Predicate) :-
+  applyAllHorizontalRestrictions(Rest, Rows, Predicate).
+applyAllHorizontalRestrictions([N | Rest], [Row1 | Rows], Predicate) :-
+  call(Predicate, N, Row1),
+  applyAllHorizontalRestrictions(Rest, Rows, Predicate).
+applyAllHorizontalRestrictions([], [], _).
 
-%% TOP to BOTTOM
-applyAllTopRestrictions(Restrictions, Board) :-
-  applyAllTopRestrictions(Restrictions, Board, 1).
-applyAllTopRestrictions([0 | NList], Board, Count) :-
+/**
+ * Applies restrictions Vertically along the board
+ * +Predicate is the predicate used to apply restrictions on the fetched Column.
+ */applyAllVerticalRestrictions(Restrictions, Board, Predicate) :-
+  applyAllVerticalRestrictions(Restrictions, Board, Predicate, 1).
+applyAllVerticalRestrictions([0 | Rest], Board, Predicate, Count) :-
   NewCount is Count + 1,
-  applyAllTopRestrictions(NList, Board, NewCount).
-applyAllTopRestrictions([N | NList], Board, Count) :-
+  applyAllVerticalRestrictions(Rest, Board, Predicate, NewCount).
+applyAllVerticalRestrictions([N | Rest], Board, Predicate, Count) :-
+  NewCount is Count + 1,
   getBoardCol(Board, Count, Col),
-  applyLeftToRight(N, Col),
-  NewCount is Count + 1,
-  applyAllTopRestrictions(NList, Board, NewCount).
-applyAllTopRestrictions([], _, _).
+  call(Predicate, N, Col),
+  applyAllVerticalRestrictions(Rest, Board, Predicate, NewCount).
+applyAllVerticalRestrictions([], _, _, _).
 
-
-%% BOTTOM to TOP
-applyAllBotRestrictions(Restrictions, Board) :-
-  applyAllBotRestrictions(Restrictions, Board, 1).
-applyAllBotRestrictions([0 | NList], Board, Count) :-
-  NewCount is Count + 1,
-  applyAllBotRestrictions(NList, Board, NewCount).
-applyAllBotRestrictions([N | NList], Board, Count) :-
-  getBoardCol(Board, Count, Col),
-  applyRightToLeft(N, Col),
-  NewCount is Count + 1,
-  applyAllBotRestrictions(NList, Board, NewCount).
-applyAllBotRestrictions([], _, _).
-
-
-%% TODO generalize all applyXToY functions with a getElement(Side, Row, Element, RestOfRow) in which Side is one of [top, left, bottom, right]
-%% Need to generalize applyAllXToY at the same time, or at least make it compatible with changes
 
 /**
  *  +Sides -> a list of lists, each of which represents the restrictions on the side of the board (number of visible buildings).
@@ -128,10 +109,10 @@ solveBoard(Sides, Board) :-
   all_distinct_columns(Board, N),
 
   % Apply restrictions to board rows/columns
-  applyAllLeftRestrictions(Left, Board),
-  applyAllRightRestrictions(Right, Board),
-  applyAllTopRestrictions(Top, Board),
-  applyAllBotRestrictions(Bottom, Board),
+  applyAllHorizontalRestrictions(Left, Board, applyLeftToRight),
+  applyAllHorizontalRestrictions(Right, Board, applyRightToLeft),
+  applyAllVerticalRestrictions(Top, Board, applyLeftToRight),
+  applyAllVerticalRestrictions(Bottom, Board, applyRightToLeft),
 
   % Other restrictions ?
 
