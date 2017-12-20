@@ -1,4 +1,6 @@
 /**  Test Boards  **/
+%% https://www.brainbashers.com/skyscrapers.asp
+
 %% 6 by 6 board -- given example -- 166199 backtracks, 6311 with ffc
 testRestrictions([
   [5, 0, 0, 2, 2, 0],
