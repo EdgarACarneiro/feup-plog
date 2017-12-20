@@ -17,9 +17,24 @@ restrictVarsInRow([_ | Vars], Probability) :-
   restrictVarsInRow(Vars, Probability).
 
 generateRandomBoard(Size, Board, Sides) :-
-  setrand(200),
+  setrand(100),
+  length(Sides, 4),
   sidesDomain(Size, Sides),
-  Probability = 0.5,
+  Probability = 0.70,
   restrictVarsInSides(Sides, Probability),
 
   solveBoard(Size, Board, Sides).
+
+/*
+generateRandomBoardUniqueSol(Size, Board, Sides) :-
+  setrand(200),
+  length(Sides, 4),
+  sidesDomain(Size, Sides),
+  Probability = 0.95,
+  restrictVarsInSides(Sides, Probability),
+  findall(B, solveBoard(Size, B, Sides), [Board]).
+*/
+  %% badbadnotgood backtracking
+
+% Size = 8, generateRandomBoard(Size, Board, Sides), printBoard(Board, Sides), solveBoard(Size, SameBoard, Sides), printBoard(SameBoard, Sides), Board = SameBoard.
+% Size = 8, generateRandomBoard(Size, Board, Sides), printBoard(Board, Sides), solveBoard(Size, SameBoard, Sides), Board = SameBoard.

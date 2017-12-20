@@ -6,11 +6,11 @@
  * Domain restriction
  */
 
-sidesDomain(_, []).
 sidesDomain(Size, [List | Rest]) :-
   length(List, Size),
   domain(List, 0, Size),
   sidesDomain(Size, Rest).
+sidesDomain(_, []).
 
 restrictBoardDomain([], _).
 restrictBoardDomain([Row | Board], N) :-
@@ -118,4 +118,3 @@ solveBoard(Size, Board, Sides) :-
   append(Sides, FlatSides),
   append(FlatBoard, FlatSides, DomainVariables),
   labeling([ffc], DomainVariables).
-
