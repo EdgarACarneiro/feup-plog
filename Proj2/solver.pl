@@ -119,7 +119,7 @@ solveBoard(Sides, Board) :-
   applyAllVerticalRestrictions(Top, Board, applyLeftToRight),
   applyAllVerticalRestrictions(Bottom, Board, applyRightToLeft),
 
-  % Other restrictions ?
+  % Other redundant restrictions ?
 
 
   % labeling - applied on flattened board
