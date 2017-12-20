@@ -124,4 +124,4 @@ solveBoard(Sides, Board) :-
 
   % labeling - applied on flattened board
   append(Board, FlatBoard),
-  labeling([], FlatBoard).
+  labeling([ffc], FlatBoard).

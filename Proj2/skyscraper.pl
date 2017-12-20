@@ -1,7 +1,7 @@
 :- include('solver.pl').
 
 % fd_statistics.
-% testRestrictions(R), solveBoard(R, B), printBoard(B).
+% testRestrictions4(R), solveBoard(R, B), printBoard(B).
 
 
 skyscraper :-
@@ -21,7 +21,7 @@ printRow([El | Row]) :-
 
 
 /**  Test Boards  **/
-%% 6 by 6 board -- given example -- 166199 backtracks
+%% 6 by 6 board -- given example -- 166199 backtracks, 6311 with ffc
 testRestrictions([
   [5, 0, 0, 2, 2, 0],
   [0, 2, 3, 4, 0, 0],
