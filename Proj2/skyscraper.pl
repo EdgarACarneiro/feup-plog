@@ -1,6 +1,6 @@
 :- include('solver.pl').
 :- include('display.pl').
-:- include('test_data').
+:- include('test_data.pl').
 
 
 % fd_statistics.
@@ -10,5 +10,7 @@
 skyscraper :-
   write('Skyscraper!'), nl,
   testRestrictions(R),
-  solveBoard(R, B),
+  R = [Up | _Rest],
+  length(Up, Size),
+  generateBoard(Size, B, R),
   printBoard(B, R).

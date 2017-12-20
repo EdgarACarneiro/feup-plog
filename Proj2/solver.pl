@@ -1,20 +1,17 @@
 :- use_module(library(clpfd)).
 :- use_module(library(lists)).
 
-/**
- * Input validation
- */
-all_equal([_]).
-all_equal([X, X | Rest]) :-
-  all_equal([X | Rest]).
-
-validateInput(Sides) :-
-  maplist(length, Sides, Lengths),
-  all_equal(Lengths).
 
 /**
  * Domain restriction
  */
+
+sidesDomain(_, []).
+sidesDomain(Size, [List | Rest]) :-
+  length(List, Size),
+  domain(List, 0, Size),
+  sidesDomain(Size, Rest).
+
 restrictBoardDomain([], _).
 restrictBoardDomain([Row | Board], N) :-
   length(Row, N),
@@ -102,16 +99,14 @@ applyAllVerticalRestrictions([], _, _, _).
  *      -> elements correspond to restrictions in top->bottom (left/right lists) or left->right (top/bottom lists) order
  *  -Board -> a list of lists (a matrix)
  */
-solveBoard(Sides, Board) :-
+solveBoard(Size, Board, Sides) :-
   Sides = [Top, Left, Bottom, Right],
-
-  validateInput(Sides),
-  length(Top, N),
+  sidesDomain(Size, Sides),
 
   % Domain
-  length(Board, N),
-  restrictBoardDomain(Board, N),
-  all_distinct_columns(Board, N),
+  length(Board, Size),
+  restrictBoardDomain(Board, Size),
+  all_distinct_columns(Board, Size),
 
   % Apply restrictions to board rows/columns
   applyAllHorizontalRestrictions(Left, Board, applyLeftToRight),
@@ -119,9 +114,8 @@ solveBoard(Sides, Board) :-
   applyAllVerticalRestrictions(Top, Board, applyLeftToRight),
   applyAllVerticalRestrictions(Bottom, Board, applyRightToLeft),
 
-  % Other restrictions ?
-
-
-  % labeling - applied on flattened board
   append(Board, FlatBoard),
-  labeling([ffc], FlatBoard).
+  append(Sides, FlatSides),
+  append(FlatBoard, FlatSides, DomainVariables),
+  labeling([ffc], DomainVariables).
+
