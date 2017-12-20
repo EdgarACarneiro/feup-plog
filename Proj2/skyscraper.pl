@@ -12,5 +12,5 @@ skyscraper :-
   testRestrictions(R),
   R = [Up | _Rest],
   length(Up, Size),
-  generateBoard(Size, B, R),
+  solveBoard(Size, B, R),
   printBoard(B, R).

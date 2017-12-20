@@ -10,7 +10,7 @@ printBoard([Row | Board]) :-
 
 % printBoard/2
 %% prints the given board, and all the provided side restrictions
-printBoard(Board, Restrictions) :-
+printBoard(Board, Restrictions) :- !,
   Restrictions = [Top, Left, Bottom, Right],
   write('  '), printRow(Top), nl,
   printBoard(Board, Left, Right),
