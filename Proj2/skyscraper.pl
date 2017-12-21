@@ -1,6 +1,7 @@
 :- include('solver.pl').
 :- include('display.pl').
 :- include('test_data.pl').
+:- include('generator.pl').
 
 
 % fd_statistics.
