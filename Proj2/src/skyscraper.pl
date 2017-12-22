@@ -9,7 +9,7 @@
 
 
 skyscraper :-
-  write('Skyscraper!'), nl,
+  nl, write('Skyscraper!'), nl, nl,
   testRestrictions(R),
   R = [Up | _Rest],
   length(Up, Size),

@@ -5,7 +5,6 @@
 /**
  * Domain restriction
  */
-
 sidesDomain(Size, [List | Rest]) :-
   length(List, Size),
   domain(List, 0, Size),
