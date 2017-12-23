@@ -44,12 +44,12 @@
 %                                     also used for the TOC unless
 %                                     \toctitle is used
 %
-\author{André Cruz\inst{1} \and Edgar Carneiro\inst{2}}
+\author{Andre Cruz\inst{1} \and Edgar Carneiro\inst{2}}
 %
-\authorrunning{André Cruz \and Edgar Carneiro} % abbreviated author list (for running head)
+\authorrunning{Andre Cruz \and Edgar Carneiro} % abbreviated author list (for running head)
 %
 %%%% list of authors for the TOC (use if author list has to be modified)
-\tocauthor{André Cruz and Edgar Carneiro}
+\tocauthor{Andre Cruz and Edgar Carneiro}
 %
 \institute{Faculdade de Engenharia da Universidade do Porto\\ Rua Roberto Frias, sn, 4200-465 Porto, Portugal,\\
 \texttt{FEUP-PLOG, Class 3MIEIC01, Group Skyscraper\_5}}
@@ -74,7 +74,7 @@ We model the presented puzzle as a Constraint Satisfaction Problem (CSP), theref
 
 Constraint Logic Programming (CLP) is a merger of two declarative paradigms: constraint solving and logic programming. Viewing the subject rather broadly, constraint logic programming can be said to involve the incorporation of constraints and constraint “solving” methods in a logic-based language. We refer the reader to \cite{jaffar_maher_1994} for more on this subject.
 
-In this paper, section 2 begins by describing the problem at hand in detail. Section 3 presents our approach to solving this decision problem using Prolog, as well as the finer grained details of the CSP modelling. The choice of labeling strategy is also explained. Section 4 describes the presentation of the solution in a user-friendly manner. Section 5 presents our results performance-wise, as well as a set of key issues we discovered while developing the code. Finally, section 6 presents the conclusion and future work.
+In this paper, section 2 begins by describing the problem at hand in detail. Section 3 presents our approach to solving this decision problem using Prolog, as well as the finer grained details of the CSP modelling. The choice of labeling strategy is also explained. Section 4 describes how we generate test instances. Section 5 describes the presentation of the solution in a user-friendly manner. Section 6 presents our results performance-wise, as well as a set of key issues we discovered while developing the code. Finally, section 7 presents the conclusion and future work.
 
 %
 \section{Problem Description}
@@ -203,7 +203,9 @@ applyToRow(0, [], _, _).
 %
 \subsection{Search Strategy}
 
-The labeling strategy implemented in the program was the \textbf{\textit{ffc}}, also known as \textit{most\_constrained}. This labeling strategy makes use of the most constrained heuristic: ` a variable with the smallest domain is selected, breaking ties by (a) selecting the variable that has the most constraints suspended on it and (b) selecting the leftmost one'\cite{carlsson_fruhwirth_2016}.  We opted for this heuristic as it would be the one providing faster and more efficient solutions for the skyscraper puzzle. Naturally the default values were not appropriate for this representation, as the order in which the variables were presented had no intrinsic value (labeling left-to-right was not particularly useful). Having in mind the kind of constraints used in the modeling of the problem, a certain value was more likely to stick (to not backtrack) if its variable had a tighter domain; and, if it did backtrack, it would do so less often.
+The labeling strategy implemented in the program was the \textbf{\textit{ffc}}, also known as \textit{most\_constrained}. This labeling strategy makes use of the most constrained heuristic: ` a variable with the smallest domain is selected, breaking ties by (a) selecting the variable that has the most constraints suspended on it and (b) selecting the leftmost one'\cite{carlsson_fruhwirth_2016}.  We opted for this heuristic as it would be the one providing faster and more efficient solutions for the skyscraper puzzle.
+
+Naturally the default labeling options were not appropriate for this representation, as the order in which the variables were presented had no intrinsic value (labeling left-to-right was not particularly useful). Having in mind the kind of constraints used in the modeling of the problem, a certain value was more likely to stick (to not backtrack) if its variable had a tighter domain; and, if it did backtrack, it would do so less often.
 
 %
 \section{Dynamic Generation of Puzzle Instances}
