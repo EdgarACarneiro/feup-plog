@@ -35,16 +35,6 @@ generateBoard(Size, Board, Sides, Probability) :-
 
   solveBoard(Size, Board, Sides).
 
-/*
-generateBoardUniqueSol(Size, Board, Sides) :-
-  setrand(200),
-  length(Sides, 4),
-  sidesDomain(Size, Sides),
-  Probability = 1,
-  restrictVarsInSides(Sides, Probability),
-  findall(B, solveBoard(Size, B, Sides), [Board]).
-*/ % badbadnotgood backtracking
-
 % Size = 8, generateBoardEasy(Size, B, S), printBoard(B, S), solveBoard(Size, SB, S), printBoard(SB, S).
 % Size = 8, generateRandomBoard(Size, Board, Sides), printBoard(Board, Sides), solveBoard(Size, SameBoard, Sides), printBoard(SameBoard, Sides), Board = SameBoard.
 % Size = 6, generateRandomBoard(Size, Board, Sides), printBoard(Board, Sides), solveBoard(Size, SameBoard, Sides), Board = SameBoard.
