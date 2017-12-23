@@ -360,16 +360,7 @@ File: images/skyscraper_solved.png Graphic file (type png)
 <use images/skyscraper_solved.png>
 Package pdftex.def Info: images/skyscraper_solved.png used on input line 96.
 (pdftex.def)             Requested size: 128.04143pt x 128.0354pt.
-
-
-LaTeX Warning: Citation `sterling_shapiro_warren_2010' on page 2 undefined on i
-nput line 104.
-
-
-LaTeX Warning: Citation `carlsson_fruhwirth_2016' on page 2 undefined on input 
-line 104.
-
-[2 <./images/skyscraper_unsolved.png> <./images/skyscraper_solved.png>]
+ [2 <./images/skyscraper_unsolved.png> <./images/skyscraper_solved.png>]
 <images/example_skyscraper.png, id=20, 322.95656pt x 347.04657pt>
 File: images/example_skyscraper.png Graphic file (type png)
 
@@ -470,6 +461,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 280--281
 Missing character: There is no â in font cmr9!
 Missing character: There is no € in font cmr9!
 Missing character: There is no “ in font cmr9!
+Missing character: There is no Ã in font cmr9!
+Missing character: There is no ¼ in font cmr9!
+Missing character: There is no â in font cmti9!
+Missing character: There is no € in font cmti9!
+Missing character: There is no ™ in font cmti9!
 ) [9
 
 ] [10]
@@ -518,7 +514,7 @@ local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/loc
 al/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/loca
 l/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/
 texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on PLOG_TP2_Skyscraper_5.pdf (20 pages, 241895 bytes).
+Output written on PLOG_TP2_Skyscraper_5.pdf (20 pages, 254771 bytes).
 PDF statistics:
  128 PDF objects out of 1000 (max. 8388607)
  80 compressed objects within 1 object stream
