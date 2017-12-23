@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/W32TeX) (preloaded format=pdflatex 2017.10.12)  22 DEC 2017 15:29
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/W32TeX) (preloaded format=pdflatex 2017.10.12)  23 DEC 2017 01:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -212,7 +212,14 @@ File: lstlang1.sty 2015/06/04 1.6 listings language file
 (c:/texlive/2017/texmf-dist/tex/latex/listings/lstlang2.sty
 File: lstlang2.sty 2015/06/04 1.6 listings language file
 )
-(./PLOG_TP2_Skyscraper_5.aux)
+(./PLOG_TP2_Skyscraper_5.aux
+
+LaTeX Warning: Label `Figure 3' multiply defined.
+
+
+LaTeX Warning: Label `Figure 3' multiply defined.
+
+)
 \openout1 = `PLOG_TP2_Skyscraper_5.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 38.
@@ -227,8 +234,7 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 38.
 LaTeX Font Info:    ... okay on input line 38.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 38.
 LaTeX Font Info:    ... okay on input line 38.
-
-(c:/texlive/2017/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+ (c:/texlive/2017/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count124
 \scratchdimen=\dimen131
@@ -364,44 +370,60 @@ Missing character: There is no Ã in font cmbx10!
 Missing character: There is no § in font cmbx10!
 Missing character: There is no Ã in font cmbx10!
 Missing character: There is no £ in font cmbx10!
+<images/printBoard1.png, id=30, 116.68594pt x 100.87688pt>
+File: images/printBoard1.png Graphic file (type png)
+<use images/printBoard1.png>
+Package pdftex.def Info: images/printBoard1.png  used on input line 207. on inp
+ut line 207.
+Package pdftex.def Info: Requested size: 142.28006pt x 142.26564pt on input lin
+e 207.
  [5]
-Missing character: There is no Ã in font cmbx10!
-Missing character: There is no ‡ in font cmbx10!
-Missing character: There is no Ã in font cmbx10!
-Missing character: There is no • in font cmbx10!
+<images/printBoard21.png, id=35, 130.23656pt x 112.92188pt>
+File: images/printBoard21.png Graphic file (type png)
+<use images/printBoard21.png>
+Package pdftex.def Info: images/printBoard21.png  used on input line 215. on in
+put line 215.
+Package pdftex.def Info: Requested size: 170.71844pt x 170.7384pt on input line
+ 215.
 
-Underfull \hbox (badness 10000) in paragraph at lines 228--229
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [6 <./images/printBoard1.png> <./images/printBoard21.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 242--243
 
  []
 
 
-Overfull \hbox (32.96283pt too wide) in paragraph at lines 247--249
+Overfull \hbox (32.96283pt too wide) in paragraph at lines 261--263
 []\OT1/cmr/m/n/9 Skyscraper rules, http://logicmastersindia.com/lmitests/dl.asp
 ?attachmentid=659&view=1 
  []
 
-[6] (./PLOG_TP2_Skyscraper_5.aux) ) 
+[7] (./PLOG_TP2_Skyscraper_5.aux)
+
+LaTeX Warning: There were multiply-defined labels.
+
+ ) 
 Here is how much of TeX's memory you used:
- 3441 strings out of 492990
- 48565 string characters out of 6136333
- 157453 words of memory out of 5000000
- 6964 multiletter control sequences out of 15000+600000
+ 3451 strings out of 492990
+ 48814 string characters out of 6136333
+ 158453 words of memory out of 5000000
+ 6972 multiletter control sequences out of 15000+600000
  6637 words of font info for 24 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,6n,43p,717b,1090s stack positions out of 5000i,500n,10000p,200000b,80000s
-<c:/texlive/2017/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmbx10.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmbx12.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmb
-x9.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb>
-<c:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texliv
-e/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2017/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb><c:/texlive/2017/texmf-dist/font
-s/type1/public/amsfonts/cm/cmti10.pfb><c:/texlive/2017/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmtt9.pfb>
-Output written on PLOG_TP2_Skyscraper_5.pdf (6 pages, 173066 bytes).
+ 41i,6n,43p,721b,1090s stack positions out of 5000i,500n,10000p,200000b,80000s
+<c:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/tex
+live/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2017
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb><c:/texlive/2017/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><c:/texlive/2017/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2017/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmr7.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmr9.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10
+.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
+Output written on PLOG_TP2_Skyscraper_5.pdf (7 pages, 175387 bytes).
 PDF statistics:
- 66 PDF objects out of 1000 (max. 8388607)
- 42 compressed objects within 1 object stream
+ 75 PDF objects out of 1000 (max. 8388607)
+ 46 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 16 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 26 words of extra memory for PDF output out of 10000 (max. 10000000)
 

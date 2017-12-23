@@ -58,8 +58,8 @@
 
 \begin{abstract}
 This article was written for the course unit ``Logic Programming'', from the course Master in Informatics and Computing Engineering.
-This article purpose is to present how the program we developed is able to solve the decision problem that is the puzzle Skyscraper, independently of the board size.
-The program developed is also able to generate Skyscraper puzzles as well. The program develop uses Logic Programming with Constraints as the approach to solve and generate the puzzles.
+This article purpose is to present how the program we developed is able to solve the decision problem that is the puzzle Skyscraper, independently of board size.
+The program developed is also able to generate Skyscraper puzzles as well. The program developed uses Logic Programming with Constraints as the approach to solve and generate the puzzles.
 \keywords{skyscraper, CLP, sicstus, PLOG, FEUP}
 \end{abstract}
 %
@@ -69,12 +69,12 @@ The main purpose of this project was to develop a program that would be able to 
 
 Our group was assigned with a decision problem: the Skyscraper puzzle. Succinctly, the puzzle consists of a grid that the player needs to fill, according to some given restrictions, and without repeating the same digits per column and per row.
 
-The article approaches several topics such as: what were the variables used and its domains, what were the constraints used and their implementation in the program, what is the labeling strategy implemented, what are the results of the developed program and what are the final conclusions obtained from developing the project and its pros.
+The article approaches several topics such as: what were the variables used and its domains, what were the constraints used and their implementation in the program, what is the labeling strategy implemented, what are the results of the developed program and what are the final conclusions obtained from developing the project.
 
 %
 \section{Problem Description}
 %
-Skyscraper consists of a puzzle where the player needs to fill a grid with digits from 1 to \textit{N} --- with \textit{N} being the size of the grid --- where each row and column contains each digit exactly once. In the grid, each number represents the height of a building. The numbers outside the grid indicate how many buildings can be seen when looking from that direction. Taller buildings block the view of smaller buildiings, meaning that every number beyond a number bigger than it, will not be taken into account, when looking from that direction.
+Skyscraper consists of a puzzle where the player needs to fill a grid with digits from 1 to \textit{N} --- with \textit{N} being the size of the grid --- where each row and column contains each digit exactly once. In the grid, each number represents the height of a building. The numbers outside the grid indicate how many buildings can be seen when looking from that direction. Taller buildings block the view of smaller buildings meaning that every number beyond a number bigger than it will not be taken into account, when looking from that direction.
 
 The difficulty of the puzzle arises from the conjugation of two factors: the digits in rows and columns must all be distinct and the restrictions outside the grid.
 
@@ -164,7 +164,7 @@ all_distinct_columns(Board, N) :-
 %
 \subsection{Constraints}
 
-The restrictions defined for the puzzle are the ones form the rules. The rules that force the inexistence of repeated elements in either a row or a column were already implemented, by the way the domains are defined (see section \textbf{Decision Variables}). Therefore, the challenge involving the project was the addition of PROLOG restrictions to implement the missing rule: assuring that the number outside the grid would indeed control the number of `visible buildings'.\textbf{TODO - Ver esta frase, if we did} In the end, some restrictions were also added in order to increase the efficiency of the implemented solution.\\
+The restrictions defined for the puzzle are the ones from the rules. The rules that force the inexistence of repeated elements in either a row or a column were already implemented by the way the domains are defined (see section \textbf{Decision Variables}). Therefore, the challenge involving the project was the addition of PROLOG restrictions to implement the missing rule: assuring that the number outside the grid would indeed control the number of `visible buildings'.\textbf{TODO - Ver esta frase, if we did} In the end, some restrictions were also added in order to increase the efficiency of the implemented solution.\\
 
 Theoretically, what we needed to implement in order to achieve the last rule was an IF CLAUSE, being that: if the element is bigger than the maximum value so far, than the element is the new maximum value, and the elements correspondent building is visible, otherwise, the building is not visible and the maximum value stays the same. However, since in Constraints  Logic Programming the elements value would not be instantiated this implementation proved hard. \textbf{Um bcd bullshit este texto, mudar? xD ou mm apagar}
 
@@ -195,19 +195,33 @@ In Skyscraper there is no evaluation of solutions, since the puzzle is solved wh
 %
 \subsection{Search Strategy}
 
-The labeling strategy implemented in the program was the \textbf{\textit{ffc}}, also known as \textit{most\_constrained}. This labeling strategy makes use of the most constrained heuristic: ` a variable with the smallest domain is selected, breaking ties by (a) selecting the variable that has the most constraints suspended on it and (b) selecting the leftmost one.' \textbf{Meter aqui citação} We opted for this heuristic as it would be the one providing faster and more efficient solutions for the skyscraper puzzle. This natural having in mind the kind of constraints that were applied during the development, namely the assure the building heights were correct.
+The labeling strategy implemented in the program was the \textbf{\textit{ffc}}, also known as \textit{most\_constrained}. This labeling strategy makes use of the most constrained heuristic: ` a variable with the smallest domain is selected, breaking ties by (a) selecting the variable that has the most constraints suspended on it and (b) selecting the leftmost one.' \textbf{Meter aqui citacao par a abilbiografia} We opted for this heuristic as it would be the one providing faster and more efficient solutions for the skyscraper puzzle. This was natural having in mind the kind ofconstraints that were applied during the development, namely the constraint that assure the building heights were correct,\textbf{ver a frase a partir daqui :/} that is: since the entire board is not instantiated the solution will be faster if the first most constrained values --- therefore the ones most unlikely to wrong --- are first discovered and snowball from there on.
 
 %
 \section{Solution Presentation}
 
-For the solution presentation in text mode the predicate printBoard is used. If run as \textbf{\textit{printBoard(+Board)}}, it only prints the given board in a user friendly way. However, if run as \textbf{\textit{printBoard(+Board, +Restrictions)}} it will print the board in a user friendly way while also displaying the boarder restrictions being applied to each row or column. The predicate makes use of helper predicates such as \textbf{\textit{printRow(+Row)}}, that prints the given row; \textbf{Adicionar aqui mais depois de alturar o codigo buba}. All this predicates are defined in the file \textbf{\textit{display.pl}}.
+For the solution presentation in text mode the predicate printBoard is used. If run as \textbf{\textit{printBoard(+Board)}}, it only prints the given board in a user friendly way. However, if run as \textbf{\textit{printBoard(+Board, +Restrictions)}} it will print the board in a user friendly way while also displaying the boarder restrictions being applied to each row or column. The predicate makes use of helper predicates such as \textbf{\textit{printRow(+Row)}}, that prints the given row and \textbf{\textit{printHBorder(+Length)}}, that prints the horizontal border at the top and the bottom. All this predicates are defined in the file \textbf{\textit{display.pl}}.
 
-\textbf{TODO METER AQUI OS PRINTS DEPOIS DAS ALTERAÇÕES}
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[height=5cm,width=5cm]{images/printBoard1.png}
+\caption{Example of a call to printBoard/1}
+\label{Figure 3}
+\end{center}
+\end{figure}
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[height=6cm,width=6cm]{images/printBoard21.png}
+\caption{Example of a call to printBoard/2 with a solved board}
+\label{Figure 3}
+\end{center}
+\end{figure}
 
 %
 \section{Results}
 
-\textbf{TODO primeiro tetntar otimizar senao os valores que estao aqui serao em vao}
+\textbf{TODO primeiro tentar otimizar senao os valores que estao aqui serao em vao}
 
 The group tried to make extensive and exhaustive tests to be able to conclude fiercely about the given results.
 
