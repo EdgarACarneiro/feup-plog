@@ -1,7 +1,8 @@
+%Dictionary for user friendly visualization of elements
 translate(0, '.').
 translate(P, P).
 
-% printBoard/1
+% printBoard(+Board)
 %% prints the given board on the screen
 printBoard(Board) :-
   Board = [Row | _],
@@ -15,7 +16,7 @@ printBoardAux([Row | Board]) :-
   printRow(Row), nl,
   printBoardAux(Board).
 
-% printBoard/2
+% printBoard(+Board, +Restrictions)
 %% prints the given board, and all the provided side restrictions
 printBoard(Board, Restrictions) :- !,
   Restrictions = [Top, Left, Bottom, Right],
@@ -26,7 +27,7 @@ printBoard(Board, Restrictions) :- !,
   write('  '), printHBorder(RowLength),
   write('   '), printRowAux(Bottom), nl, nl.
 
-% printBoard/3
+% printBoard(+Board, +LeftRestrictions, +RightRestrictions)
 %% prints the given board, and the provided side restrictions for left and right
 printBoard([], [], []) :- !.
 printBoard([Row | Board], [L1 | Left], [R1 | Right]) :-
@@ -36,11 +37,11 @@ printBoard([Row | Board], [L1 | Left], [R1 | Right]) :-
   write(' '), write(SymbR), nl,
   printBoard(Board, Left, Right).
 
-% printRow/1
-%% prints the provided list/row
-printRow(Board) :-
+% printRow(+Row)
+%% prints the provided list/row and adds '|' after and before the list
+printRow(Row) :-
   write('|'),
-  printRowAux(Board),
+  printRowAux(Row),
   write('|'), !.
 printRowAux([]) :- !.
 printRowAux([El | Row]) :-
@@ -49,7 +50,7 @@ printRowAux([El | Row]) :-
   printRowAux(Row).
 
 % printHorizontalBorder(+Length)
-%% prints the top or bottom border for the board
+%% prints the top or bottom border for the board, example of a boarder: '+-------+'
 printHBorder(Length):-
   write('+'),
   printHBorderAux(Length),
