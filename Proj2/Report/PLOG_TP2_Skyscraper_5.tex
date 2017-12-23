@@ -57,7 +57,7 @@
 \maketitle              % typeset the title of the contribution
 
 \begin{abstract}
-This article presents a Constraint Logic Programming approach to defining and ultimately solving the puzzle ``Skyscraper''.
+This article presents a Constraint Logic Programming approach to define and ultimately solve the puzzle ``Skyscraper''.
 The purposed solution is independent of board size and number of restrictions.
 The solver can also be presented with a partially-filled board, as is costumary in larger boards.
 We also dynamically generate ``Skyscraper'' puzzles, of different sizes and with varying difficulty.
@@ -74,14 +74,14 @@ We model the presented puzzle as a Constraint Satisfaction Problem, therefore re
 
 Constraint Logic Programming (CLP) is a merger of two declarative paradigms: constraint solving and logic programming. Viewing the subject rather broadly, constraint logic programming can be said to involve the incorporation of constraints and constraint “solving” methods in a logic-based language. We refer the reader to \cite{jaffar_maher_1994} for more on this subject.
 
-The article approaches several topics such as: what were the variables used and its domains, what were the constraints used and their implementation in the program, what is the labeling strategy implemented, what are the results of the developed program and what are the final conclusions obtained from developing the project.
+The article approaches several topics such as: the necessary domain variables, what were the constraints used and their implementation in the program, what is the labeling strategy implemented, what are the results of the developed program and what are the final conclusions obtained from developing the project.
 
 %
 \section{Problem Description}
 %
-Skyscraper consists of a puzzle where the player needs to fill a grid with digits from 1 to \textit{N} --- with \textit{N} being the size of the grid --- where each row and column contains each digit exactly once. In the grid, each number represents the height of a building. The numbers outside the grid indicate how many buildings can be seen when looking from that direction. Taller buildings block the view of smaller buildings meaning that every number beyond a number bigger than it will not be taken into account, when looking from that direction.
+The ``Skyscraper'' puzzle consists of an NxN grid with some clues along its sides. The objective is to place a skyscraper (represented by its height) in each square, with a height between 1 and N, so that each row and column contains each digit exactly once. In addition, the number of visible skyscrapers, as viewed from the direction of each clue, is equal to the value of the clue. Note that higher skyscrapers block the view of lower skyscrapers located behind them.
 
-The difficulty of the puzzle arises from the conjugation of two factors: the digits in rows and columns must all be distinct and the restrictions outside the grid.
+The difficulty of the puzzle can vary according to three factors: the size of the board, the number of restrictions alongthe side of the board, and the possible hints in the board itself.
 
 \begin{figure}[h!]
 \begin{center}
@@ -101,16 +101,18 @@ The difficulty of the puzzle arises from the conjugation of two factors: the dig
 
 %
 \section{Approach}
+We present a Constraint Logic Programming approach to define and ultimately solve the puzzle ``Skyscraper''. In order to accomplish this, we use the clp(fd) --- Constraint Logic Programming over Finite Domains --- library in sicstus Prolog. For more information on this prolog implementation and said library, we refer the reader to \cite{sterling_shapiro_warren_2010} and \cite{carlsson_fruhwirth_2016}.
 
-In the implementation of Skyscraper in Prolog, the group used a list of lists to represent the grid. The value of each element will correspond to the height of the building it represents.
-Elements whose value is not known will be represented by  a `\_', therefore representing in Prolog non- instantiated values.
 
-For the restrictions outside the grid, the group also decided to use a list of lists. The list containing the other lists will always have length four since each one of its elements is a list containing the restrictions of the correspondent border. The order by which the border's restrictions are kept in the list is: Top border restrictions, Left border restrictions, Bottom border restrictions and Right border restrictions. If the restriction for a certain row or column does not exist, a `0' is used in its representation.
+Regarding the implementation of Skyscraper in Prolog, the group used a list of lists to represent the grid. The value of each element corresponding to the height of the building it represents.
+Elements whose value is not known will be represented by  a `\_', therefore representing in Prolog non-instantiated values.
+
+For the restrictions to the side of the grid, we use a list of lists, the first of which being the top restrictions, and the rest following in counter-clockwise order. If the restriction for a certain row or column is undefined, a `0' is used in its representation.
 
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[height=5cm,width=5cm]{images/example_skyscraper.png}
-\caption{Example of a skyscraper puzzle followed by its Prolog representation}
+\caption{Example of a skyscraper puzzle followed by its representation in PROLOG}
 \label{Figure 3}
 \end{center}
 \end{figure}
