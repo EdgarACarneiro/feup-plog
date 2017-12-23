@@ -101,7 +101,7 @@ The difficulty of the puzzle can vary according to three factors: the size of th
 
 %
 \section{Approach}
-We present a Constraint Logic Programming approach to define and ultimately solve the puzzle ``Skyscraper''. In order to accomplish this, we use the clp(fd) --- Constraint Logic Programming over Finite Domains --- library in sicstus Prolog. For more information on this prolog implementation and said library, we refer the reader to \cite{sterling_shapiro_warren_2010} and \cite{carlsson_fruhwirth_2016}.
+We present a Constraint Logic Programming approach to define and ultimately solve the puzzle ``Skyscraper''. In order to accomplish this, we use the clp(fd) --- Constraint Logic Programming over Finite Domains --- library in sicstus Prolog. For more information on this prolog implementation, and said library, we refer the reader to \cite{sterling_shapiro_warren_2010} and \cite{carlsson_fruhwirth_2016}.
 
 Regarding the implementation of Skyscraper in Prolog, we decided to represent the board's matrix as a list of lists, whose elementary units are integer numbers, representing the height of the skyscraper in that position.
 Elements whose value is not known are represented by  a `\_', therefore representing in Prolog non-instantiated values.
@@ -142,9 +142,10 @@ testRestrictions([
 \subsection{Decision Variables}
 
 The decision variables associated with a skyscraper puzzle are: the numbers of the board's grid, and the numbers of the restrictions along the side of the grid.
-The domain of the elements of the grid, according to the rules
+The domain of the elements of the grid, according to the puzzle's rules \cite{skyscrapers_booklet}, is between 1 and N.
+The domain of the restrictions along the side is also between 1 and N. Because this restrictions can be defined, we extended this domain to include the value 0, as this value internally represents an undefined restriction.
 
-Since all the elements in a row and column must have a different value --- as it is a skyscraper rule --- the domain of the elements in each row will have to be defined between 1 and the length of the board, \textit{N}, and they will also have to be all distinct. The following code presents the application of the referred constraints to the decision variables.\\
+The applicatin of domain restrictions is done in the following code.
 
 \noindent\begin{minipage}{.44\textwidth}
 \begin{lstlisting}[frame= tblr, caption=Row domain restrictions]
@@ -167,8 +168,6 @@ all_distinct_columns(Board, N) :-
   all_distinct_columns(Board, NewN).
 \end{lstlisting}
 \end{minipage}\hfill
-
-\textbf{TODO} Os side domains tb sao? penso que nao porque nao queremos instanciar nada ai... although it seems in code
 
 %
 \subsection{Constraints}
@@ -193,11 +192,6 @@ applyToRow(Num, Row, Max, GetElement) :-
   applyToRow(NewNum, RemainderRow, NewMax, GetElement).
 applyToRow(0, [], _, _).
 \end{lstlisting}
-
-%
-\subsection{Evaluation Function}
-
-In ``Skyscraper'' there is no evaluation function, as a solution is either correct or incorrect.
 
 %
 \subsection{Search Strategy}
