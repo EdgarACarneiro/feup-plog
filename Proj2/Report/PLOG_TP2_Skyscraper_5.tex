@@ -79,7 +79,7 @@ In this paper, section 2 begins by describing the problem at hand in detail. Sec
 %
 \section{Problem Description}
 %
-The ``Skyscraper'' puzzle consists of an NxN grid with some clues along its sides. The objective is to place a skyscraper (represented by its height) in each square, with a height between 1 and N, so that each row and column contains each digit exactly once. In addition, the number of visible skyscrapers, as viewed from the direction of each clue, is equal to the value of the clue. Note that higher skyscrapers block the view of lower skyscrapers located behind them.
+The ``Skyscraper'' puzzle consists of an NxN grid with some clues along its sides. The objective is to place a skyscraper (represented by its height) in each square, with a height between 1 and N, so that each row and column contains each digit exactly once. In addition, the number of visible skyscrapers, as viewed from the direction of each clue, is equal to the value of the clue. Note that higher skyscrapers block the view of lower skyscrapers located behind them. A comprehensive booklet with the puzzle's rules can be found here \cite{skyscrapers_booklet}.
 
 The difficulty of the puzzle can vary according to three factors: the size of the board, the number of restrictions along the side of the board, and the possible hints in the board itself (it is common to present larger boards partially filled).
 
@@ -141,7 +141,10 @@ testRestrictions([
 %
 \subsection{Decision Variables}
 
-The decision variables associated with a skyscraper puzzle are: the lists representing the rows of the grid. Since all the elements in a row and column must have a different value --- as it is a skyscraper rule --- the domain of the elements in each row will have to be defined between 1 and the length of the board, \textit{N}, and they will also have to be all distinct. The following code presents the application of the referred restrains to the decision variables.\\
+The decision variables associated with a skyscraper puzzle are: the numbers of the board's grid, and the numbers of the restrictions along the side of the grid.
+The domain of the elements of the grid, according to the rules
+
+Since all the elements in a row and column must have a different value --- as it is a skyscraper rule --- the domain of the elements in each row will have to be defined between 1 and the length of the board, \textit{N}, and they will also have to be all distinct. The following code presents the application of the referred constraints to the decision variables.\\
 
 \noindent\begin{minipage}{.44\textwidth}
 \begin{lstlisting}[frame= tblr, caption=Row domain restrictions]
@@ -194,12 +197,12 @@ applyToRow(0, [], _, _).
 %
 \subsection{Evaluation Function}
 
-In Skyscraper there is no evaluation of solutions, since the puzzle is solved whenever a solution is found.
+In ``Skyscraper'' there is no evaluation function, as a solution is either correct or incorrect.
 
 %
 \subsection{Search Strategy}
 
-The labeling strategy implemented in the program was the \textbf{\textit{ffc}}, also known as \textit{most\_constrained}. This labeling strategy makes use of the most constrained heuristic: ` a variable with the smallest domain is selected, breaking ties by (a) selecting the variable that has the most constraints suspended on it and (b) selecting the leftmost one'[3].  We opted for this heuristic as it would be the one providing faster and more efficient solutions for the skyscraper puzzle. This was natural having in mind the kind ofconstraints that were applied during the development, namely the constraint that assure the building heights were correct,\textbf{ver a frase a partir daqui :/} that is: since the entire board is not instantiated the solution will be faster if the first most constrained values --- therefore the ones most unlikely to wrong --- are first discovered and snowball from there on.
+The labeling strategy implemented in the program was the \textbf{\textit{ffc}}, also known as \textit{most\_constrained}. This labeling strategy makes use of the most constrained heuristic: ` a variable with the smallest domain is selected, breaking ties by (a) selecting the variable that has the most constraints suspended on it and (b) selecting the leftmost one'\cite{carlsson_fruhwirth_2016}.  We opted for this heuristic as it would be the one providing faster and more efficient solutions for the skyscraper puzzle. Naturally the default values were not appropriate for this representation, as the order in which the variables were presented had no intrinsic value (labeling left-to-right was not particularly useful). Having in mind the kind of constraints used in the modeling of the problem, a certain value was more likely to stick (to not backtrack) if its variable had a tighter domain; and, if it did backtrack, it would do so less often.
 
 %
 \section{Solution Presentation}
