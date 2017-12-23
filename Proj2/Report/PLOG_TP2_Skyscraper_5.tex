@@ -206,6 +206,27 @@ applyToRow(0, [], _, _).
 The labeling strategy implemented in the program was the \textbf{\textit{ffc}}, also known as \textit{most\_constrained}. This labeling strategy makes use of the most constrained heuristic: ` a variable with the smallest domain is selected, breaking ties by (a) selecting the variable that has the most constraints suspended on it and (b) selecting the leftmost one'\cite{carlsson_fruhwirth_2016}.  We opted for this heuristic as it would be the one providing faster and more efficient solutions for the skyscraper puzzle. Naturally the default values were not appropriate for this representation, as the order in which the variables were presented had no intrinsic value (labeling left-to-right was not particularly useful). Having in mind the kind of constraints used in the modeling of the problem, a certain value was more likely to stick (to not backtrack) if its variable had a tighter domain; and, if it did backtrack, it would do so less often.
 
 %
+\section{Dynamic Generation of Puzzle Instances}
+
+In order to appropriately test our solver, we decided to implement predicates to dynamically generate puzzle instances.
+
+As the solver itself contains a logical definition of the problem at hand, generating examples was a simple case of finding solutions without instantiating the restrictions along the side of the board.
+
+The problem that followed was that a board with all the restrictions undefined technically fulfills all restrictions. In order to solve this we adopted the following approach: for each side restriction, there's a probability it will be defined, and if it is its domain cannot feature the value 0 (which represents an undefined restriction). In this manner we can easily generate easy boards (with some restrictions), or hard boards (with a lot of restrictions).
+
+The following code is high-level view of the implemented functionality, the full code can be viewed in \textbf{generator.pl} (available in the appendix).
+
+\begin{lstlisting}[language=Prolog]
+generateBoard(Size, Board, Sides, Probability) :-
+  setrand(100),
+  length(Sides, 4),
+  sidesDomain(Size, Sides),
+  restrictVarsInSides(Sides, Probability),
+
+  solveBoard(Size, Board, Sides).
+\end{lstlisting}
+
+%
 \section{Solution Presentation}
 
 For the solution presentation in text mode the predicate \textit{printBoard} is used. If run as \textbf{\textit{printBoard(+Board)}}, it only prints the given board in a user friendly way. However, if run as \textbf{\textit{printBoard(+Board, +Restrictions)}} it will print the board in a user friendly way while also displaying the boarder restrictions being applied to each row or column. The predicate makes use of helper predicates such as \textbf{\textit{printRow(+Row)}}, that prints the given row and \textbf{\textit{printHBorder(+Length)}}, that prints the horizontal border at the top and the bottom. All this predicates are defined in the file \textbf{\textit{display.pl}}.
@@ -250,7 +271,7 @@ The results of several tests that the group made were:
 
 In the end, the conclusions the group came up with were:
 \begin{itemize}
-	\item There is an exponential relation between the board size and time taken to solve the puzzle. For smaller boards the difference in board size affects slightly the difference of times (board size 4 to board size 5, differences of around 0.05s). However in bigger boards the difference of board sizes affect time fiercely (board size 6 to board size 7, differences of around 10s).\\
+	\item There is an exponential relation between the board size and time taken to solve the puzzle.\\
 
 \begin{figure}[h!]
 \begin{center}
