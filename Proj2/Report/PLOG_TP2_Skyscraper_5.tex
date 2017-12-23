@@ -168,15 +168,22 @@ all_distinct_columns(Board, N) :-
   all_distinct_columns(Board, NewN).
 \end{lstlisting}
 \end{minipage}\hfill
+\begin{lstlisting}[frame=tblr, caption=Constraints for the Border restrictions domains]
+sidesDomain(Size, [List | Rest]) :-
+  length(List, Size),
+  domain(List, 0, Size),
+  sidesDomain(Size, Rest).
+sidesDomain(_, []).
+\end{lstlisting}
 
 %
 \subsection{Constraints}
 
-The restrictions defined for the puzzle are the ones from the rules. The rules that force the inexistence of repeated elements in either a row or a column were already implemented by the way the domains are defined (see section \textbf{Decision Variables}). Therefore, the challenge involving the project was the addition of PROLOG restrictions to implement the missing rule: assuring that the number outside the grid would indeed control the number of `visible buildings'.\\
+The restrictions defined for the puzzle in Prolog are fairly faithful to the ones from the rules. The uniqueness of variables along their columns and rows is fairly straightforward to implement using the \textit{all\_distinct} predicate (see the listings 1.3 and 1.4 in section \textbf{Decision Variables}). Therefore, the challenge involving the project was the addition of PROLOG restrictions to implement the missing rule: assuring that the number outside the grid would indeed control the number of `visible buildings'.\\
 
-Theoretically, what we needed to implement in order to achieve the last rule was an IF CLAUSE, being that: if the element is bigger than the maximum value so far, than the element is the new maximum value, and the elements correspondent building is visible, otherwise, the building is not visible and the maximum value stays the same. However, since in Constraints  Logic Programming the elements value would not be instantiated this implementation proved hard. \textbf{Um bcd bullshit este texto, mudar? xD ou mm apagar}
+The solution we came up to implement that last rule was a \textit{logic XOR}, \textbf{\#\textbackslash}: the element being analyzed was either the maximum so far, and the following buildings with smaller height wouldn't count towards the side restriction; or it was not a maximum building, therefore not visible along the side, and the count of visible buildings would stay the same.
 
-The solution we came up to implement that last rule was a \textit{logic XOR (\textbf{\#\textbackslash})}, because the element being analyzed was either a maximum value and the number of visible buildings would increment, or it was not and the count of visible buildings would stay the same. In the end, we wanted to, when the line was finished being analyzed, the number of visible buildings would be equal to the corresponding border restraining value. The predicate would be called for each line/ column for each of the four possible directions: left to right, right to left, top to bottom and bottom to top. 
+When the row/column being analyzed had no more elements, the number of visible buildings (a domain variable in itself) would be equal, \#=, to the corresponding side restraining value. The predicate would be called for each line/ column for each of the four possible directions: left to right, right to left, top to bottom and bottom to top.
 
 \begin{lstlisting}[frame=tblr, caption=Constraint that assures correct number of visible buildings ]	
 /**
@@ -222,9 +229,9 @@ For the solution presentation in text mode the predicate \textit{printBoard} is 
 %
 \section{Results}
 
-The group tried to make extensive and exhaustive tests to be able to conclude fiercely about the given results.
+The group tried to make extensive and exhaustive tests to be able to extract comprehensive conclusions regarding the obtained results.
 
-The results of several tests that the group made the program went through were:
+The results of several tests that the group made were:
 
 \begin{table}[]
 \centering
@@ -271,11 +278,11 @@ In the end, the conclusions the group came up with were:
 
 We believe that our knowledge about Logic Programming was deeply increased, with everything we had proposed to do being accomplished in the required time.
 
-The program developed has no limitations regarding board size or problem generation, despite becoming slower with bigger board sizes. Therefore, the only way possible to improve the developed application would be by improving the solver efficiency and time. However, the group tried fiercely to make that improve by trying out several approaches but in the end, the best solution was the one being presented.
+The program developed has no limitations regarding board size or problem generation, despite becoming evidently slower with larger board sizes. Therefore, the only way possible to improve the developed application would be by improving the solver's efficiency. However, the group tried fiercely to make that improve by trying out several approaches, but in the end the best solution was the one presented here.
 
-The group also agreed in the fact that Logic Programming with Constrains revealed itself to be an extremely powerful tool, able to solve easily certain problems (such as the one this work is based in) that would take much more time and effort to solve with other paradigms.\\
+It is also evident that Constraint Logic Programming revealed itself to be an extremely powerful tool, extremely appropriate to tackle problems like the one presented, resulting in a faithful and straightforward representation of the problem, and much faster development.
 
-To sum up, despite Logic Programming with Constraints being a totally different paradigm from what the group had ever worked with, we quickly got used to it and learnt to appreciate the cons and pros that it presents, thus having it culminate in a project we are proud of.
+To sum up, despite Constraint Logic Programming being a unique programming paradigm, rather distinct from classical ones, we quickly got used to it and learnt to appreciate the cons and pros that it presents, thus having it culminate in a project we are proud to present.
 
 %
 \section{Acknowledgements}
