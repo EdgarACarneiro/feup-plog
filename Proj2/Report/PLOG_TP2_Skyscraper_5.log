@@ -1,17 +1,17 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/W32TeX) (preloaded format=pdflatex 2017.10.12)  23 DEC 2017 18:05
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.5.22)  23 DEC 2017 18:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**./PLOG_TP2_Skyscraper_5.tex
+**PLOG_TP2_Skyscraper_5.tex
 (./PLOG_TP2_Skyscraper_5.tex
-LaTeX2e <2017-04-15>
-Babel <3.14> and hyphenation patterns for 84 language(s) loaded.
+LaTeX2e <2016/03/31>
+Babel <3.9r> and hyphenation patterns for 83 language(s) loaded.
 (./llncs.cls
 Document Class: llncs 2017/09/04 v2.19 
  LaTeX document class for Lecture Notes in Computer Science
-(c:/texlive/2017/texmf-dist/tex/latex/base/article.cls
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
-(c:/texlive/2017/texmf-dist/tex/latex/base/size10.clo
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/size10.clo
 File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
@@ -26,8 +26,8 @@ File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 )
-(c:/texlive/2017/texmf-dist/tex/latex/tools/multicol.sty
-Package: multicol 2017/04/11 v1.8q multicolumn formatting (FMi)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/tools/multicol.sty
+Package: multicol 2016/04/07 v1.8p multicolumn formatting (FMi)
 \c@tracingmulticols=\count87
 \mult@box=\box26
 \multicol@leftmargin=\dimen103
@@ -75,10 +75,10 @@ Package: multicol 2017/04/11 v1.8q multicolumn formatting (FMi)
 \colbreak@box=\box51
 \mc@col@check@num=\count95
 )
-(c:/texlive/2017/texmf-dist/tex/latex/oberdiek/aliascnt.sty
+(/usr/local/texlive/2016/texmf-dist/tex/latex/oberdiek/aliascnt.sty
 Package: aliascnt 2016/05/16 v1.4 Alias counters (HO)
 
-(c:/texlive/2017/texmf-dist/tex/latex/carlisle/remreset.sty))
+(/usr/local/texlive/2016/texmf-dist/tex/latex/carlisle/remreset.sty))
 \c@chapter=\count96
 LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 362.
 LaTeX Font Info:    Redeclaring math symbol \Delta on input line 363.
@@ -130,83 +130,89 @@ LaTeX Font Info:    Redeclaring math symbol \Omega on input line 372.
 \c@remark=\count115
 \headlineindent=\dimen124
 )
-(c:/texlive/2017/texmf-dist/tex/latex/graphics/graphicx.sty
-Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
 
-(c:/texlive/2017/texmf-dist/tex/latex/graphics/keyval.sty
+(/usr/local/texlive/2016/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks18
 )
-(c:/texlive/2017/texmf-dist/tex/latex/graphics/graphics.sty
-Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2016/05/09 v1.0r Standard LaTeX Graphics (DPC,SPQR)
 
-(c:/texlive/2017/texmf-dist/tex/latex/graphics/trig.sty
+(/usr/local/texlive/2016/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
 )
-(c:/texlive/2017/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
-File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+(/usr/local/texlive/2016/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/01/02 v1.10 sample graphics configuration
 )
-Package graphics Info: Driver file: pdftex.def on input line 99.
+Package graphics Info: Driver file: pdftex.def on input line 96.
 
-(c:/texlive/2017/texmf-dist/tex/latex/graphics-def/pdftex.def
-File: pdftex.def 2017/06/24 v1.0g Graphics/color driver for pdftex
+(/usr/local/texlive/2016/texmf-dist/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
+
+(/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+)
+(/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+)
+\Gread@gobject=\count116
 ))
 \Gin@req@height=\dimen125
 \Gin@req@width=\dimen126
 )
-(c:/texlive/2017/texmf-dist/tex/latex/tools/verbatim.sty
+(/usr/local/texlive/2016/texmf-dist/tex/latex/tools/verbatim.sty
 Package: verbatim 2014/10/28 v1.5q LaTeX2e package for verbatim enhancements
 \every@verbatim=\toks19
 \verbatim@line=\toks20
 \verbatim@in@stream=\read1
 )
-(c:/texlive/2017/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
-Package: fancyhdr 2017/06/30 v3.9a Extensive control of page headers and footer
-s
-\f@nch@headwidth=\skip45
-\f@nch@O@elh=\skip46
-\f@nch@O@erh=\skip47
-\f@nch@O@olh=\skip48
-\f@nch@O@orh=\skip49
-\f@nch@O@elf=\skip50
-\f@nch@O@erf=\skip51
-\f@nch@O@olf=\skip52
-\f@nch@O@orf=\skip53
+(/usr/local/texlive/2016/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
+\fancy@headwidth=\skip45
+\f@ncyO@elh=\skip46
+\f@ncyO@erh=\skip47
+\f@ncyO@olh=\skip48
+\f@ncyO@orh=\skip49
+\f@ncyO@elf=\skip50
+\f@ncyO@erf=\skip51
+\f@ncyO@olf=\skip52
+\f@ncyO@orf=\skip53
 )
-(c:/texlive/2017/texmf-dist/tex/latex/listings/listings.sty
-\lst@mode=\count116
+(/usr/local/texlive/2016/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count117
 \lst@gtempboxa=\box54
 \lst@token=\toks21
-\lst@length=\count117
+\lst@length=\count118
 \lst@currlwidth=\dimen127
-\lst@column=\count118
-\lst@pos=\count119
+\lst@column=\count119
+\lst@pos=\count120
 \lst@lostspace=\dimen128
 \lst@width=\dimen129
-\lst@newlines=\count120
-\lst@lineno=\count121
+\lst@newlines=\count121
+\lst@lineno=\count122
 \lst@maxwidth=\dimen130
 
-(c:/texlive/2017/texmf-dist/tex/latex/listings/lstmisc.sty
+(/usr/local/texlive/2016/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
-\c@lstnumber=\count122
-\lst@skipnumbers=\count123
+\c@lstnumber=\count123
+\lst@skipnumbers=\count124
 \lst@framebox=\box55
 )
-(c:/texlive/2017/texmf-dist/tex/latex/listings/listings.cfg
+(/usr/local/texlive/2016/texmf-dist/tex/latex/listings/listings.cfg
 File: listings.cfg 2015/06/04 1.6 listings configuration
 ))
 Package: listings 2015/06/04 1.6 (Carsten Heinz)
 
-(c:/texlive/2017/texmf-dist/tex/latex/graphics/color.sty
-Package: color 2016/07/10 v1.1e Standard LaTeX Color (DPC)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2016/05/09 v1.1c Standard LaTeX Color (DPC)
 
-(c:/texlive/2017/texmf-dist/tex/latex/graphics-cfg/color.cfg
+(/usr/local/texlive/2016/texmf-dist/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
-Package color Info: Driver file: pdftex.def on input line 147.
+Package color Info: Driver file: pdftex.def on input line 144.
 )
-(c:/texlive/2017/texmf-dist/tex/latex/booktabs/booktabs.sty
+(/usr/local/texlive/2016/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2016/04/27 v1.618033 publication quality tables
 \heavyrulewidth=\dimen131
 \lightrulewidth=\dimen132
@@ -218,21 +224,25 @@ Package: booktabs 2016/04/27 v1.618033 publication quality tables
 \cmidrulesep=\dimen138
 \cmidrulekern=\dimen139
 \defaultaddspace=\dimen140
-\@cmidla=\count124
-\@cmidlb=\count125
+\@cmidla=\count125
+\@cmidlb=\count126
 \@aboverulesep=\dimen141
 \@belowrulesep=\dimen142
-\@thisruleclass=\count126
-\@lastruleclass=\count127
+\@thisruleclass=\count127
+\@lastruleclass=\count128
 \@thisrulewidth=\dimen143
 )
-(c:/texlive/2017/texmf-dist/tex/latex/listings/lstlang1.sty
+(/usr/local/texlive/2016/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
-(c:/texlive/2017/texmf-dist/tex/latex/listings/lstlang2.sty
+(/usr/local/texlive/2016/texmf-dist/tex/latex/listings/lstlang2.sty
 File: lstlang2.sty 2015/06/04 1.6 listings language file
 )
-(./PLOG_TP2_Skyscraper_5.aux)
+(./PLOG_TP2_Skyscraper_5.aux
+
+LaTeX Warning: Label `Figure 3' multiply defined.
+
+)
 \openout1 = `PLOG_TP2_Skyscraper_5.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 39.
@@ -247,77 +257,67 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 39.
 LaTeX Font Info:    ... okay on input line 39.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 39.
 LaTeX Font Info:    ... okay on input line 39.
-
-(c:/texlive/2017/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+ (/usr/local/texlive/2016/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count128
+\scratchcounter=\count129
 \scratchdimen=\dimen144
 \scratchbox=\box56
-\nofMPsegments=\count129
-\nofMParguments=\count130
+\nofMPsegments=\count130
+\nofMParguments=\count131
 \everyMPshowfont=\toks22
-\MPscratchCnt=\count131
+\MPscratchCnt=\count132
 \MPscratchDim=\dimen145
-\MPnumerator=\count132
-\makeMPintoPDFobject=\count133
+\MPnumerator=\count133
+\makeMPintoPDFobject=\count134
 \everyMPtoPDFconversion=\toks23
-) (c:/texlive/2017/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
-Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
-
-(c:/texlive/2017/texmf-dist/tex/generic/oberdiek/infwarerr.sty
-Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+) (/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2016/05/10 v0.21 Utility functions of pdfTeX for LuaTeX (HO
 )
-(c:/texlive/2017/texmf-dist/tex/latex/oberdiek/grfext.sty
-Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
 
-(c:/texlive/2017/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
-Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
-
-(c:/texlive/2017/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
-Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
-)))
-(c:/texlive/2017/texmf-dist/tex/latex/oberdiek/kvoptions.sty
-Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
-
-(c:/texlive/2017/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
-Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
-
-(c:/texlive/2017/texmf-dist/tex/generic/oberdiek/etexcmds.sty
-Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
-
-(c:/texlive/2017/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+(/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/ifluatex.sty
 Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
 Package ifluatex Info: LuaTeX not detected.
 )
-Package etexcmds Info: Could not find \expanded.
-(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
-(etexcmds)             that some package has redefined \expanded.
-(etexcmds)             In the latter case, load this package earlier.
-)))
-(c:/texlive/2017/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
-Package: pdftexcmds 2017/03/19 v0.25 Utility functions of pdfTeX for LuaTeX (HO
-)
-
-(c:/texlive/2017/texmf-dist/tex/generic/oberdiek/ifpdf.sty
-Package: ifpdf 2017/03/15 v3.2 Provides the ifpdf switch
+(/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2016/05/14 v3.1 Provides the ifpdf switch
 )
 Package pdftexcmds Info: LuaTeX not detected.
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
 )
-Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
-38.
+(/usr/local/texlive/2016/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
+
+(/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
+Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
+))
+(/usr/local/texlive/2016/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+
+(/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+
+(/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
 Package grfext Info: Graphics extension search list:
-(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
 G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
 
-(c:/texlive/2017/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+(/usr/local/texlive/2016/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-\c@lstlisting=\count134
+\c@lstlisting=\count135
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 57.
 LaTeX Font Info:    External font `cmex10' loaded for size
@@ -326,123 +326,118 @@ Missing character: There is no Ã in font cmr10!
 Missing character: There is no © in font cmr10!
 Missing character: There is no Ã in font cmr10!
 Missing character: There is no © in font cmr10!
-<images/skyscraper_unsolved.png, id=1, 294.34969pt x 293.59688pt>
-File: images/skyscraper_unsolved.png Graphic file (type png)
-<use images/skyscraper_unsolved.png>
-Package pdftex.def Info: images/skyscraper_unsolved.png  used on input line 83.
- on input line 83.
-Package pdftex.def Info: Requested size: 128.03658pt x 128.03615pt on input lin
-e 83.
- [1
 
-{c:/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+[1
+
+{/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+<images/skyscraper_unsolved.png, id=13, 294.34969pt x 293.59688pt>
+File: images/skyscraper_unsolved.png Graphic file (type png)
+
+<use images/skyscraper_unsolved.png>
+Package pdftex.def Info: images/skyscraper_unsolved.png used on input line 86.
+(pdftex.def)             Requested size: 128.03658pt x 128.03615pt.
+
 <images/skyscraper_solved.png, id=15, 295.85532pt x 289.83281pt>
 File: images/skyscraper_solved.png Graphic file (type png)
+
 <use images/skyscraper_solved.png>
-Package pdftex.def Info: images/skyscraper_solved.png  used on input line 91. o
-n input line 91.
-Package pdftex.def Info: Requested size: 128.04143pt x 128.0354pt on input line
- 91.
+Package pdftex.def Info: images/skyscraper_solved.png used on input line 94.
+(pdftex.def)             Requested size: 128.04143pt x 128.0354pt.
  [2 <./images/skyscraper_unsolved.png> <./images/skyscraper_solved.png>]
 <images/example_skyscraper.png, id=21, 322.95656pt x 347.04657pt>
 File: images/example_skyscraper.png Graphic file (type png)
-<use images/example_skyscraper.png>
-Package pdftex.def Info: images/example_skyscraper.png  used on input line 107.
- on input line 107.
-Package pdftex.def Info: Requested size: 142.26393pt x 142.26883pt on input lin
-e 107.
 
-Underfull \hbox (badness 10000) in paragraph at lines 138--139
+<use images/example_skyscraper.png>
+Package pdftex.def Info: images/example_skyscraper.png used on input line 110.
+(pdftex.def)             Requested size: 142.26393pt x 142.26883pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 141--142
 
  []
 
 [3 <./images/example_skyscraper.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 167--168
+Underfull \hbox (badness 10000) in paragraph at lines 170--171
 
  []
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 171.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 174.
 
-(c:/texlive/2017/texmf-dist/tex/latex/base/omscmr.fd
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/bx/it' in size <10> not available
-(Font)              Font shape `OMS/cmsy/b/n' tried instead on input line 171.
+(Font)              Font shape `OMS/cmsy/b/n' tried instead on input line 174.
  [4]
 <images/printBoard1.png, id=32, 116.68594pt x 100.87688pt>
 File: images/printBoard1.png Graphic file (type png)
+
 <use images/printBoard1.png>
-Package pdftex.def Info: images/printBoard1.png  used on input line 205. on inp
-ut line 205.
-Package pdftex.def Info: Requested size: 85.36162pt x 85.35938pt on input line 
-205.
+Package pdftex.def Info: images/printBoard1.png used on input line 208.
+(pdftex.def)             Requested size: 85.36162pt x 85.35938pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 <images/printBoard21.png, id=33, 130.23656pt x 112.92188pt>
 File: images/printBoard21.png Graphic file (type png)
+
 <use images/printBoard21.png>
-Package pdftex.def Info: images/printBoard21.png  used on input line 213. on in
-put line 213.
-Package pdftex.def Info: Requested size: 113.81163pt x 113.81757pt on input lin
-e 213.
+Package pdftex.def Info: images/printBoard21.png used on input line 216.
+(pdftex.def)             Requested size: 113.81163pt x 113.81757pt.
+
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `htbp') on input line 226.
+               Default added (so using `htbp') on input line 229.
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <9> on input line 230.
+(Font)              <9> on input line 233.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 230.
+(Font)              <6> on input line 233.
 
-Underfull \hbox (badness 10000) in paragraph at lines 243--244
+Underfull \hbox (badness 10000) in paragraph at lines 246--247
 
  []
 
-[5]
-<images/graph1.png, id=37, 635.37375pt x 325.215pt>
+[5] <images/graph1.png, id=37, 635.37375pt x 325.215pt>
 File: images/graph1.png Graphic file (type png)
+
 <use images/graph1.png>
-Package pdftex.def Info: images/graph1.png  used on input line 247. on input li
-ne 247.
-Package pdftex.def Info: Requested size: 341.43886pt x 170.72058pt on input lin
-e 247.
+Package pdftex.def Info: images/graph1.png used on input line 250.
+(pdftex.def)             Requested size: 341.43886pt x 170.72058pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-Overfull \hbox (0.4085pt too wide) in paragraph at lines 253--254
+Overfull \hbox (0.4085pt too wide) in paragraph at lines 256--257
 \OT1/cmr/m/n/10 other statis-tics, such as \OT1/cmr/m/it/10 Re-sump-tions, En-t
 ail-ments, Prun-ings and Con-straints
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 253--254
+Underfull \hbox (badness 10000) in paragraph at lines 256--257
 
  []
 
 <images/graph2.png, id=38, 636.87938pt x 321.45094pt>
 File: images/graph2.png Graphic file (type png)
-<use images/graph2.png>
-Package pdftex.def Info: images/graph2.png  used on input line 257. on input li
-ne 257.
-Package pdftex.def Info: Requested size: 341.43166pt x 170.72133pt on input lin
-e 257.
+ <use images/graph2.png>
+Package pdftex.def Info: images/graph2.png used on input line 260.
+(pdftex.def)             Requested size: 341.43166pt x 170.72133pt.
+
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [6 <./images/printBoard1.png> <./images/printBoard21.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 273--274
+Underfull \hbox (badness 10000) in paragraph at lines 276--277
 
  []
 
 [7 <./images/graph1.png>]
-Overfull \hbox (32.96283pt too wide) in paragraph at lines 292--294
+Overfull \hbox (32.96283pt too wide) in paragraph at lines 297--299
 []\OT1/cmr/m/n/9 Skyscraper rules, http://logicmastersindia.com/lmitests/dl.asp
 ?attachmentid=659&view=1 
  []
@@ -473,27 +468,28 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [18]
 [19] (./PLOG_TP2_Skyscraper_5.aux)
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 3644 strings out of 492990
- 51497 string characters out of 6136333
- 194959 words of memory out of 5000000
- 7149 multiletter control sequences out of 15000+600000
+ 3688 strings out of 493014
+ 52610 string characters out of 6133351
+ 199851 words of memory out of 5000000
+ 7178 multiletter control sequences out of 15000+600000
  9022 words of font info for 32 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,9n,43p,964b,1583s stack positions out of 5000i,500n,10000p,200000b,80000s
-<c:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb><c:/te
-xlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/texlive/201
-7/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2017/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmbx9.pfb><c:/texlive/2017/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmbxti10.pfb><c:/texlive/2017/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmr10.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmr7.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
-9.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:
-/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on PLOG_TP2_Skyscraper_5.pdf (19 pages, 227270 bytes).
+ 38i,9n,43p,962b,1585s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pf
+b></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
+></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
+</usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></
+usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><
+/usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></u
+sr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/
+local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/loc
+al/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/loca
+l/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
+Output written on PLOG_TP2_Skyscraper_5.pdf (19 pages, 236090 bytes).
 PDF statistics:
  121 PDF objects out of 1000 (max. 8388607)
  75 compressed objects within 1 object stream

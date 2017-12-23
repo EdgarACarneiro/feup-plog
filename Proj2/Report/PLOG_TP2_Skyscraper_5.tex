@@ -38,7 +38,7 @@
 
 \begin{document}
 
-\title{Skyscraper\\Decision Problem solved with Constraints Logic Programming}
+\title{Skyscraper\\Decision Problem solved with Constraint Logic Programming}
 %
 \titlerunning{Skyscraper}  % abbreviated title (for running head)
 %                                     also used for the TOC unless
@@ -57,9 +57,12 @@
 \maketitle              % typeset the title of the contribution
 
 \begin{abstract}
-This article was written for the course unit ``Logic Programming'', from the course Master in Informatics and Computing Engineering.
-This article purpose is to present how the program we developed is able to solve the decision problem that is the puzzle Skyscraper, independently of board size.
-The program developed is also able to generate Skyscraper puzzles as well. The program developed uses Logic Programming with Constraints as the approach to solve and generate the puzzles.
+This article presents a Constraint Logic Programming approach to defining and ultimately solving the puzzle ``Skyscraper''.
+The purposed solution is independent of board size and number of restrictions.
+The solver can also be presented with a partially-filled board, as is costumary in bigger boards.
+We also dynamically generate ``Skyscraper'' puzzles, of different sizes and with varying difficulty.
+Results show that ``Skyscraper'' is a prime example for being solved with CLP, as the solution's code is brief, efficient, and simple to understand.
+
 \keywords{skyscraper, CLP, sicstus, PLOG, FEUP}
 \end{abstract}
 %
@@ -245,7 +248,7 @@ In the end, the conclusions the group came up with were:
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[height=6cm,width=12cm]{images/graph1.png}
-\caption{Relation between board size and time to solve the puzzle}
+\caption{Relation between board size and time taken to find a solution.}
 \label{Figure 5}
 \end{center}
 \end{figure}
@@ -275,6 +278,8 @@ The group also agreed in the fact that Logic Programming with Constrains reveale
 To sum up, despite Logic Programming with Constraints being a totally different paradigm from what the group had ever worked with, we quickly got used to it and learnt to appreciate the cons and pros that it presents, thus having it culminate in a project we are proud of.
 
 %
+\section{Acknowledgements}
+This article was written for the course unit ``Logic Programming'', from the Master in Informatics and Computing Engineering, a course in the Faculty of Engineering of the University of Porto.
 
 
 %
