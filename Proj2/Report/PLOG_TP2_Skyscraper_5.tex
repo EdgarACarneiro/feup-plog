@@ -81,7 +81,7 @@ The difficulty of the puzzle arises from the conjugation of two factors: the dig
 
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[height=6cm,width=6cm]{images/skyscraper_unsolved.png}
+\includegraphics[height=4.5cm,width=4.5cm]{images/skyscraper_unsolved.png}
 \caption{Unsolved 6x6 Skyscraper puzzle}
 \label{Figure 1}
 \end{center}
@@ -89,7 +89,7 @@ The difficulty of the puzzle arises from the conjugation of two factors: the dig
 
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[height=6cm,width=6cm]{images/skyscraper_solved.png}
+\includegraphics[height=4.5cm,width=4.5cm]{images/skyscraper_solved.png}
 \caption{Solved 6x6 Skyscraper puzzle}
 \label{Figure 2}
 \end{center}
@@ -105,7 +105,7 @@ For the restrictions outside the grid, the group also decided to use a list of l
 
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[height=6cm,width=6cm]{images/example_skyscraper.png}
+\includegraphics[height=5cm,width=5cm]{images/example_skyscraper.png}
 \caption{Example of a skyscraper puzzle followed by its Prolog representation}
 \label{Figure 3}
 \end{center}
@@ -165,13 +165,13 @@ all_distinct_columns(Board, N) :-
 %
 \subsection{Constraints}
 
-The restrictions defined for the puzzle are the ones from the rules. The rules that force the inexistence of repeated elements in either a row or a column were already implemented by the way the domains are defined (see section \textbf{Decision Variables}). Therefore, the challenge involving the project was the addition of PROLOG restrictions to implement the missing rule: assuring that the number outside the grid would indeed control the number of `visible buildings'.\textbf{TODO - Ver esta frase, if we did} In the end, some restrictions were also added in order to increase the efficiency of the implemented solution.\\
+The restrictions defined for the puzzle are the ones from the rules. The rules that force the inexistence of repeated elements in either a row or a column were already implemented by the way the domains are defined (see section \textbf{Decision Variables}). Therefore, the challenge involving the project was the addition of PROLOG restrictions to implement the missing rule: assuring that the number outside the grid would indeed control the number of `visible buildings'.\\
 
 Theoretically, what we needed to implement in order to achieve the last rule was an IF CLAUSE, being that: if the element is bigger than the maximum value so far, than the element is the new maximum value, and the elements correspondent building is visible, otherwise, the building is not visible and the maximum value stays the same. However, since in Constraints  Logic Programming the elements value would not be instantiated this implementation proved hard. \textbf{Um bcd bullshit este texto, mudar? xD ou mm apagar}
 
-The solution we came up to implement that last rule was a \textit{logic OR}, because the element being analyzed was either a maximum value and the number of visible buildings would increment, or it was not and the count of visible buildings would stay the same. In the end, we wanted to, when the line was finished being analyzed, the number of visible buildings would be equal to the corresponding border restraining value. The predicate would be called for each line/ column for each of the four possible directions: left to right, right to left, top to bottom and bottom to top. 
+The solution we came up to implement that last rule was a \textit{logic XOR (\textbf{\#\textbackslash})}, because the element being analyzed was either a maximum value and the number of visible buildings would increment, or it was not and the count of visible buildings would stay the same. In the end, we wanted to, when the line was finished being analyzed, the number of visible buildings would be equal to the corresponding border restraining value. The predicate would be called for each line/ column for each of the four possible directions: left to right, right to left, top to bottom and bottom to top. 
 
-\begin{lstlisting}[frame=tblr, caption=Constraint that assures correct number of visible buildings ]
+\begin{lstlisting}[frame=tblr, caption=Constraint that assures correct number of visible buildings ]	
 /**
  * Apply restrictions to Row.
  * +Predicate Order in which elements are analyzed - fetches an element.
@@ -185,8 +185,6 @@ applyToRow(Num, Row, Max, GetElement) :-
   applyToRow(NewNum, RemainderRow, NewMax, GetElement).
 applyToRow(0, [], _, _).
 \end{lstlisting}
-
-\textbf{TODO?  `restrições rígidas e flexíveis' - n encontrei nada sobre isto em pdfs ou lado algum, perguntei e tb nao arranjei quem soubesse. caguei e meti so restrições por geral}
 
 %
 \subsection{Evaluation Function}
@@ -205,7 +203,7 @@ For the solution presentation in text mode the predicate \textit{printBoard} is 
 
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[height=5cm,width=5cm]{images/printBoard1.png}
+\includegraphics[height=3cm,width=3cm]{images/printBoard1.png}
 \caption{Example of a call to printBoard/1}
 \label{Figure 3}
 \end{center}
@@ -213,9 +211,9 @@ For the solution presentation in text mode the predicate \textit{printBoard} is 
 
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[height=6cm,width=6cm]{images/printBoard21.png}
+\includegraphics[height=4cm,width=4cm]{images/printBoard21.png}
 \caption{Example of a call to printBoard/2 with a solved board}
-\label{Figure 3}
+\label{Figure 4}
 \end{center}
 \end{figure}
 
@@ -233,19 +231,36 @@ The results of several tests that the group made the program went through were:
 \begin{tabular}{@{}ccc@{}}
 \toprule
 \multicolumn{1}{c|}{\textbf{Board Size}} & \multicolumn{1}{c|}{\textbf{Time /s}} & \textbf{Backtracks} \\ \midrule
-4x4                                      & 0.030                                 & 9                   \\ \midrule
-5x5                                      & 0.087                                 & 659                 \\ \midrule
-6x6                                      & 0.751                                 & 5438                \\ \midrule
-7x7                                      & 12.489                                & 159196              \\ \midrule
-8x8                                      & 48.239                                & 315893              \\ \bottomrule
+4x4                                      & 0.0                                 & 9                   \\ \midrule
+5x5                                      & 0.047                                 & 659                 \\ \midrule
+6x6                                      & 0.291                                 & 5438                \\ \midrule
+7x7                                      & 10.489                                & 159196              \\ \midrule
+8x8                                      & 18.239                                & 315893              \\ \bottomrule
 \end{tabular}
 \end{table}
 
 In the end, the conclusions the group came up with were:
 \begin{itemize}
-	\item There is an exponential relation between the board size and time taken to solve the puzzle. For smaller boards the difference in board size affects slightly the difference of times (board size 4 to baoard size 5, differences of around 0.5s). However in bigger boards the difference of board sizes affect time fiercely (board size 7 to board size 8, differences of arount 30s).
-\textbf{meter aqui o grafico catita}
-	\item There is a strong correlation between the number of backtracks (and the other statistics, such as \textit{Resumptions, Entailments, Prunings and Constraints created}) and time. The higher the alue of the statistics the higher the tame ita took the program to solve the puzzle. \textbf{meter aqui utroo grafico catita}
+	\item There is an exponential relation between the board size and time taken to solve the puzzle. For smaller boards the difference in board size affects slightly the difference of times (board size 4 to baoard size 5, differences of around 0.05s). However in bigger boards the difference of board sizes affect time fiercely (board size 6 to board size 7, differences of around 10s).
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[height=6cm,width=12cm]{images/graph1.png}
+\caption{Relation between board size and time to solve the puzzle}
+\label{Figure 5}
+\end{center}
+\end{figure}
+
+	\item There is a strong correlation between the number of backtracks (and the other statistics, such as \textit{Resumptions, Entailments, Prunings and Constraints created}) and time. The higher the alue of the statistics the higher the tame ita took the program to solve the puzzle.
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[height=6cm,width=12cm]{images/graph2.png}
+\caption{Relation between number of backtracks and time to solve the puzzle}
+\label{Figure 6}
+\end{center}
+\end{figure}
+	
 	\item Also worth notice, despiting not being visible in the table because its values are an average, is the fact that puzzle with a higher number of border restricitons are faster to solve. This is naturally explained since the information received by the solver is bigger and therefore the number of backtracks done is smaller.
 \end{itemize}
 
@@ -280,6 +295,421 @@ http://logicmastersindia.com/lmitests/dl.asp?attachmentid=659\&view=1
 
 \end{thebibliography}
 
+\clearpage
+
 \appendix
+
+\section{Appendix}
+
+\huge\textbf{skyscraper.pl}
+\begin{lstlisting}[language=Prolog]
+:- include('solver.pl').
+:- include('display.pl').
+:- include('test_data.pl').
+:- include('generator.pl').
+
+%Predicate to run the default puzzle
+skyscraper :-
+  nl, write('Skyscraper!'), nl, nl,
+  testRestrictions(R),
+  R = [Up | _Rest],
+  length(Up, Size),
+  solveBoard(Size, B, R),
+  printBoard(B, R).
+\end{lstlisting}
+\newpage
+
+\huge\textbf{solver.pl}
+\begin{lstlisting}[language=Prolog]
+:- use_module(library(clpfd)).
+:- use_module(library(lists)).
+
+/**
+ * Domain restriction
+ */
+sidesDomain(Size, [List | Rest]) :-
+  length(List, Size),
+  domain(List, 0, Size),
+  sidesDomain(Size, Rest).
+sidesDomain(_, []).
+
+restrictBoardDomain([], _).
+restrictBoardDomain([Row | Board], N) :-
+  length(Row, N),
+  domain(Row, 1, N),
+  all_distinct(Row),
+  restrictBoardDomain(Board, N).
+
+all_distinct_columns(_, 0) :- !.
+all_distinct_columns(Board, N) :-
+  N > 0, !,
+  getBoardCol(Board, N, Col),
+  all_distinct(Col),
+  NewN is N - 1,
+  all_distinct_columns(Board, NewN).
+
+
+% Get the nth1 column of the given Board (1 indexed)
+getBoardCol([], _, []).
+getBoardCol([Row | Board], N, [El | Col]) :-
+  element(N, Row, El),
+  getBoardCol(Board, N, Col).
+
+
+%% Gets the FIRST element of a given row
+getFirstElement([Element | RemainderRow], Element, RemainderRow).
+
+%% Gets the LAST element of a given row
+getLastElement(Row, Element, RemainderRow) :-
+  append(RemainderRow, [Element], Row).
+
+
+%% LEFT to RIGHT
+applyLeftToRight(Num, Row) :-
+  applyToRow(Num, Row, 0, getFirstElement).
+
+%% RIGHT to LEFT
+applyRightToLeft(Num, Row) :-
+  applyToRow(Num, Row, 0, getLastElement).
+
+/**
+ * Apply restrictions to Row.
+ * +Predicate Order in which elements are analyzed - fetches an element.
+ * +Num is the number of visible skyscrapers according to the above order.
+ */
+applyToRow(Num, Row, Max, GetElement) :-
+  call(GetElement, Row, El, RemainderRow),
+  NewNum #>= 0,
+  (El #> Max #/\ NewMax #= El #/\ NewNum #= Num - 1) #\
+  (El #=< Max #/\ NewMax #= Max #/\ NewNum #= Num),
+  applyToRow(NewNum, RemainderRow, NewMax, GetElement).
+applyToRow(0, [], _, _).
+
+/**
+ * Applies restrictions Horizontally along the board
+ * +Predicate is the predicate used to apply restrictions on the fetched Row.
+ */
+applyAllHorizontalRestrictions([0 | Rest], [_ | Rows], Predicate) :-
+  applyAllHorizontalRestrictions(Rest, Rows, Predicate).
+applyAllHorizontalRestrictions([N | Rest], [Row1 | Rows], Predicate) :-
+  call(Predicate, N, Row1),
+  applyAllHorizontalRestrictions(Rest, Rows, Predicate).
+applyAllHorizontalRestrictions([], [], _).
+
+/**
+ * Applies restrictions Vertically along the board
+ * +Predicate is the predicate used to apply restrictions on the fetched Column.
+ */
+applyAllVerticalRestrictions(Restrictions, Board, Predicate) :-
+  applyAllVerticalRestrictions(Restrictions, Board, Predicate, 1).
+applyAllVerticalRestrictions([0 | Rest], Board, Predicate, Count) :-
+  NewCount is Count + 1,
+  applyAllVerticalRestrictions(Rest, Board, Predicate, NewCount).
+applyAllVerticalRestrictions([N | Rest], Board, Predicate, Count) :-
+  NewCount is Count + 1,
+  getBoardCol(Board, Count, Col),
+  call(Predicate, N, Col),
+  applyAllVerticalRestrictions(Rest, Board, Predicate, NewCount).
+applyAllVerticalRestrictions([], _, _, _).
+
+
+/**
+ *  +Sides -> a list of lists, each of which represents the restrictions on the side of the board (number of visible buildings).
+ *      -> in order: [TopRestrictions, LeftRestrictions, BottomRestrictions, RightRestrictions]
+ *      -> elements of list are in range [0,N], 0 meaning an undefined restriction
+ *      -> elements correspond to restrictions in top->bottom (left/right lists) or left->right (top/bottom lists) order
+ *  -Board -> a list of lists (a matrix)
+ */
+solveBoard(Size, Board, Sides) :-
+  Sides = [Top, Left, Bottom, Right],
+  sidesDomain(Size, Sides),
+
+  % Domain
+  length(Board, Size),
+  restrictBoardDomain(Board, Size),
+  all_distinct_columns(Board, Size),
+
+  % Apply restrictions to board rows/columns
+  applyAllHorizontalRestrictions(Left, Board, applyLeftToRight),
+  applyAllHorizontalRestrictions(Right, Board, applyRightToLeft),
+  applyAllVerticalRestrictions(Top, Board, applyLeftToRight),
+  applyAllVerticalRestrictions(Bottom, Board, applyRightToLeft),
+
+  append(Board, FlatBoard),
+  append(Sides, FlatSides),
+  append(FlatBoard, FlatSides, DomainVariables),
+  labeling([ffc], DomainVariables).
+
+\end{lstlisting}
+\newpage
+
+\huge\textbf{generator.pl}
+\begin{lstlisting}[language=Prolog]
+:- use_module(library(lists)).
+:- use_module(library(random)).
+:- include('solver.pl').
+
+% Restrict the number of constraints shown , according to the probability
+restrictVarsInSides([], _).
+restrictVarsInSides([First | Rest], Probability) :-
+  restrictVarsInRow(First, Probability),
+  restrictVarsInSides(Rest, Probability).
+
+% Restrict the number of constraints shown , according to the probability
+restrictVarsInRow([], _).
+restrictVarsInRow([V1 | Vars], Probability) :-
+  maybe(Probability), !,
+  V1 #\= 0,
+  restrictVarsInRow(Vars, Probability).
+restrictVarsInRow([_ | Vars], Probability) :-
+  restrictVarsInRow(Vars, Probability).
+
+/**
+ * Generates boards of differente difficulty according the given probability.
+ * +The probability will control the amount of Restrictions that are shown.
+ */
+generateBoardEasy(Size, Board, Sides) :-
+  generateBoard(Size, Board, Sides, 0.95).
+generateBoardMedium(Size, Board, Sides) :-
+  generateBoard(Size, Board, Sides, 0.8).
+generateBoardHard(Size, Board, Sides) :-
+  generateBoard(Size, Board, Sides, 0.65).
+generateBoard(Size, Board, Sides, Probability) :-
+  setrand(100),
+  length(Sides, 4),
+  sidesDomain(Size, Sides),
+  restrictVarsInSides(Sides, Probability),
+
+  solveBoard(Size, Board, Sides).
+
+/*
+generateBoardUniqueSol(Size, Board, Sides) :-
+  setrand(200),
+  length(Sides, 4),
+  sidesDomain(Size, Sides),
+  Probability = 1,
+  restrictVarsInSides(Sides, Probability),
+  findall(B, solveBoard(Size, B, Sides), [Board]).
+*/ % badbadnotgood backtracking
+
+% Size = 8, generateBoardEasy(Size, B, S), printBoard(B, S), solveBoard(Size, SB, S), printBoard(SB, S).
+% Size = 8, generateRandomBoard(Size, Board, Sides), printBoard(Board, Sides), solveBoard(Size, SameBoard, Sides), printBoard(SameBoard, Sides), Board = SameBoard.
+% Size = 6, generateRandomBoard(Size, Board, Sides), printBoard(Board, Sides), solveBoard(Size, SameBoard, Sides), Board = SameBoard.
+
+\end{lstlisting}
+\newpage
+
+\huge\textbf{display.pl}
+\begin{lstlisting}[language=Prolog]
+%Dictionary for user friendly visualization of elements
+translate(0, '.').
+translate(P, P).
+
+% printBoard(+Board)
+%% prints the given board on the screen
+printBoard(Board) :-
+  Board = [Row | _],
+  length(Row, RowLength),
+  printHBorder(RowLength),
+  printBoardAux(Board),
+  printHBorder(RowLength).
+
+printBoardAux([]) :- !.
+printBoardAux([Row | Board]) :-  
+  printRow(Row), nl,
+  printBoardAux(Board).
+
+% printBoard(+Board, +Restrictions)
+%% prints the given board, and all the provided side restrictions
+printBoard(Board, Restrictions) :- !,
+  Restrictions = [Top, Left, Bottom, Right],
+  write('   '), printRowAux(Top), nl,
+  length(Top, RowLength), 
+  write('  '), printHBorder(RowLength),
+  printBoard(Board, Left, Right),
+  write('  '), printHBorder(RowLength),
+  write('   '), printRowAux(Bottom), nl, nl.
+
+% printBoard(+Board, +LeftRestrictions, +RightRestrictions)
+%% prints the given board, and the provided side restrictions for left and right
+printBoard([], [], []) :- !.
+printBoard([Row | Board], [L1 | Left], [R1 | Right]) :-
+  translate(L1, SymbL), translate(R1, SymbR),
+  write(SymbL), write(' '),
+  printRow(Row),
+  write(' '), write(SymbR), nl,
+  printBoard(Board, Left, Right).
+
+% printRow(+Row)
+%% prints the provided list/row and adds '|' after and before the list
+printRow(Row) :-
+  write('|'),
+  printRowAux(Row),
+  write('|'), !.
+printRowAux([]) :- !.
+printRowAux([El | Row]) :-
+  translate(El, Symb),
+  write(Symb), write(' '),
+  printRowAux(Row).
+
+% printHorizontalBorder(+Length)
+%% prints the top or bottom border for the board, example of a boarder: '+-------+'
+printHBorder(Length):-
+  write('+'),
+  printHBorderAux(Length),
+  write('+'), nl, !.
+printHBorderAux(0) :- !.
+printHBorderAux(Length) :-
+  write('--'),
+  NewLength is Length - 1,
+  printHBorderAux(NewLength).
+\end{lstlisting}
+\newpage
+
+\huge\textbf{test\_data.pl}
+\begin{lstlisting}[language=Prolog]
+:- use_module(library(system)).
+
+/**  Test Boards  **/
+%% https://www.brainbashers.com/skyscrapers.asp
+
+%% 6 by 6 board -- given example -- 166199 backtracks, 6311 with ffc
+testRestrictions([
+  [5, 0, 0, 2, 2, 0],
+  [0, 2, 3, 4, 0, 0],
+  [0, 3, 4, 0, 0, 4],
+  [0, 0, 4, 3, 2, 0]
+]).
+
+%% 5 by 5 board
+testRestrictions2([
+  [4, 0, 1, 2, 3],
+  [0, 2, 0, 4, 0],
+  [0, 0, 4, 0, 0],
+  [0, 0, 0, 0, 2]
+]).
+
+%% 4 by 4 board
+testRestrictions3([
+  [4, 0, 0, 2],
+  [0, 3, 0, 0],
+  [0, 0, 4, 0],
+  [0, 0, 0, 3]
+]).
+
+%% 8 by 8 board
+testRestrictions4([
+  [0, 0, 5, 3, 0, 2, 0, 4],
+  [3, 3, 0, 3, 0, 3, 0, 0],
+  [2, 4, 0, 0, 4, 0, 0, 0],
+  [0, 0, 2, 0, 4, 4, 0, 1]
+]).
+
+board4([
+  [_, _, _, 3, _, _, _, _],
+  [_, _, _, _, _, _, 8, 2],
+  [_, _, _, 5, _, _, _, _],
+  [2, _, _, _, _, _, _, _],
+  [_, _, 3, _, _, _, _, _],
+  [1, _, 5, _, _, _, _, _],
+  [_, _, _, 6, _, 2, _, _],
+  [_, _, _, _, _, _, _, _]
+]).
+
+%% 6 by 6 board
+testRestrictions5([
+  [0, 1, 3, 0, 0, 0],
+  [0, 0, 4, 2, 2, 0],
+  [3, 0, 0, 0, 0, 0],
+  [3, 3, 2, 0, 2, 4]
+]).
+
+board5([
+  [1, _, _, _, _, _],
+  [_, 4, _, _, _, _],
+  [_, _, _, _, _, _],
+  [_, _, 2, _, _, _],
+  [_, _, _, _, _, _],
+  [_, _, _, _, _, _]
+]).
+
+%% 7 by 7 board
+testRestrictions6([
+  [0, 0, 0, 0, 0, 3, 4],
+  [0, 0, 4, 2, 0, 0, 5],
+  [0, 2, 0, 2, 0, 4, 0],
+  [0, 0, 0, 2, 5, 2, 0]
+]).
+
+board6([
+  [_, _, _, _, _, _, _],
+  [4, 3, _, _, _, _, _],
+  [2, _, _, _, _, _, 1],
+  [_, _, _, _, _, _, _],
+  [_, _, _, _, _, _, _],
+  [_, _, 1, _, _, _, _],
+  [_, _, _, 3, _, _, _]
+]).
+
+% 8 by 8 board
+testRestrictions7([
+  [0, 0, 5, 3, 0, 2, 0, 4],
+  [3, 3, 0, 3, 0, 3, 0, 0],
+  [2, 4, 0, 0, 4, 0, 0, 0],
+  [0, 0, 2, 0, 4, 4, 0, 1]
+]).
+
+board7([
+  [_, _, _, 3, _, _, _, _],
+  [_, _, _, _, _, _, 8, 2],
+  [_, _, _, 5, _, _, _, _],
+  [2, _, _, _, _, _, _, _],
+  [_, _, 3, _, _, _, _, _],
+  [1, _, 5, _, _, _, _, _],
+  [_, _, _, 6, _, 2, _, _],
+  [_, _, _, _, _, _, _, _]
+]).
+
+% Functions to get duration time
+reset_timer:- statistics(walltime, _).
+print_time:-
+  statistics(walltime, [_, T]),
+  TS is ((T/10)*10)/1000,
+  nl, write('Time: '), write(TS), write('s'), nl.
+
+% Print stats for the given restricitons and the given, if HasBoard is 'yes'
+% Otherwise only Restrictions are used and board starts empty
+% getTestStats(+Restrictions, +HasBoard, +Board)
+getTestStats(Restrictions, no, _):-
+  call(Restrictions, R),
+  R = [Up | _Rest],
+  length(Up, Size),
+  reset_timer,
+  solveBoard(Size, _B, R),
+  write('Solved for Restrictions: '), write(Restrictions), nl,
+  print_time, fd_statistics, nl.
+
+getTestStats(Restrictions, yes, Board):-
+  call(Restrictions, R),
+  R = [Up | _Rest],
+  length(Up, Size),
+  call(Board, B),
+  reset_timer,
+  solveBoard(Size, B, R),
+  write('Solved for Restriction: '), write(Restrictions), nl,
+  write('Solved for Board: '), write(Board), nl,
+  print_time, fd_statistics, nl.
+
+%Prints the stats of each test
+getAllTestsStats:-
+  getTestStats(testRestrictions, no, _),
+  getTestStats(testRestrictions2, no, _),
+  getTestStats(testRestrictions3, no, _),
+  getTestStats(testRestrictions4, yes, board4),
+  getTestStats(testRestrictions5, yes, board5),
+  getTestStats(testRestrictions6, yes, board6),
+  getTestStats(testRestrictions7, yes, board7).
+\end{lstlisting}
+\newpage
 
 \end{document}
