@@ -233,30 +233,32 @@ generateBoard(Size, Board, Sides, Probability) :-
 
 For the solution presentation in text mode the predicate \textit{printBoard} is used. If run as \textbf{\textit{printBoard(+Board)}}, it only prints the given board in a user friendly way. However, if run as \textbf{\textit{printBoard(+Board, +Restrictions)}} it will print the board in a user friendly way while also displaying the boarder restrictions being applied to each row or column. The predicate makes use of helper predicates such as \textbf{\textit{printRow(+Row)}}, that prints the given row and \textbf{\textit{printHBorder(+Length)}}, that prints the horizontal border at the top and the bottom. All this predicates are defined in the file \textbf{\textit{display.pl}}.
 
-\begin{figure}[h!]
-\begin{center}
-\includegraphics[height=3cm,width=3cm]{images/printBoard1.png}
-\caption{Example of a call to printBoard/1}
-\label{Figure 3}
-\end{center}
-\end{figure}
-
-\begin{figure}[h!]
-\begin{center}
-\includegraphics[height=4cm,width=4cm]{images/printBoard21.png}
-\caption{Example of a call to printBoard/2 with a solved board}
-\label{Figure 4}
-\end{center}
+\begin{figure}[h]
+	\centering
+\begin{minipage}{.35\textwidth}
+	\centering
+	\includegraphics[height=3cm,width=3cm]{images/printBoard1.png}
+	\caption{Example of a call to printBoard/1}
+	\label{Figure 3}
+\end{minipage}
+\quad \quad
+\begin{minipage}{.35\textwidth}
+	\centering
+	\includegraphics[height=4cm,width=4cm]{images/printBoard21.png}
+	\caption{Example of a call to printBoard/2 with a solved board}
+	\label{Figure 4}
+\end{minipage}
 \end{figure}
 
 %
 \section{Results}
 
-The group tried to make extensive and exhaustive tests to be able to extract comprehensive conclusions regarding the obtained results.
+The group led extensive and exhaustive tests to be able to extract comprehensive conclusions regarding the obtained results.
 
-The results of several tests that the group made were:
+The overall results, after averaging several test run-times, are presented in figure 1.
+Note that the 8x8 results consist of solving partially filled boards, as is customary in boards this size. The blank boards take in average 5 times longer to solve.
 
-\begin{table}[]
+\begin{table}[h]
 \centering
 \caption{Each of the values is the result of the average of several tests made}
 \label{Results Tablel}
@@ -271,7 +273,7 @@ The results of several tests that the group made were:
 \end{tabular}
 \end{table}
 
-In the end, the conclusions the group came up with were:
+In the end, the group concluded that:
 \begin{itemize}
 	\item There is an exponential relation between the board size and time taken to solve the puzzle.\\
 

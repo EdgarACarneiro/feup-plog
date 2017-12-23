@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.5.22)  23 DEC 2017 23:19
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.5.22)  23 DEC 2017 23:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -380,61 +380,52 @@ LaTeX Font Info:    Font shape `OMS/cmr/bx/n' in size <10> not available
 File: images/printBoard1.png Graphic file (type png)
 
 <use images/printBoard1.png>
-Package pdftex.def Info: images/printBoard1.png used on input line 238.
+Package pdftex.def Info: images/printBoard1.png used on input line 240.
 (pdftex.def)             Requested size: 85.36162pt x 85.35938pt.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <9> on input line 243.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 243.
 
 <images/printBoard21.png, id=36, 130.23656pt x 112.92188pt>
 File: images/printBoard21.png Graphic file (type png)
 
 <use images/printBoard21.png>
-Package pdftex.def Info: images/printBoard21.png used on input line 246.
+Package pdftex.def Info: images/printBoard21.png used on input line 247.
 (pdftex.def)             Requested size: 113.81163pt x 113.81757pt.
 
+Underfull \hbox (badness 1454) in paragraph at lines 248--248
+\OT1/cmr/m/n/9 print-Board/2 with a solved
+ []
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `htbp') on input line 259.
-
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <9> on input line 263.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 263.
-
-Underfull \hbox (badness 10000) in paragraph at lines 276--277
+[6 <./images/printBoard1.png> <./images/printBoard21.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 278--279
 
  []
 
-<images/graph1.png, id=37, 651.18282pt x 316.93407pt>
+<images/graph1.png, id=42, 651.18282pt x 316.93407pt>
 File: images/graph1.png Graphic file (type png)
  <use images/graph1.png>
-Package pdftex.def Info: images/graph1.png used on input line 280.
+Package pdftex.def Info: images/graph1.png used on input line 282.
 (pdftex.def)             Requested size: 341.4389pt x 170.7211pt.
 
-[6 <./images/printBoard1.png>]
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 286--287
+Underfull \hbox (badness 10000) in paragraph at lines 288--289
 
  []
 
-<images/graph2.png, id=42, 636.87938pt x 321.45094pt>
+<images/graph2.png, id=43, 636.87938pt x 321.45094pt>
 File: images/graph2.png Graphic file (type png)
  <use images/graph2.png>
-Package pdftex.def Info: images/graph2.png used on input line 290.
+Package pdftex.def Info: images/graph2.png used on input line 292.
 (pdftex.def)             Requested size: 341.43166pt x 170.72133pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[7 <./images/printBoard21.png>]
-Underfull \vbox (badness 1117) has occurred while \output is active []
+[7 <./images/graph1.png>]
+Underfull \vbox (badness 2020) has occurred while \output is active []
 
- [8 <./images/graph1.png> <./images/graph2.png>] [9] (./PLOG_TP2_Skyscraper_5.b
-bl
+ [8 <./images/graph2.png>] [9] (./PLOG_TP2_Skyscraper_5.bbl
 Missing character: There is no â in font cmr9!
 Missing character: There is no € in font cmr9!
 Missing character: There is no “ in font cmr9!
@@ -445,8 +436,7 @@ Missing character: There is no € in font cmti9!
 Missing character: There is no ™ in font cmti9!
 ) [10
 
-]
-[11]
+] [11]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [12]
@@ -488,7 +478,7 @@ local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/loc
 al/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/loca
 l/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/
 texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on PLOG_TP2_Skyscraper_5.pdf (20 pages, 241559 bytes).
+Output written on PLOG_TP2_Skyscraper_5.pdf (20 pages, 259167 bytes).
 PDF statistics:
  128 PDF objects out of 1000 (max. 8388607)
  80 compressed objects within 1 object stream
