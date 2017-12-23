@@ -57,7 +57,7 @@ applyRightToLeft(Num, Row) :-
 applyToRow(Num, Row, Max, GetElement) :-
   call(GetElement, Row, El, RemainderRow),
   NewNum #>= 0,
-  (El #> Max #/\ NewMax #= El #/\ NewNum #= Num - 1) #\/
+  (El #> Max #/\ NewMax #= El #/\ NewNum #= Num - 1) #\
   (El #=< Max #/\ NewMax #= Max #/\ NewNum #= Num),
   applyToRow(NewNum, RemainderRow, NewMax, GetElement).
 applyToRow(0, [], _, _).
