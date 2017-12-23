@@ -59,7 +59,7 @@
 \begin{abstract}
 This article presents a Constraint Logic Programming approach to define and ultimately solve the puzzle ``Skyscraper''.
 The purposed solution is independent of board size and number of restrictions.
-The solver can also be presented with a partially-filled board, as is costumary in larger boards.
+The solver can also be presented with a partially-filled board, as is customary in larger boards.
 We also dynamically generate ``Skyscraper'' puzzles, of different sizes and with varying difficulty.
 Results show that ``Skyscraper'' is a prime example for being solved with CLP, as the solution's code is brief, efficient, and simple to understand.
 
@@ -74,7 +74,7 @@ We model the presented puzzle as a Constraint Satisfaction Problem (CSP), theref
 
 Constraint Logic Programming (CLP) is a merger of two declarative paradigms: constraint solving and logic programming. Viewing the subject rather broadly, constraint logic programming can be said to involve the incorporation of constraints and constraint “solving” methods in a logic-based language. We refer the reader to \cite{jaffar_maher_1994} for more on this subject.
 
-In this paper, section 2 begins by describing the problem at hand in detail. Section 3 presents our approach to solving this decision problem using Prolog, as well as the finer grained details of the CSP modelling. The choice of labeling strategy is also explained. Section 4 describes the presentation of the solution in a user friendly manner. Section 5 presents our results performance-wise, as well as a set of key issues we discovered while developing the code. Finally, section 6 presents the conclusion and future work.
+In this paper, section 2 begins by describing the problem at hand in detail. Section 3 presents our approach to solving this decision problem using Prolog, as well as the finer grained details of the CSP modelling. The choice of labeling strategy is also explained. Section 4 describes the presentation of the solution in a user-friendly manner. Section 5 presents our results performance-wise, as well as a set of key issues we discovered while developing the code. Finally, section 6 presents the conclusion and future work.
 
 %
 \section{Problem Description}
@@ -145,7 +145,7 @@ The decision variables associated with a skyscraper puzzle are: the numbers of t
 The domain of the elements of the grid, according to the puzzle's rules \cite{skyscrapers_booklet}, is between 1 and N.
 The domain of the restrictions along the side is also between 1 and N. Because this restrictions can be defined, we extended this domain to include the value 0, as this value internally represents an undefined restriction.
 
-The applicatin of domain restrictions is done in the following code.
+The application of domain restrictions is done in the following code.
 
 \noindent\begin{minipage}{.44\textwidth}
 \begin{lstlisting}[frame= tblr, caption=Row domain restrictions]
@@ -250,7 +250,7 @@ The results of several tests that the group made were:
 
 In the end, the conclusions the group came up with were:
 \begin{itemize}
-	\item There is an exponential relation between the board size and time taken to solve the puzzle. For smaller boards the difference in board size affects slightly the difference of times (board size 4 to baoard size 5, differences of around 0.05s). However in bigger boards the difference of board sizes affect time fiercely (board size 6 to board size 7, differences of around 10s).\\
+	\item There is an exponential relation between the board size and time taken to solve the puzzle. For smaller boards the difference in board size affects slightly the difference of times (board size 4 to board size 5, differences of around 0.05s). However in bigger boards the difference of board sizes affect time fiercely (board size 6 to board size 7, differences of around 10s).\\
 
 \begin{figure}[h!]
 \begin{center}
@@ -260,7 +260,7 @@ In the end, the conclusions the group came up with were:
 \end{center}
 \end{figure}
 
-	\item There is a strong correlation between the number of backtracks (and the other statistics, such as \textit{Resumptions, Entailments, Prunings and Constraints created}) and time. The higher the alue of the statistics the higher the tame ita took the program to solve the puzzle.\\
+	\item There is a strong correlation between the number of backtracks (and the other statistics, such as \textit{Resumptions, Entailments, Prunings and Constraints created}) and time. The higher the value of the statistics the higher the time it took the program to solve the puzzle.\\
 
 \begin{figure}[h!]
 \begin{center}
@@ -270,7 +270,7 @@ In the end, the conclusions the group came up with were:
 \end{center}
 \end{figure}
 	
-	\item It is also worth noticing that, for the same board size, a puzzle with a higher number of side restricitons is faster to solve. This was expected, as the board's domain variables have stricter contraints, leading to a decreased number of backtracks.
+	\item It is also worth noticing that, for the same board size, a puzzle with a higher number of side restrictions is faster to solve. This was expected, as the board's domain variables have stricter constraints, leading to a decreased number of backtracks.
 \end{itemize}
 
 %
