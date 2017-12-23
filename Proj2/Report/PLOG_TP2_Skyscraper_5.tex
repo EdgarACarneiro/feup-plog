@@ -74,16 +74,14 @@ We model the presented puzzle as a Constraint Satisfaction Problem (CSP), theref
 
 Constraint Logic Programming (CLP) is a merger of two declarative paradigms: constraint solving and logic programming. Viewing the subject rather broadly, constraint logic programming can be said to involve the incorporation of constraints and constraint “solving” methods in a logic-based language. We refer the reader to \cite{jaffar_maher_1994} for more on this subject.
 
-In this paper, section 2 begins by describing the problem at hand in detail. Section 3 presents our approach to solving this decision problem using Prolog, as well as the finer grained details of the CSP modelling. Section 4 describes the presentation of the solution in a user friendly manner. Section 5 presents our results, performance-wise
-
-The article approaches several topics such as: the necessary domain variables, what were the constraints used and their implementation in the program, what is the labeling strategy implemented, what are the results of the developed program and what are the final conclusions obtained from developing the project.
+In this paper, section 2 begins by describing the problem at hand in detail. Section 3 presents our approach to solving this decision problem using Prolog, as well as the finer grained details of the CSP modelling. The choice of labeling strategy is also explained. Section 4 describes the presentation of the solution in a user friendly manner. Section 5 presents our results performance-wise, as well as a set of key issues we discovered while developing the code. Finally, section 6 presents the conclusion and future work.
 
 %
 \section{Problem Description}
 %
 The ``Skyscraper'' puzzle consists of an NxN grid with some clues along its sides. The objective is to place a skyscraper (represented by its height) in each square, with a height between 1 and N, so that each row and column contains each digit exactly once. In addition, the number of visible skyscrapers, as viewed from the direction of each clue, is equal to the value of the clue. Note that higher skyscrapers block the view of lower skyscrapers located behind them.
 
-The difficulty of the puzzle can vary according to three factors: the size of the board, the number of restrictions alongthe side of the board, and the possible hints in the board itself.
+The difficulty of the puzzle can vary according to three factors: the size of the board, the number of restrictions along the side of the board, and the possible hints in the board itself (it is common to present larger boards partially filled).
 
 \begin{figure}[h!]
 \begin{center}
@@ -105,11 +103,10 @@ The difficulty of the puzzle can vary according to three factors: the size of th
 \section{Approach}
 We present a Constraint Logic Programming approach to define and ultimately solve the puzzle ``Skyscraper''. In order to accomplish this, we use the clp(fd) --- Constraint Logic Programming over Finite Domains --- library in sicstus Prolog. For more information on this prolog implementation and said library, we refer the reader to \cite{sterling_shapiro_warren_2010} and \cite{carlsson_fruhwirth_2016}.
 
+Regarding the implementation of Skyscraper in Prolog, we decided to represent the board's matrix as a list of lists, whose elementary units are integer numbers, representing the height of the skyscraper in that position.
+Elements whose value is not known are represented by  a `\_', therefore representing in Prolog non-instantiated values.
 
-Regarding the implementation of Skyscraper in Prolog, the group used a list of lists to represent the grid. The value of each element corresponding to the height of the building it represents.
-Elements whose value is not known will be represented by  a `\_', therefore representing in Prolog non-instantiated values.
-
-For the restrictions to the side of the grid, we use a list of lists, the first of which being the top restrictions, and the rest following in counter-clockwise order. If the restriction for a certain row or column is undefined, a `0' is used in its representation.
+For the restrictions along the side of the grid, we use a list of lists, the first of which being the top restrictions, and the rest following in counter-clockwise order. If the restriction for a certain row or column is undefined, a `0' is used in its position.
 
 \begin{figure}[h!]
 \begin{center}
