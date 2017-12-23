@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.5.22)  23 DEC 2017 18:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.5.22)  23 DEC 2017 19:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -327,52 +327,69 @@ Missing character: There is no © in font cmr10!
 Missing character: There is no √ in font cmr10!
 Missing character: There is no © in font cmr10!
 
+Overfull \hbox (2.25273pt too wide) in paragraph at lines 66--67
+\OT1/cmr/bx/n/9 Keywords:\OT1/cmr/m/n/9 Skyscraper, Con-straint Logic Pro-gram-
+ming, Sic-s-tus, PLOG,
+ []
+
+Missing character: There is no ‚ in font cmr10!
+Missing character: There is no Ä in font cmr10!
+Missing character: There is no ú in font cmr10!
+Missing character: There is no ‚ in font cmr10!
+Missing character: There is no Ä in font cmr10!
+Missing character: There is no ù in font cmr10!
+
+Overfull \hbox (8.2371pt too wide) in paragraph at lines 75--76
+[]\OT1/cmr/m/n/10 Constraint Logic Pro-gram-ming (CLP) is a merger of two decla
+r-a-tive paradigms:
+ []
+
 [1
 
 {/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-<images/skyscraper_unsolved.png, id=13, 294.34969pt x 293.59688pt>
+<images/skyscraper_unsolved.png, id=12, 294.34969pt x 293.59688pt>
 File: images/skyscraper_unsolved.png Graphic file (type png)
 
 <use images/skyscraper_unsolved.png>
-Package pdftex.def Info: images/skyscraper_unsolved.png used on input line 86.
+Package pdftex.def Info: images/skyscraper_unsolved.png used on input line 88.
 (pdftex.def)             Requested size: 128.03658pt x 128.03615pt.
 
-<images/skyscraper_solved.png, id=15, 295.85532pt x 289.83281pt>
+<images/skyscraper_solved.png, id=14, 295.85532pt x 289.83281pt>
 File: images/skyscraper_solved.png Graphic file (type png)
 
 <use images/skyscraper_solved.png>
-Package pdftex.def Info: images/skyscraper_solved.png used on input line 94.
+Package pdftex.def Info: images/skyscraper_solved.png used on input line 96.
 (pdftex.def)             Requested size: 128.04143pt x 128.0354pt.
  [2 <./images/skyscraper_unsolved.png> <./images/skyscraper_solved.png>]
 <images/example_skyscraper.png, id=21, 322.95656pt x 347.04657pt>
 File: images/example_skyscraper.png Graphic file (type png)
 
 <use images/example_skyscraper.png>
-Package pdftex.def Info: images/example_skyscraper.png used on input line 110.
+Package pdftex.def Info: images/example_skyscraper.png used on input line 112.
 (pdftex.def)             Requested size: 142.26393pt x 142.26883pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 141--142
+Underfull \hbox (badness 10000) in paragraph at lines 143--144
 
  []
 
 [3 <./images/example_skyscraper.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 170--171
+Underfull \hbox (badness 10000) in paragraph at lines 172--173
 
  []
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 174.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 176.
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/bx/it' in size <10> not available
-(Font)              Font shape `OMS/cmsy/b/n' tried instead on input line 174.
+(Font)              Font shape `OMS/cmsy/b/n' tried instead on input line 176.
  [4]
 <images/printBoard1.png, id=32, 116.68594pt x 100.87688pt>
 File: images/printBoard1.png Graphic file (type png)
 
 <use images/printBoard1.png>
-Package pdftex.def Info: images/printBoard1.png used on input line 208.
+Package pdftex.def Info: images/printBoard1.png used on input line 210.
 (pdftex.def)             Requested size: 85.36162pt x 85.35938pt.
 
 
@@ -382,103 +399,102 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 File: images/printBoard21.png Graphic file (type png)
 
 <use images/printBoard21.png>
-Package pdftex.def Info: images/printBoard21.png used on input line 216.
+Package pdftex.def Info: images/printBoard21.png used on input line 218.
 (pdftex.def)             Requested size: 113.81163pt x 113.81757pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
+[5]
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `htbp') on input line 229.
+               Default added (so using `htbp') on input line 231.
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <9> on input line 233.
+(Font)              <9> on input line 235.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 233.
+(Font)              <6> on input line 235.
 
-Underfull \hbox (badness 10000) in paragraph at lines 246--247
+Underfull \hbox (badness 10000) in paragraph at lines 248--249
 
  []
 
-[5] <images/graph1.png, id=37, 635.37375pt x 325.215pt>
+<images/graph1.png, id=37, 635.37375pt x 325.215pt>
 File: images/graph1.png Graphic file (type png)
-
-<use images/graph1.png>
-Package pdftex.def Info: images/graph1.png used on input line 250.
+ <use images/graph1.png>
+Package pdftex.def Info: images/graph1.png used on input line 252.
 (pdftex.def)             Requested size: 341.43886pt x 170.72058pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-Overfull \hbox (0.4085pt too wide) in paragraph at lines 256--257
+Overfull \hbox (0.4085pt too wide) in paragraph at lines 258--259
 \OT1/cmr/m/n/10 other statis-tics, such as \OT1/cmr/m/it/10 Re-sump-tions, En-t
 ail-ments, Prun-ings and Con-straints
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 256--257
+Underfull \hbox (badness 10000) in paragraph at lines 258--259
 
  []
 
 <images/graph2.png, id=38, 636.87938pt x 321.45094pt>
 File: images/graph2.png Graphic file (type png)
  <use images/graph2.png>
-Package pdftex.def Info: images/graph2.png used on input line 260.
+Package pdftex.def Info: images/graph2.png used on input line 262.
 (pdftex.def)             Requested size: 341.43166pt x 170.72133pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [6 <./images/printBoard1.png> <./images/printBoard21.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 276--277
+Underfull \hbox (badness 10000) in paragraph at lines 278--279
 
  []
 
-[7 <./images/graph1.png>]
-Overfull \hbox (32.96283pt too wide) in paragraph at lines 297--299
-[]\OT1/cmr/m/n/9 Skyscraper rules, http://logicmastersindia.com/lmitests/dl.asp
-?attachmentid=659&view=1 
- []
+[7 <./images/graph1.png>] [8 <./images/graph2.png>]
+(./PLOG_TP2_Skyscraper_5.bbl
+Missing character: There is no ‚ in font cmr9!
+Missing character: There is no Ä in font cmr9!
+Missing character: There is no ì in font cmr9!
+) [9
 
-[8 <./images/graph2.png>] [9
-
-]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [10]
+] [10]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [11]
-[12]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [13]
-[14]
+ [12]
+[13]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [15]
-[16]
+ [14]
+[15]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [17]
+ [16]
+[17]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [18]
-[19] (./PLOG_TP2_Skyscraper_5.aux)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [19]
+[20] (./PLOG_TP2_Skyscraper_5.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 3688 strings out of 493014
- 52610 string characters out of 6133351
+ 3691 strings out of 493014
+ 52673 string characters out of 6133351
  199851 words of memory out of 5000000
- 7178 multiletter control sequences out of 15000+600000
- 9022 words of font info for 32 fonts, out of 8000000 for 9000
+ 7177 multiletter control sequences out of 15000+600000
+ 9367 words of font info for 33 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 38i,9n,43p,962b,1585s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,9n,43p,962b,1587s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pf
 b></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
@@ -488,11 +504,12 @@ usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><
 sr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/
 local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/loc
 al/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/loca
-l/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on PLOG_TP2_Skyscraper_5.pdf (19 pages, 236090 bytes).
+l/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/
+texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
+Output written on PLOG_TP2_Skyscraper_5.pdf (20 pages, 244827 bytes).
 PDF statistics:
- 121 PDF objects out of 1000 (max. 8388607)
- 75 compressed objects within 1 object stream
+ 128 PDF objects out of 1000 (max. 8388607)
+ 80 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  36 words of extra memory for PDF output out of 10000 (max. 10000000)
 

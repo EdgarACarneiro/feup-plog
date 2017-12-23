@@ -59,18 +59,20 @@
 \begin{abstract}
 This article presents a Constraint Logic Programming approach to defining and ultimately solving the puzzle ``Skyscraper''.
 The purposed solution is independent of board size and number of restrictions.
-The solver can also be presented with a partially-filled board, as is costumary in bigger boards.
+The solver can also be presented with a partially-filled board, as is costumary in larger boards.
 We also dynamically generate ``Skyscraper'' puzzles, of different sizes and with varying difficulty.
 Results show that ``Skyscraper'' is a prime example for being solved with CLP, as the solution's code is brief, efficient, and simple to understand.
 
-\keywords{skyscraper, CLP, sicstus, PLOG, FEUP}
+\keywords{Skyscraper, Constraint Logic Programming, Sicstus, PLOG, FEUP}
 \end{abstract}
 %
 \section{Introduction}
 %
-The main purpose of this project was to develop a program that would be able to solve either Decision Problems or Optimization Problems, by using Logic Programming with Constraints.
+The ``Skyscraper'' puzzle consists of an NxN grid with some clues along its sides. The objective is to place a skyscraper (represented by its height) in each square, with a height between 1 and N, so that each row and column contains each digit exactly once. In addition, the number of visible skyscrapers, as viewed from the direction of each clue, is equal to the value of the clue. Note that higher skyscrapers block the view of lower skyscrapers located behind them.
 
-Our group was assigned with a decision problem: the Skyscraper puzzle. Succinctly, the puzzle consists of a grid that the player needs to fill, according to some given restrictions, and without repeating the same digits per column and per row.
+We model the presented puzzle as a Constraint Satisfaction Problem, therefore representing it by a set of domain variables, their domains, and a set of restrictions.
+
+Constraint Logic Programming (CLP) is a merger of two declarative paradigms: constraint solving and logic programming. Viewing the subject rather broadly, constraint logic programming can be said to involve the incorporation of constraints and constraint “solving” methods in a logic-based language. We refer the reader to \cite{jaffar_maher_1994} for more on this subject.
 
 The article approaches several topics such as: what were the variables used and its domains, what were the constraints used and their implementation in the program, what is the labeling strategy implemented, what are the results of the developed program and what are the final conclusions obtained from developing the project.
 
@@ -285,24 +287,15 @@ This article was written for the course unit ``Logic Programming'', from the Mas
 %
 % ---- Bibliography ----
 %
-\begin{thebibliography}{5}
-%
-\bibitem {ster:shap:warr}
-L. Sterling, E. Y. Shapiro, and D. H. D. Warren, The Art of Prolog: Advanced Programming Techniques. MIT Press, 2010.
-
-\bibitem {carl:fru}
-M. Carlsson and T. Fruhwirth, SICStus Prolog User's Manual. SICS Swedish ICT AB, 4.3.5 ed., 2016.
-
-\bibitem {sky}
-Skyscraper rules,
-http://logicmastersindia.com/lmitests/dl.asp?attachmentid=659\&view=1
-
-\end{thebibliography}
-
 \clearpage
+\addcontentsline{toc}{section}{References}
+\renewcommand\refname{References}
+\bibliography{myrefs}
+\bibliographystyle{ieeetr}
 
+
+\newpage
 \appendix
-
 \section{Appendix}
 
 \huge\textbf{skyscraper.pl}
