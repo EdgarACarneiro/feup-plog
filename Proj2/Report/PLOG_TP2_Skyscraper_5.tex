@@ -68,11 +68,13 @@ Results show that ``Skyscraper'' is a prime example for being solved with CLP, a
 %
 \section{Introduction}
 %
-The ``Skyscraper'' puzzle consists of an NxN grid with some clues along its sides. The objective is to place a skyscraper (represented by its height) in each square, with a height between 1 and N, so that each row and column contains each digit exactly once. In addition, the number of visible skyscrapers, as viewed from the direction of each clue, is equal to the value of the clue. Note that higher skyscrapers block the view of lower skyscrapers located behind them.
+The ``Skyscraper'' puzzles consists of an NxN grid with some clues along its sides. This type of puzzles combines the row and column constraints of Sudoku with external clue values that re-imagine each row or column of numbers as a road full of skyscrapers of varying height.
 
-We model the presented puzzle as a Constraint Satisfaction Problem, therefore representing it by a set of domain variables, their domains, and a set of restrictions.
+We model the presented puzzle as a Constraint Satisfaction Problem (CSP), therefore representing it by a set of domain variables, their domains, and a set of restrictions.
 
 Constraint Logic Programming (CLP) is a merger of two declarative paradigms: constraint solving and logic programming. Viewing the subject rather broadly, constraint logic programming can be said to involve the incorporation of constraints and constraint “solving” methods in a logic-based language. We refer the reader to \cite{jaffar_maher_1994} for more on this subject.
+
+In this paper, section 2 begins by describing the problem at hand in detail. Section 3 presents our approach to solving this decision problem using Prolog, as well as the finer grained details of the CSP modelling. Section 4 describes the presentation of the solution in a user friendly manner. Section 5 presents our results, performance-wise
 
 The article approaches several topics such as: the necessary domain variables, what were the constraints used and their implementation in the program, what is the labeling strategy implemented, what are the results of the developed program and what are the final conclusions obtained from developing the project.
 
@@ -267,7 +269,7 @@ In the end, the conclusions the group came up with were:
 \end{center}
 \end{figure}
 	
-	\item Also worth notice, despiting not being visible in the table because its values are an average, is the fact that puzzle with a higher number of border restricitons are faster to solve. This is naturally explained since the information received by the solver is bigger and therefore the number of backtracks done is smaller.
+	\item It is also worth noticing that, for the same board size, a puzzle with a higher number of side restricitons is faster to solve. This was expected, as the board's domain variables have stricter contraints, leading to a decreased number of backtracks.
 \end{itemize}
 
 %
