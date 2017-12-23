@@ -13,6 +13,7 @@
 \usepackage{fancyhdr}
 \usepackage{listings}
 \usepackage{color}
+\usepackage{booktabs}
 
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
@@ -195,7 +196,7 @@ In Skyscraper there is no evaluation of solutions, since the puzzle is solved wh
 %
 \subsection{Search Strategy}
 
-The labeling strategy implemented in the program was the \textbf{\textit{ffc}}, also known as \textit{most\_constrained}. This labeling strategy makes use of the most constrained heuristic: ` a variable with the smallest domain is selected, breaking ties by (a) selecting the variable that has the most constraints suspended on it and (b) selecting the leftmost one.' \textbf{Meter aqui citacao par a abilbiografia} We opted for this heuristic as it would be the one providing faster and more efficient solutions for the skyscraper puzzle. This was natural having in mind the kind ofconstraints that were applied during the development, namely the constraint that assure the building heights were correct,\textbf{ver a frase a partir daqui :/} that is: since the entire board is not instantiated the solution will be faster if the first most constrained values --- therefore the ones most unlikely to wrong --- are first discovered and snowball from there on.
+The labeling strategy implemented in the program was the \textbf{\textit{ffc}}, also known as \textit{most\_constrained}. This labeling strategy makes use of the most constrained heuristic: ` a variable with the smallest domain is selected, breaking ties by (a) selecting the variable that has the most constraints suspended on it and (b) selecting the leftmost one'[3].  We opted for this heuristic as it would be the one providing faster and more efficient solutions for the skyscraper puzzle. This was natural having in mind the kind ofconstraints that were applied during the development, namely the constraint that assure the building heights were correct,\textbf{ver a frase a partir daqui :/} that is: since the entire board is not instantiated the solution will be faster if the first most constrained values --- therefore the ones most unlikely to wrong --- are first discovered and snowball from there on.
 
 %
 \section{Solution Presentation}
@@ -221,15 +222,31 @@ For the solution presentation in text mode the predicate \textit{printBoard} is 
 %
 \section{Results}
 
-\textbf{TODO primeiro tentar otimizar senao os valores que estao aqui serao em vao}
-
 The group tried to make extensive and exhaustive tests to be able to conclude fiercely about the given results.
+
+The results of several tests that the group made the program went through were:
+
+\begin{table}[]
+\centering
+\caption{Each of the values is the result of the average of several tests made}
+\label{Results Tablel}
+\begin{tabular}{@{}ccc@{}}
+\toprule
+\multicolumn{1}{c|}{\textbf{Board Size}} & \multicolumn{1}{c|}{\textbf{Time /s}} & \textbf{Backtracks} \\ \midrule
+4x4                                      & 0.030                                 & 9                   \\ \midrule
+5x5                                      & 0.087                                 & 659                 \\ \midrule
+6x6                                      & 0.751                                 & 5438                \\ \midrule
+7x7                                      & 12.489                                & 159196              \\ \midrule
+8x8                                      & 48.239                                & 315893              \\ \bottomrule
+\end{tabular}
+\end{table}
 
 In the end, the conclusions the group came up with were:
 \begin{itemize}
-	\item Conclusion 1
-	\item Conclusion 2
-	\item Conclusion 3 \dots
+	\item There is an exponential relation between the board size and time taken to solve the puzzle. For smaller boards the difference in board size affects slightly the difference of times (board size 4 to baoard size 5, differences of around 0.5s). However in bigger boards the difference of board sizes affect time fiercely (board size 7 to board size 8, differences of arount 30s).
+\textbf{meter aqui o grafico catita}
+	\item There is a strong correlation between the number of backtracks (and the other statistics, such as \textit{Resumptions, Entailments, Prunings and Constraints created}) and time. The higher the alue of the statistics the higher the tame ita took the program to solve the puzzle. \textbf{meter aqui utroo grafico catita}
+	\item Also worth notice, despiting not being visible in the table because its values are an average, is the fact that puzzle with a higher number of border restricitons are faster to solve. This is naturally explained since the information received by the solver is bigger and therefore the number of backtracks done is smaller.
 \end{itemize}
 
 %
