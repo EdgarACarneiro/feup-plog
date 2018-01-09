@@ -1,6 +1,12 @@
 :- use_module(library(clpfd)).
 :- use_module(library(lists)).
 
+%% DISCLAIMER :
+% Some of these exercises are incomplete,
+% take a look in /PLR\ Exercises/ for
+% a better collection of solved exercises.
+
+
 % General PrintBoard
 printBoard(Matrix) :-
         length(Matrix, N),
@@ -17,6 +23,31 @@ printFlatBoard(Board, Side) :-
         append(L, L2, Board),
         write(L), nl,
         printFlatBoard(L2, Side).
+
+%% PLS 16
+solve16(NumPeople) :-
+  Vars = [NumBoth, NumDust, NumLiquid, NumNone, NumPeople],
+  domain(Vars, 1, 10000),
+
+  NumBoth #= 427,
+
+  NumDust #< NumPeople, NumDust #> NumBoth,
+  NumLiquid #< NumPeople, NumLiquid #> NumBoth,
+  NumBoth #< NumPeople, NumBoth #> 0,
+  NumNone #< NumPeople, NumNone #> 0,
+  
+  NumPeople #= NumDust + NumLiquid - NumBoth + NumNone,
+
+  (NumLiquid + NumNone - NumBoth) * 3 #= NumPeople,
+  (NumDust + NumNone - NumBoth) * 7 #= NumPeople * 2,
+  NumNone * 5 #= NumPeople,
+
+  labeling([ffc], Vars),
+  write('NumNone: '), write(NumNone), nl,
+  write('NumDust: '), write(NumDust), nl,
+  write('NumLiquid: '), write(NumLiquid), nl,
+  write('NumPeople: '), write(NumPeople), nl.
+% R: 735 pessoas interrogadas na sondagem.
 
 % IPLR 1. Problema do Quadrado Magico NxN
 % [[A, B, C],
@@ -154,6 +185,30 @@ filaDeCarros(LColors, LSize) :-
         append(LColors, LSize, LAnswer),
         labeling([], LAnswer).
 
+%% PLS 16
+solve16(NumPeople) :-
+  Vars = [NumBoth, NumDust, NumLiquid, NumNone, NumPeople],
+  domain(Vars, 1, 10000),
+
+  NumBoth #= 427,
+
+  NumDust #< NumPeople, NumDust #> NumBoth,
+  NumLiquid #< NumPeople, NumLiquid #> NumBoth,
+  NumBoth #< NumPeople, NumBoth #> 0,
+  NumNone #< NumPeople, NumNone #> 0,
+  
+  NumPeople #= NumDust + NumLiquid - NumBoth + NumNone,
+
+  (NumLiquid + NumNone - NumBoth) * 3 #= NumPeople,
+  (NumDust + NumNone - NumBoth) * 7 #= NumPeople * 2,
+  NumNone * 5 #= NumPeople,
+
+  labeling([ffc], Vars),
+  write('NumNone: '), write(NumNone), nl,
+  write('NumDust: '), write(NumDust), nl,
+  write('NumLiquid: '), write(NumLiquid), nl,
+  write('NumPeople: '), write(NumPeople), nl.
+% R: 735 pessoas interrogadas na sondagem.
 
 %% Programacao em Logica Com Restricoes - Problemas de Optimizacao
 % PLOP 2: O Carteiro Preguicoso
@@ -171,6 +226,3 @@ carteiroPreguicoso(Path, Time) :-
         timeTaken(Path, Time),
         
         labeling([maximize(Time)], Path).
-        
-        
-        

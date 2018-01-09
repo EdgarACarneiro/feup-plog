@@ -1,0 +1,18 @@
+\select@language {portuguese}
+\contentsline {section}{\numberline {1}Introdu\IeC {\c c}\IeC {\~a}o}{4}
+\contentsline {section}{\numberline {2}O Jogo \textit {Fabrik}}{5}
+\contentsline {subsection}{\numberline {2.1}Hist\IeC {\'o}ria}{5}
+\contentsline {subsection}{\numberline {2.2}Material}{5}
+\contentsline {subsection}{\numberline {2.3}Regras}{5}
+\contentsline {section}{\numberline {3}L\IeC {\'o}gica do Jogo}{7}
+\contentsline {subsection}{\numberline {3.1}Representa\IeC {\c c}\IeC {\~a}o do Estado do Jogo}{7}
+\contentsline {subsection}{\numberline {3.2}Visualiza\IeC {\c c}\IeC {\~a}o do Tabuleiro}{10}
+\contentsline {subsection}{\numberline {3.3}Lista de Jogadas V\IeC {\'a}lidas}{13}
+\contentsline {subsection}{\numberline {3.4}Execu\IeC {\c c}\IeC {\~a}o de Jogadas}{14}
+\contentsline {subsection}{\numberline {3.5}Avalia\IeC {\c c}\IeC {\~a}o do Tabuleiro}{15}
+\contentsline {subsection}{\numberline {3.6}Final do Jogo}{16}
+\contentsline {subsection}{\numberline {3.7}Jogada do Computador}{17}
+\contentsline {section}{\numberline {4}Interface com o Utilizador}{18}
+\contentsline {section}{\numberline {5}Conclus\IeC {\~o}es}{21}
+\contentsline {section}{Bibliografia}{22}
+\contentsline {section}{\numberline {A}C\IeC {\'o}digo Comentado}{23}
