@@ -8,8 +8,8 @@ Modeling a board game - [Fabrik](https://spielstein.com/games/fabrik/rules) - an
 
 ## Second Project
 Solving instances of the puzzle ['Skyscraper'](http://www.conceptispuzzles.com/index.aspx?uri=puzzle/skyscrapers) using constraint logic programming.
-* [Project's Report](/Proj1/Report/PLOG_TP1_FINAL_Fabrik_3.pdf)
-* [Information about Skyscraper](https://spielstein.com/games/fabrik/rules)
+* [Project's Report](/Proj2/Report/PLOG_TP2_Skyscraper_5.pdf)
+* [Information about Skyscraper](https://www.brainbashers.com/skyscrapershelp.asp)
 
 ## Authors
 * André Cruz – [@AndreFCruz](https://github.com/AndreFCruz)
